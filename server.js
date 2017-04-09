@@ -13,8 +13,12 @@ mongoose.connect('mongodb://cyborg_root:pass123$@ds149800.mlab.com:49800/pharmac
 });
 
 //port for the server to listen on
-var port = process.env.PORT || 8080;
+var port = process.env.PORT || 6809;
 
 app.listen(port, function(){
     console.log("Listening on port "+port);
 });
+
+app.get('/', function(req,res){
+    res.sendfile('public/app/views/index.html');
+})
