@@ -6,6 +6,7 @@ var mongoose    = require('mongoose');
 
 
 var app = express();
+app.use(express.static(__dirname+"/public"));
 mongoose.connect('mongodb://cyborg_root:pass123$@ds149800.mlab.com:49800/pharmacy',function(){
     console.log('connection successful');
 }, function(error){

@@ -1,3 +1,3 @@
-angular.module('cybogPharmacy',[]).controller('testCtrl',['$scope', function($scope){
+angular.module('cyborgPharmacy',[]).controller('testCtrl',['$scope', function($scope){
     $scope.message = "test message";
 }])
