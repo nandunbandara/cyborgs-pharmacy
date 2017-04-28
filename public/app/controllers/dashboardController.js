@@ -6,9 +6,7 @@ angular.module('dashboardController',[])
 .controller('dashboardCtrl',['Auth','$location',function(Auth,$location){
     const app = this;
 
-    if(!Auth.isLoggedIn()){
-        $location.path('/login');
-    }
+
 
     app.logout = function(){
         Auth.logout();

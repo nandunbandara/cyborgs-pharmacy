@@ -3,7 +3,7 @@
  */
 angular.module('cyborgPharmacy.routes',['ui.router'])
 .config(function($stateProvider, $urlRouterProvider){
-    // $urlRouterProvider.otherwise('/error');
+    $urlRouterProvider.otherwise('/error');
     $stateProvider
 
         .state('login',{

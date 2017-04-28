@@ -8,3 +8,13 @@ angular.module('cyborgPharmacy', [
     'dashboardController'
 ])
 
+.run( ['$rootScope','$location','Auth', function($rootScope, $location, Auth) {
+    $rootScope.$watch(function() {
+            return $location.path();
+        },
+        function(a){
+            if(!Auth.isLoggedIn()){
+                $location.path('/login');
+            }
+        });
+}]);
