@@ -6,6 +6,8 @@ var mongoose    = require('mongoose');
 var bodyParser = require('body-parser');
 var drugController = require('./server/controllers/drugController');
 var userController = require('./server/controllers/userController');
+var batchController = require('./server/controllers/batchController');
+
 var app = express();
 
 
@@ -31,11 +33,14 @@ app.post('/getDrugDetails',drugController.getDrugDetails);
 app.post('/getDrugNamesByCat',drugController.getDrugNamesByCat);
 app.get('/getCatList',drugController.getCatList);
 app.get('/getDrugNames',drugController.getDrugNames);
-
+app.get('/addNewDrug',drugController.addNewDrug);
 
 //user routes
 app.post('/addUser',userController.addUser);
 app.post('/authenticate', userController.authenticate);
+
+//batch routes
+app.post('/addBatch',batchController.addBatch);
 
 app.get('/', function(req,res){
     res.sendfile('public/app/views/index.html');
