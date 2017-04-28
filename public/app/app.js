@@ -4,9 +4,7 @@ angular.module('cyborgPharmacy', [
     'ngAnimate',
     'cyborgPharmacy.routes',
     'authServices',
-    'userController'
+    'userController',
+    'dashboardController'
 ])
 
-.config(function(){
-    console.log("testing cyborg pharmacy");
-})

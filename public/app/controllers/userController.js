@@ -8,13 +8,11 @@ angular.module('userController', [])
 
     //check if the user is logged in
     if(Auth.isLoggedIn()){
-        console.log("user is logged in");
-    }else{
-        console.log("user is not logged in");
+        $location.path('/');
     }
 
+    //user login function
     app.doLogin = function(loginData){
-        console.log("login called")
         app.loading = true;
         app.errorMessage = false;
         Auth.login(app.loginData).then(function(data){
@@ -22,7 +20,7 @@ angular.module('userController', [])
                 app.loading = false;
                 app.successMessage = data.data.message+" ...Redirecting";
                 $timeout(function(){
-                    // $location.path('/');
+                    $location.path('/');
                 },2000);
             }else{
                 app.loading = false;

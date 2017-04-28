@@ -14,7 +14,8 @@ angular.module('cyborgPharmacy.routes',['ui.router'])
 
         .state('dashboard',{
             url:'/',
-            templateUrl: 'app/views/pages/dashboard.html'
+            templateUrl: 'app/views/pages/dashboard.html',
+            controller: 'dashboardCtrl as dash'
         })
 
         .state('dashboard.addUser',{
