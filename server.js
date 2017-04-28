@@ -25,10 +25,15 @@ app.listen(port, function(){
     console.log("Listening on port "+port);
 });
 
+//drug routes
 app.post('/getDrugDetails',drugController.getDrugDetails);
 app.post('/getDrugNamesByCat',drugController.getDrugNamesByCat);
 app.get('/getCatList',drugController.getCatList);
 app.get('/getDrugNames',drugController.getDrugNames);
+
+
+//user routes
+
 
 app.get('/', function(req,res){
     res.sendfile('public/app/views/index.html');
