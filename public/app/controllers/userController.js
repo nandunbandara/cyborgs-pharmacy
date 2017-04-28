@@ -1,10 +1,18 @@
 /**
  * Created by ntban_000 on 4/28/2017.
  */
-angular.module('userController', ['authServices'])
+angular.module('userController', [])
 
 .controller('loginCtrl', ['Auth','$timeout','$location', function(Auth,$timeout,$location){
     const app = this;
+
+    //check if the user is logged in
+    if(Auth.isLoggedIn()){
+        console.log("user is logged in");
+    }else{
+        console.log("user is not logged in");
+    }
+
     app.doLogin = function(loginData){
         console.log("login called")
         app.loading = true;
