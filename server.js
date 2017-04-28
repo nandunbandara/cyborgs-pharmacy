@@ -3,10 +3,16 @@
  */
 var express     = require('express');
 var mongoose    = require('mongoose');
-
-
+var bodyParser = require('body-parser');
+var drugController = require('./server/controllers/drugController');
+var userController = require('./server/controllers/userController');
 var app = express();
+
+
 app.use(express.static(__dirname+"/public"));
+app.use(bodyParser.json());
+app.use(bodyParser.urlencoded({ extended: true }));
+
 mongoose.connect('mongodb://cyborg_root:pass123$@ds149800.mlab.com:49800/pharmacy',function(){
     console.log('connection successful');
 }, function(error){
@@ -19,6 +25,17 @@ var port = process.env.PORT || 6809;
 app.listen(port, function(){
     console.log("Listening on port "+port);
 });
+
+//drug routes
+app.post('/getDrugDetails',drugController.getDrugDetails);
+app.post('/getDrugNamesByCat',drugController.getDrugNamesByCat);
+app.get('/getCatList',drugController.getCatList);
+app.get('/getDrugNames',drugController.getDrugNames);
+
+
+//user routes
+app.post('/addUser',userController.addUser);
+app.post('/authenticate', userController.authenticate);
 
 app.get('/', function(req,res){
     res.sendfile('public/app/views/index.html');

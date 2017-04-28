@@ -17,6 +17,9 @@
   },
   "homepage": "https://gitlab.com/ntb_h3c/cyborgs-pharmacy#README",
   "dependencies": {
-    "express": "^4.15.2"
+    "angular-animate": "^1.6.4",
+    "body-parser": "^1.17.1",
+    "express": "^4.15.2",
+    "jsonwebtoken": "^7.4.0"
   }
 }
