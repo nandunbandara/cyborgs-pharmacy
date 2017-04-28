@@ -14,25 +14,32 @@ exports.addUser = function(req,res){
     user.type = req.body.type;
     user.save(function(err){
         if(req.body.username==null || req.body.username==""){
-            res.send("username not set");
+            res.json({ success:false, message:'Username not set'});
         }else if (req.body.password==null || req.body.password==""){
-            res.send("password not set");
+            res.json({ success:false, message: 'Password not set'});
         }else if (req.body.name==null || req.body.name==""){
-            res.send("name not set");
+            res.json({ success:false, message: 'Name not set'});
         }else if (req.body.email==null || req.body.email==""){
-            res.send("email not set");
+            res.json({ success:false, message:'Email not set'});
         }else if(req.body.type==null || req.body.type==""){
-            res.send("type not set");
+            res.json({ success:false, message: 'Type nto set'});
         }else{
             if(err){
-                res.send('can not create user'+err);
+                res.json({ success:false, message:'Username or Email already exists'});
             }else{
-                res.send('user created');
+                res.json({ success:true, message: 'User created!'});
             }
         }
     });
 }
 
 exports.authenticate = function(req,res){
-    res.send("testing authenticate");
+    User.find({ username: req.body.username }).exec(function(err,user){
+        if(err) throw err;
+        if(!user){
+            res.json({ success:false, message: 'Could not authenicate user!'});
+        }else if(user){
+            //password validation
+        }
+    })
 }
