@@ -13,17 +13,14 @@ angular.module('userController', [])
 
     //user login function
     app.doLogin = function(loginData){
-        app.loading = true;
-        app.errorMessage = false;
         Auth.login(app.loginData).then(function(data){
             if(data.data.success){
-                app.loading = false;
-                app.successMessage = data.data.message+" ...Redirecting";
+                app.errorMessage = null;
+                app.successMessage = data.data.message+" Redirecting...";
                 $timeout(function(){
                     $location.path('/');
                 },2000);
             }else{
-                app.loading = false;
                 app.errorMessage = data.data.message;
             }
         })
