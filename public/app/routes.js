@@ -18,13 +18,13 @@ angular.module('cyborgPharmacy.routes',['ui.router'])
             controller: 'dashboardCtrl as dash'
         })
 
-        .state('dashboard.addUser',{
-            url:'/addUser',
-            templateUrl: 'app/views/pages/users/addUser.html',
-            controller: function($scope){
-                $scope.message = "add user test";
-            }
+        .state('admin',{
+            url:'/admin',
+            templateUrl:'app/views/pages/admin.html',
+            controller: 'adminController as admin'
         })
+
+        .state('admin.users')
 
         .state('404', {
             url: '/error',
