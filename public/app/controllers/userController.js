@@ -3,9 +3,10 @@
  */
 angular.module('userController', ['authServices'])
 
-.controller('loginCtrl', ['Auth', function(Auth){
+.controller('loginCtrl', ['Auth','$timeout','$location', function(Auth,$timeout,$location){
     const app = this;
-    app.login = function(loginData){
+    app.doLogin = function(loginData){
+        console.log("login called")
         app.loading = false;
         app.errorMessage = false;
         Auth.login(app.loginData).then(function(data){
