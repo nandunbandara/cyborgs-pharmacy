@@ -1,7 +1,7 @@
 /**
  * Created by ntban_000 on 4/27/2017.
  */
-angular.module('cyborgPharmacy.routes',['ui.router','userController'])
+angular.module('cyborgPharmacy.routes',['ui.router'])
 .config(function($stateProvider, $urlRouterProvider){
     $urlRouterProvider.otherwise('/error');
     $stateProvider

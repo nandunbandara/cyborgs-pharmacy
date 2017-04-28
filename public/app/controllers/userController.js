@@ -7,14 +7,14 @@ angular.module('userController', ['authServices'])
     const app = this;
     app.doLogin = function(loginData){
         console.log("login called")
-        app.loading = false;
+        app.loading = true;
         app.errorMessage = false;
         Auth.login(app.loginData).then(function(data){
             if(data.data.success){
-                app.loading = true;
+                app.loading = false;
                 app.successMessage = data.data.message+" ...Redirecting";
                 $timeout(function(){
-                    $location.path('/');
+                    // $location.path('/');
                 },2000);
             }else{
                 app.loading = false;

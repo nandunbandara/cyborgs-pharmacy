@@ -4,6 +4,8 @@
 'use strict'
 
 const User = require('../models/user');
+const webtoken = require('jsonwebtoken');
+const secret = '#cyb0rgz!';
 
 exports.addUser = function(req,res){
     const user = new User();
@@ -44,7 +46,12 @@ exports.authenticate = function(req,res){
             if(!validPassword){
                 res.json({ success:false, message:'Could not validate user!' });
             }else{
-                res.json({ success:true, message:'User authenticated!' });
+                //set json web token
+                const token = webtoken.sign({
+                    username: user.username,
+                    email: user.email
+                },secret, { expiresIn: '1h'}); 
+                res.json({ success:true, message:'User authenticated!', token:token});
             }
         }
     })
