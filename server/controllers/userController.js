@@ -34,12 +34,18 @@ exports.addUser = function(req,res){
 }
 
 exports.authenticate = function(req,res){
-    User.find({ username: req.body.username }).exec(function(err,user){
+    User.findOne({ username: req.body.username }).select('username password email type name').exec(function(err,user){
         if(err) throw err;
         if(!user){
-            res.json({ success:false, message: 'Could not authenicate user!'});
+            res.json({ success:false, message: 'Could not authenticate user!'});
         }else if(user){
             //password validation
+            const validPassword = user.comparePassword(req.body.password);
+            if(!validPassword){
+                res.json({ success:false, message:'Could not validate user!' });
+            }else{
+                res.json({ success:true, message:'User authenticated!' });
+            }
         }
     })
 }
