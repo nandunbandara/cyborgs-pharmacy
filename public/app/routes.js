@@ -21,10 +21,10 @@ angular.module('cyborgPharmacy.routes',['ui.router'])
         .state('admin',{
             url:'/admin',
             templateUrl:'app/views/pages/admin.html',
-            controller: 'adminController as admin'
+            controller: 'adminCtrl as admin'
         })
 
-        .state('admin.users')
+
 
         .state('404', {
             url: '/error',
