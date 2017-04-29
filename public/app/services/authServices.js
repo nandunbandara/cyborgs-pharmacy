@@ -29,9 +29,15 @@ angular.module('authServices',[])
         AuthToken.setToken();
     }
 
+    //get user details
+    authFactory.getUser = function(){
+        
+    }
+
     return authFactory;
 })
 
+    //Auth Token factory -> set and remove tokens from local storage
 .factory('AuthToken',['$window',function($window){
    const tokenFactory = {};
    //store token in local storage

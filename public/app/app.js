@@ -5,7 +5,8 @@ angular.module('cyborgPharmacy', [
     'cyborgPharmacy.routes',
     'authServices',
     'userController',
-    'dashboardController'
+    'dashboardController',
+    'adminController'
 ])
 
 .run( ['$rootScope','$location','Auth', function($rootScope, $location, Auth) {

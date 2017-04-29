@@ -32,11 +32,15 @@ app.post('/getDrugDetails',drugController.getDrugDetails);
 app.post('/getDrugNamesByCat',drugController.getDrugNamesByCat);
 app.get('/getCatList',drugController.getCatList);
 app.get('/getDrugNames',drugController.getDrugNames);
-
+app.get('/addNewDrug',drugController.addNewDrug);
 
 //user routes
 app.post('/addUser',userController.addUser);
 app.post('/authenticate', userController.authenticate);
+app.get('/me', userController.me);
+
+//batch routes
+app.post('/addBatch',batchController.addBatch);
 
 
 //prescription routes
