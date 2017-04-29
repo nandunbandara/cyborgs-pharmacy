@@ -6,6 +6,7 @@ var mongoose    = require('mongoose');
 var bodyParser = require('body-parser');
 var drugController = require('./server/controllers/drugController');
 var userController = require('./server/controllers/userController');
+var prescriptionController = require('./server/controllers/prescriptionController');
 var app = express();
 
 
@@ -36,6 +37,22 @@ app.get('/getDrugNames',drugController.getDrugNames);
 //user routes
 app.post('/addUser',userController.addUser);
 app.post('/authenticate', userController.authenticate);
+
+
+//prescription routes
+app.post('/addPHprescription',prescriptionController.addPHprescription);
+app.post('/addDprescription',prescriptionController.addDprescription);
+app.post('/getDPrescriptionDetails',prescriptionController.getDPrescriptionDetails);
+app.post('/getPhPrescriptionDetails',prescriptionController.getPhPrescriptionDetails);
+app.post('/getDprescriptionByDocName',prescriptionController.getDprescriptionByDocName);
+app.post('/getDprescriptionByPatientName',prescriptionController.getDprescriptionByPatientName);
+app.post('/getDprescriptionByDate',prescriptionController.getDprescriptionByDate);
+app.post('/getPhprescriptionByDate',prescriptionController.getPhprescriptionByDate);
+app.post('/getPhprescriptionByDocName',prescriptionController.getPhprescriptionByDocName);
+app.post('/getPhprescriptionByPatientName',prescriptionController.getPhprescriptionByPatientName);
+app.post('/getPhprescriptionByPharmacistName',prescriptionController.getPhprescriptionByPharmacistName);
+
+
 
 app.get('/', function(req,res){
     res.sendfile('public/app/views/index.html');
