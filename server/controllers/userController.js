@@ -23,8 +23,6 @@ exports.addUser = function(req,res){
             res.json({ success:false, message: 'Name not set'});
         }else if (req.body.email==null || req.body.email==""){
             res.json({ success:false, message:'Email not set'});
-        }else if(req.body.type==null || req.body.type==""){
-            res.json({ success:false, message: 'Type nto set'});
         }else{
             if(err){
                 res.json({ success:false, message:'Username or Email already exists'});
@@ -36,7 +34,7 @@ exports.addUser = function(req,res){
 }
 
 exports.authenticate = function(req,res){
-    User.findOne({ username: req.body.username }).select('username password email type name').exec(function(err,user){
+    User.findOne({ username: req.body.username }).select('username password email name permission').exec(function(err,user){
         if(err) throw err;
         if(!user){
             res.json({ success:false, message: 'Could not authenticate user!'});
@@ -49,10 +47,33 @@ exports.authenticate = function(req,res){
                 //set json web token
                 const token = webtoken.sign({
                     username: user.username,
-                    email: user.email
+                    name: user.name,
+                    email: user.email,
+                    permission: user.permission
                 },secret, { expiresIn: '1h'}); 
                 res.json({ success:true, message:'User authenticated!', token:token});
             }
         }
     })
 }
+
+
+
+//get user details
+exports.me = function(req,res){
+    const token = req.body.token || req.body.query || req.headers['x-access-token'];
+
+    if(token){
+        webtoken.verify(token, secret, function(err, decoded){
+            if(err) {
+                res.json({ success:false, message: 'Token invalid'});
+            }else{
+                res.send(decoded);
+            }
+        })
+    }else{
+        res.json({ success:false, message: 'Token not set'});
+    }
+}
+
+

@@ -38,6 +38,7 @@ app.get('/addNewDrug',drugController.addNewDrug);
 //user routes
 app.post('/addUser',userController.addUser);
 app.post('/authenticate', userController.authenticate);
+app.get('/me', userController.me);
 
 //batch routes
 app.post('/addBatch',batchController.addBatch);

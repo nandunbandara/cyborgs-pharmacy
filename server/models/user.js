@@ -12,7 +12,7 @@ const UserSchema = new Schema({
     password: { type: String, required:true },
     name: { type:String, required:true },
     email: { type:String, lowercase: true, required: true, unique:true },
-    type: { type:String, required:true }
+    permission: { type:String, required:true, default:'user' }
 })
 
 UserSchema.pre('save',function(next){
