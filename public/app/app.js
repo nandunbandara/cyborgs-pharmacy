@@ -24,7 +24,7 @@ angular.module('cyborgPharmacy', [
             }else{
                 //get user data
                 Auth.getUser().then(function(data){
-                    console.log(data);
+                    $rootScope.user = data;
                 })
             }
         });

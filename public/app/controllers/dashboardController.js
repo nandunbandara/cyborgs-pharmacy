@@ -3,9 +3,9 @@
  */
 angular.module('dashboardController',[])
 
-.controller('dashboardCtrl',['Auth','$location',function(Auth,$location){
+.controller('dashboardCtrl',['Auth','$location','$rootScope',function(Auth,$location,$rootScope){
     const app = this;
-
+    app.username = $rootScope.user.data.name;
     app.logout = function(){
         Auth.logout();
         $location.path('/login');
