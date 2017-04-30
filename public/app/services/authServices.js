@@ -57,4 +57,18 @@ angular.module('authServices',[])
        return $window.localStorage.getItem('token');
    }
    return tokenFactory;
-}]);
+}])
+
+//tokens in requests
+.factory('AuthInterceptors', ['AuthToken', function(AuthToken){
+    const authInterceptorsFactory = {};
+
+    authInterceptorsFactory.request = function(req){
+        const token = AuthToken.getToken();
+        if(token){
+            req.headers['x-access-token'] = token;
+        }
+        return req;
+    }
+    return authInterceptorsFactory;
+}])

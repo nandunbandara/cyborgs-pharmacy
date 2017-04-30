@@ -9,6 +9,11 @@ angular.module('cyborgPharmacy', [
     'adminController'
 ])
 
+.config(function($httpProvider){
+    $httpProvider.interceptors.push('AuthInterceptors');
+})
+
+
 .run( ['$rootScope','$location','Auth', function($rootScope, $location, Auth) {
     $rootScope.$watch(function() {
             return $location.path();
@@ -16,10 +21,11 @@ angular.module('cyborgPharmacy', [
         function(a){
             if(!Auth.isLoggedIn()){
                 $location.path('/login');
+            }else{
                 //get user data
-                // Auth.getUser().then(function(data){
-                //     console.log(data);
-                // })
+                Auth.getUser().then(function(data){
+                    console.log(data);
+                })
             }
         });
 }]);

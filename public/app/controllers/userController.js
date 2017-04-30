@@ -9,9 +9,6 @@ angular.module('userController', [])
     //check if the user is logged in
     if(Auth.isLoggedIn()){
         $location.path('/');
-        Auth.getUser().then(function(data){
-            console.log(data);
-        })
     }
 
     //user login function
