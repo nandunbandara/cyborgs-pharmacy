@@ -16,6 +16,10 @@ angular.module('cyborgPharmacy', [
         function(a){
             if(!Auth.isLoggedIn()){
                 $location.path('/login');
+                //get user data
+                // Auth.getUser().then(function(data){
+                //     console.log(data);
+                // })
             }
         });
 }]);

@@ -3,7 +3,7 @@
  */
 angular.module('authServices',[])
 
-.factory('Auth', function($http,AuthToken){
+.factory('Auth',['$http','AuthToken','$q', function($http,AuthToken,$q){
     const authFactory = {};
 
     //authenticate user
@@ -31,11 +31,15 @@ angular.module('authServices',[])
 
     //get user details
     authFactory.getUser = function(){
-        
+        if(AuthToken.getToken()){
+            return $http.get('/me');
+        }else{
+            $q.reject({ message: 'User token not set'});
+        }
     }
 
     return authFactory;
-})
+}])
 
     //Auth Token factory -> set and remove tokens from local storage
 .factory('AuthToken',['$window',function($window){
