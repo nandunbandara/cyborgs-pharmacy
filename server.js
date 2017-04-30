@@ -15,6 +15,7 @@ var drugController = require('./server/controllers/drugController');
 var userController = require('./server/controllers/userController');
 var prescriptionController = require('./server/controllers/prescriptionController');
 var batchController = require('./server/controllers/batchController');
+var reportController = require('./server/controllers/reportsController');
 
 //database connection
 mongoose.connect('mongodb://cyborg_root:pass123$@ds149800.mlab.com:49800/pharmacy',function(){
@@ -59,6 +60,8 @@ app.post('/getPhprescriptionByDocName',prescriptionController.getPhprescriptionB
 app.post('/getPhprescriptionByPatientName',prescriptionController.getPhprescriptionByPatientName);
 app.post('/getPhprescriptionByPharmacistName',prescriptionController.getPhprescriptionByPharmacistName);
 
+//reports routes
+app.get('/viewAllExpiredBatches', reportController.viewAllExpiredBatchs);
 
 
 app.get('/', function(req,res){
