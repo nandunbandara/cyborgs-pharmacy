@@ -5,7 +5,7 @@
 
 const drug = require('../models/drug');
 const batch = require('../models/batch');
-const usage = require('../models/phPrescription');
+const phPrescription = require('../models/phprescription');
 
 //view all drugs
 exports.viewAllDrugs = function(req, res){
