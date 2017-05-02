@@ -60,7 +60,7 @@ exports.viewBatchesByName = function(req, res){
 };
 
 //view all expired batch
-exports.viewAllExpiredBatchs = function(req, res){
+exports.viewAllExpiredBatches = function(req, res){
     var currentDate = new Date();
     batch.find({
         bExpire:{$lt:new Date(currentDate.toISOString())}
@@ -77,7 +77,7 @@ exports.viewAllExpiredBatchs = function(req, res){
 
 
 //view all drugs to be expired
-exports.viewDrugsToBeExpired = function(req, res){
+exports.viewBatchesToBeExpired = function(req, res){
     batch.find({
         bExpire:{$lt:new Date(req.body.requiredDate.toISOString())}
     })
