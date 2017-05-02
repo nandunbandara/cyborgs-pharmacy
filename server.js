@@ -62,6 +62,13 @@ app.post('/getPhprescriptionByPharmacistName',prescriptionController.getPhprescr
 
 //reports routes
 app.get('/viewAllExpiredBatches', reportController.viewAllExpiredBatchs);
+app.get('/viewAllDrugs',reportController.viewAllDrugs);
+app.post('/viewDrugsByName',reportController.viewDrugbyName);
+app.get('/viewAllBatches',reportController.viewAllBatches);
+app.post('/viewBatchesByName',reportController.viewBatchesByName);
+app.get('/viewAllExpiredBatchs',reportController.viewAllExpiredBatchs);
+// app.post('/viewBatchesToBeExpired',reportController.viewBatchesToBeExpired);
+app.get('/viewUsage',reportController.viewUsage);
 
 
 app.get('/', function(req,res){
