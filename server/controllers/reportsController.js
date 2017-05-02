@@ -5,6 +5,7 @@
 
 const drug = require('../models/drug');
 const batch = require('../models/batch');
+const phPrescription = require('../models/phprescription');
 
 //view all drugs
 exports.viewAllDrugs = function(req, res){
@@ -90,5 +91,19 @@ exports.viewDrugsToBeExpired = function(req, res){
         })
 };
 
+
+//view all drugs to be expired
+exports.viewUsage = function(req, res){
+    phPrescription.find({})
+        .exec(function(err, usages){
+            if(err){
+                res.send('error has occured');
+            }
+            else{
+                res.json(usages);
+            }
+        })
+
+};
 
 
