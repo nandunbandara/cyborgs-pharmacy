@@ -59,11 +59,10 @@ exports.viewBatchesByName = function(req, res){
         })
 };
 
-//view all expired batch
-exports.viewAllExpiredBatches = function(req, res){
-    var currentDate = new Date();
+//view all drugs to be expired
+exports.viewBatchesToBeExpired = function(req, res){
     batch.find({
-        bExpire:{$lt:new Date(currentDate.toISOString())}
+        bExpire:{$lt:new Date(req.body.requiredDate.toISOString())}
     })
         .exec(function(err, batches){
             if(err){
@@ -75,11 +74,11 @@ exports.viewAllExpiredBatches = function(req, res){
         })
 };
 
-
-//view all drugs to be expired
-exports.viewBatchesToBeExpired = function(req, res){
+//view all expired batch
+exports.viewAllExpiredBatches = function(req, res){
+    var currentDate = new Date();
     batch.find({
-        bExpire:{$lt:new Date(req.body.requiredDate.toISOString())}
+        bExpire:{$lt:new Date(currentDate.toISOString())}
     })
         .exec(function(err, batches){
             if(err){
