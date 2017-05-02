@@ -61,7 +61,6 @@ app.post('/getPhprescriptionByPatientName',prescriptionController.getPhprescript
 app.post('/getPhprescriptionByPharmacistName',prescriptionController.getPhprescriptionByPharmacistName);
 
 //reports routes
-app.get('/viewAllExpiredBatches', reportController.viewAllExpiredBatchs);
 app.get('/viewAllDrugs',reportController.viewAllDrugs);
 app.post('/viewDrugsByName',reportController.viewDrugbyName);
 app.get('/viewAllBatches',reportController.viewAllBatches);
