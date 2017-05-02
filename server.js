@@ -66,7 +66,7 @@ app.get('/viewAllDrugs',reportController.viewAllDrugs);
 app.post('/viewDrugsByName',reportController.viewDrugbyName);
 app.get('/viewAllBatches',reportController.viewAllBatches);
 app.post('/viewBatchesByName',reportController.viewBatchesByName);
-app.get('/viewAllExpiredBatchs',reportController.viewAllExpiredBatchs);
+app.get('/viewAllExpiredBatchs',reportController.viewAllExpiredBatches);
 // app.post('/viewBatchesToBeExpired',reportController.viewBatchesToBeExpired);
 app.get('/viewUsage',reportController.viewUsage);
 

@@ -15,7 +15,7 @@ angular.module('cyborgPharmacy', [
 
 
 .run( ['$rootScope','$location','Auth', function($rootScope, $location, Auth) {
-    $rootScope.$watch(function() {
+    $rootScope.$watch(function(next,current) {
             return $location.path();
         },
         function(a){
