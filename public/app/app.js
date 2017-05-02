@@ -25,6 +25,9 @@ angular.module('cyborgPharmacy', [
                 //get user data
                 Auth.getUser().then(function(data){
                     $rootScope.user = data;
+                    if(data.data.permission=="admin"){
+                        console.log("admin");
+                    }
                 })
             }
         });

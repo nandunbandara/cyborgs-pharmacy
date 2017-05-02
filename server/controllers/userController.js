@@ -14,6 +14,7 @@ exports.addUser = function(req,res){
     user.name = req.body.name;
     user.email = req.body.email;
     user.type = req.body.type;
+    user.permission = req.body.permission;
     user.save(function(err){
         if(req.body.username==null || req.body.username==""){
             res.json({ success:false, message:'Username not set'});
