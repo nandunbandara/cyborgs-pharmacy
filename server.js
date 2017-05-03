@@ -37,6 +37,7 @@ app.post('/getDrugNamesByCat',drugController.getDrugNamesByCat);
 app.get('/getCatList',drugController.getCatList);
 app.get('/getDrugNames',drugController.getDrugNames);
 app.get('/addNewDrug',drugController.addNewDrug);
+app.get('/getAllDrugDetails',drugController.getAllDrugDetails);
 
 //user routes
 app.post('/addUser',userController.addUser);
