@@ -33,7 +33,7 @@ angular.module('cyborgPharmacy.routes',['ui.router'])
         .state('admin.newUser',{
             url: '/new_user',
             templateUrl: 'app/views/pages/users/addUser.html',
-            controller: 'admin_userController as admin_user'
+            controller: 'admin_usersController as admin_user'
         })
 
 

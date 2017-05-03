@@ -1,0 +1,61 @@
+<div class="row">
+    <div class="col-md-2">
+        <div class="btn-toolbar">
+            <button class="btn btn-primary" ui-sref="admin.users">
+                <span class="glyphicon glyphicon-backward"></span>
+                Back
+            </button>
+        </div>
+    </div>
+</div>
+<div class="row" style="margin-top: 10px">
+    <div class="col-md-6">
+        <form class="form-horizontal">
+            <!--username-->
+            <div class="form-group">
+                <div class="col-sm-2">
+                    <label for="username" class="control-label">Username</label>
+                </div>
+                <div class="col-sm-10">
+                    <input type="text" id="username" class="form-control" ng-model="admin.newUser.username" placeholder="Username">
+                </div>
+            </div>
+            <!--name-->
+            <div class="form-group">
+                <div class="col-sm-2">
+                    <label for="name" class="control-label">Name</label>
+                </div>
+                <div class="col-sm-10">
+                    <input type="text" id="name" class="form-control" ng-model="admin.newUser.name" placeholder="Name">
+                </div>
+            </div>
+            <!--email-->
+            <div class="form-group">
+                <div class="col-sm-2">
+                    <label for="email" class="control-label">Email</label>
+                </div>
+                <div class="col-sm-10">
+                    <input type="text" id="email" class="form-control" ng-model="admin.newUser.email" placeholder="Email">
+                </div>
+            </div>
+            <!--password-->
+            <div class="form-group">
+                <div class="col-sm-2">
+                    <label for="password" class="control-label">Password</label>
+                </div>
+                <div class="col-sm-10">
+                    <input type="password" id="password" class="form-control" ng-model="admin.newUser.password" placeholder="Password">
+                </div>
+            </div>
+            <!--confirm password-->
+            <div class="form-group">
+                <div class="col-sm-2">
+                    <label for="password_confirm" class="control-label">Confirm Password</label>
+                </div>
+                <div class="col-sm-10">
+                    <input type="password" id="password_confirm" class="form-control" ng-model="admin.newUser.password_confirm" placeholder="Confirm Password">
+                </div>
+            </div>
+        </form>
+    </div>
+</div>

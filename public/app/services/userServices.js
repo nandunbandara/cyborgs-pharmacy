@@ -12,5 +12,10 @@ angular.module('userServices',[])
             return data;
         })
     }
+
+    userFactory.addUser = function(){
+        
+    }
+
     return userFactory;
 }])
