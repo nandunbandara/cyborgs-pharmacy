@@ -42,6 +42,7 @@ app.get('/addNewDrug',drugController.addNewDrug);
 app.post('/addUser',userController.addUser);
 app.post('/authenticate', userController.authenticate);
 app.get('/me', userController.me);
+app.get('/users', userController.users)
 
 //batch routes
 app.post('/addBatch',batchController.addBatch);

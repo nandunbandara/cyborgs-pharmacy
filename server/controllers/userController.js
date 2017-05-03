@@ -77,4 +77,15 @@ exports.me = function(req,res){
     }
 }
 
+//get all users
+exports.users = function(req,res){
+    User.find({}).select(' username password email name permission ').exec(function(err, users){
+        if(err){
+            res.json({ success:false, message: "Could not retrieve users"})
+        }else{
+            console.log(users);
+        }
+    })
+}
+
 

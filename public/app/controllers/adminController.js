@@ -3,9 +3,9 @@
  */
 angular.module('adminController',[])
 
-.controller('adminCtrl',['Auth', function(Auth){
+.controller('adminCtrl',['Auth','$rootScope','$location', function(Auth, $rootScope, $location){
     const app = this;
-
+    app.username = $rootScope.user.data.name;
     app.logout = function(){
         Auth.logout();
         $location.path('/login');

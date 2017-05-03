@@ -6,7 +6,8 @@ angular.module('cyborgPharmacy', [
     'authServices',
     'userController',
     'dashboardController',
-    'adminController'
+    'adminController',
+    'admin.usersController'
 ])
 
 .config(function($httpProvider){
@@ -15,7 +16,7 @@ angular.module('cyborgPharmacy', [
 
 
 .run( ['$rootScope','$location','Auth', function($rootScope, $location, Auth) {
-    $rootScope.$watch(function(next,current) {
+    $rootScope.$watch(function() {
             return $location.path();
         },
         function(a){
@@ -25,9 +26,6 @@ angular.module('cyborgPharmacy', [
                 //get user data
                 Auth.getUser().then(function(data){
                     $rootScope.user = data;
-                    if(data.data.permission=="admin"){
-                        console.log("admin");
-                    }
                 })
             }
         });
