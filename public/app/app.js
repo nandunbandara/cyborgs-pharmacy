@@ -12,7 +12,7 @@ angular.module('cyborgPharmacy', [
     'userController',
     'dashboardController',
     'adminController',
-    'admin.usersController'
+
 ])
 
 .config(function($httpProvider){
