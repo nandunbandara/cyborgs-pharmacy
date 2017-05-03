@@ -10,4 +10,6 @@ angular.module('adminController',[])
         Auth.logout();
         $location.path('/login');
     }
+
+
 }])

@@ -3,7 +3,12 @@
 angular.module('cyborgPharmacy', [
     'ngAnimate',
     'cyborgPharmacy.routes',
+
+    //services
     'authServices',
+    'userServices',
+
+    //controllers
     'userController',
     'dashboardController',
     'adminController',

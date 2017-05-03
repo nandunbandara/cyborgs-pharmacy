@@ -83,7 +83,7 @@ exports.users = function(req,res){
         if(err){
             res.json({ success:false, message: "Could not retrieve users"})
         }else{
-            console.log(users);
+            res.json(users);
         }
     })
 }
