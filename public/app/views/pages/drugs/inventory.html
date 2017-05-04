@@ -1,0 +1,44 @@
+<div class="col-md-10 side-body">
+    <div class="panel panel-default">
+        <div class="panel-heading">
+            Drug Inventory
+        </div>
+        <div class="panel-body">
+            <div class="row">
+                <div class="col-md-6">
+                    <form class="form-inline">
+                        <div class="input-group">
+                            <input type="text" class="form-control" ng-model="drug.search_key">
+                            <div class="input-group-addon">
+                                <span class="glyphicon glyphicon-search"></span>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+
+            <table class="table table-bordered">
+                <thead>
+                <tr>
+                    <th>Drug ID</th>
+                    <th>Drug Name</th>
+                    <th>Unit Type</th>
+                    <th>Drug Category</th>
+                    <th>Drug Price</th>
+                    <th>Drug Quantity</th>
+                </tr>
+                </thead>
+                <tbody ng-repeat="item in drug.drugs | filter:drug.search_key">
+                <td>{{item.dId}}</td>
+                <td>{{item.dName}}</td>
+                <td>{{item.dUnit}}</td>
+                <td>{{item.dCategory}}</td>
+                <td>{{item.dPrice}}</td>
+                <td>{{item.dQuantity}}</td>
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+
+</div>

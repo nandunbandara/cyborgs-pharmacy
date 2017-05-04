@@ -36,7 +36,11 @@ angular.module('cyborgPharmacy.routes',['ui.router'])
             controller: 'admin_usersController as admin_user'
         })
 
-
+        .state('dashboard.drug',{
+            url:'drugs',
+            templateUrl:'app/views/pages/drugs/inventory.html',
+            controller: 'drugCtrl as drug'
+        })
 
         .state('404', {
             url: '/error',

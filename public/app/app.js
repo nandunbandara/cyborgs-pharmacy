@@ -7,11 +7,13 @@ angular.module('cyborgPharmacy', [
     //services
     'authServices',
     'userServices',
+    'drugServices',
 
     //controllers
     'userController',
     'dashboardController',
     'adminController',
+    'drugController'
 
 ])
 
