@@ -16,16 +16,16 @@
                     </div>
                     <button type="submit" class="btn btn-primary btn-block">Login</button>
                 </form>
-
-                <br>
-                <div class="row show-hide-message" ng-show="login.successMessage">
-                    <div class="alert alert-success">{{login.successMessage}}</div>
-                </div>
-
-                <div class="row show-hide-message" ng-show="login.errorMessage">
-                    <div class="alert alert-danger">{{login.errorMessage}}</div>
-                </div>
             </div>
+        </div>
+        <br>
+        <!--message area-->
+        <div class="row show-hide-message" ng-show="login.successMessage">
+            <div class="alert alert-success">{{login.successMessage}}</div>
+        </div>
+
+        <div class="row show-hide-message" ng-show="login.errorMessage">
+            <div class="alert alert-danger">{{login.errorMessage}}</div>
         </div>
     </div>
 </div>
