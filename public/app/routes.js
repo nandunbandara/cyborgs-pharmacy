@@ -20,6 +20,24 @@ angular.module('cyborgPharmacy.routes',['ui.router'])
             authenticated: true
         })
 
+        .state('dashboard.drug',{
+            url:'drugs',
+            templateUrl:'app/views/pages/drugs/inventory.html',
+            controller: 'drugCtrl as drug'
+        })
+
+        .state('dashboard.drugsReport',{
+            url:'viewAllDrugs',
+            templateUrl:'app/views/pages/reports/drugs.html',
+            controller:'reportsDrugsCtrl as reportsDrugs'
+        })
+
+        .state('dashboard.expiredBatchsReport',{
+            url:'expiredBatchs' ,
+            templateUrl:'app/views/pages/reports/expiredBatchs.html',
+            controller:'reportsExpiredCtrl as reportsBatchs'
+        })
+
         .state('admin',{
             url:'/admin',
             templateUrl:'app/views/pages/admin.html',
@@ -42,12 +60,6 @@ angular.module('cyborgPharmacy.routes',['ui.router'])
             controller: 'admin_usersController as admin_user',
             authenticated: true,
             permissions: ['admin']
-        })
-
-        .state('dashboard.drug',{
-            url:'drugs',
-            templateUrl:'app/views/pages/drugs/inventory.html',
-            controller: 'drugCtrl as drug'
         })
 
         .state('404', {

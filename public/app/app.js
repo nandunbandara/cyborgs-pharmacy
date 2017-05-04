@@ -8,12 +8,14 @@ angular.module('cyborgPharmacy', [
     'authServices',
     'userServices',
     'drugServices',
+    'expiredBatchsServices',
 
     //controllers
     'userController',
     'dashboardController',
     'adminController',
-    'drugController'
+    'drugController',
+    'reportsController'
 
 ])
 
