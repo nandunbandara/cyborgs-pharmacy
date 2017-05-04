@@ -27,17 +27,25 @@ angular.module('cyborgPharmacy', [
     $rootScope.$on('$stateChangeStart', function(event, toState, toParams, fromState, fromParams){
         if(toState.authenticated==true){
             if(!Auth.isLoggedIn()){
-                event.preventDefault();
                 $location.path('/login');
             }else{
                 //get user data
                 Auth.getUser().then(function(data){
-                    $rootScope.user = data;
+                    if(data){
+                        $rootScope.user = data;
+                    }else{
+                        $location.path('/login');
+                    }
                 })
+                if(toState.permissions){
+                    if($rootScope.user.data.permission != toState.permissions[0]){
+                        //add more permission checks here
+                        $location.path('/drugs');
+                    }
+                }
             }
         }else if (toState.authenticated==false){
             if(Auth.isLoggedIn()){
-                event.preventDefault();
                 $location.path('/');
             }
         }

@@ -3,7 +3,7 @@
  */
 angular.module('userController', [])
 
-.controller('loginCtrl', ['Auth','$timeout','$location', function(Auth,$timeout,$location){
+.controller('loginCtrl', ['Auth','$timeout','$location','$rootScope', function(Auth,$timeout,$location,$rootScope){
     const app = this;
 
     //user login function
@@ -13,7 +13,14 @@ angular.module('userController', [])
                 app.errorMessage = null;
                 app.successMessage = data.data.message+" Redirecting...";
                 $timeout(function(){
-                    $location.path('/');
+                    Auth.getUser().then(function(data){
+                        $rootScope.user = data;
+                        if(data.data.permission=="admin"){
+                            $location.path('/admin/users');
+                        }else{
+                            $location.path('/drugs');
+                        }
+                    })
                 },2000);
             }else{
                 app.errorMessage = data.data.message;
