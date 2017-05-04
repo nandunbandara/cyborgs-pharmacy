@@ -5,6 +5,15 @@
 
 const drug = require('../models/drug');
 
+exports.getAllDrugDetails= function (req,res) {
+    drug.find({},function (err,docs) {
+        if(err){
+            console.log(err);
+        }
+        res.json(docs);
+    })
+};
+
 exports.getDrugDetails= function (req,res) {
     var id = req.body.dId;
     drug.find({'dId':id},function (err,docs) {
