@@ -1,39 +1,41 @@
-<div class="row">
-    <div class="col-md-6">
-        <form class="form-inline">
-            <div class="input-group">
-                <input type="text" class="form-control" ng-model="admin_user.search_key">
-                <div class="input-group-addon">
-                    <span class="glyphicon glyphicon-search"></span>
+
+        <div class="row">
+            <div class="col-md-6">
+                <form class="form-inline">
+                    <div class="input-group">
+                        <input type="text" class="form-control" ng-model="admin_user.search_key">
+                        <div class="input-group-addon">
+                            <span class="glyphicon glyphicon-search"></span>
+                        </div>
+                    </div>
+                </form>
+            </div>
+            <div class="col-md-2 col-md-offset-4">
+                <div class="btn-toolbar">
+                    <button class="btn btn-primary" ui-sref="admin.newUser">
+                        <span class="glyphicon glyphicon-plus"></span>
+                        New User
+                    </button>
                 </div>
             </div>
-        </form>
-    </div>
-    <div class="col-md-2 col-md-offset-4">
-        <div class="btn-toolbar">
-            <button class="btn btn-primary" ui-sref="admin.newUser">
-                <span class="glyphicon glyphicon-plus"></span>
-                New User
-            </button>
         </div>
-    </div>
-</div>
-    <table class="table table-hover">
-        <thead>
-        <tr>
-            <th>Name</th>
-            <th>Email</th>
-            <th>Permission</th>
-        </tr>
-        </thead>
-        <tbody>
+        <table class="table table-hover table-bordered" style="margin-top: 10px">
+            <thead>
+            <tr>
+                <th>Name</th>
+                <th>Email</th>
+                <th>Permission</th>
+            </tr>
+            </thead>
+            <tbody>
             <tr ng-repeat="item in admin_user.users | filter:admin_user.search_key">
                 <td>{{item.name}}</td>
                 <td>{{item.email}}</td>
                 <td>{{item.permission}}</td>
             </tr>
-        </tbody>
-    </table>
+            </tbody>
+        </table>
+
 <!--<div class="pagination">-->
     <!--<ul>-->
         <!--<li><a href="#">Prev</a></li>-->
