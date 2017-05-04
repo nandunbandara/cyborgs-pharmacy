@@ -41,7 +41,11 @@ angular.module('cyborgPharmacy.routes',['ui.router'])
             authenticated: true
         })
 
-
+        .state('dashboard.drug',{
+            url:'drugs',
+            templateUrl:'app/views/pages/drugs/inventory.html',
+            controller: 'drugCtrl as drug'
+        })
 
         .state('404', {
             url: '/error',
