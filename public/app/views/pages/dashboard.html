@@ -39,21 +39,19 @@
         </div><!-- /.navbar-collapse -->
     </div><!-- /.container-fluid -->
 </nav>
-<div class="container-fluid main-container">
-    <div class="col-md-2 sidebar">
-        <div class="row">
-            <div class="col-md-6">
-                <ul class="nav nav-pills nav-stacked">
+
+    <div class="col-md-2">
+                <ul class="nav nav-stacked">
                     <li class="active"><a ui-sref=".drug"><i class="fa fa-home fa-fw"></i>Home</a></li>
                     <!--add items to sidebar here-->
                     <li class="active"><a ui-sref=".drugsReport"><i class="fa fa-home fa-fw"></i>Drugs</a></li>
                     <li class="active"><a ui-sref=".expiredBatchsReport"><i class="fa fa-home fa-fw"></i>Batches</a></li>
                     <li class="active"><a ui-sref=".dprescriptions"><i class="fa fa-home fa-fw"></i>Prescription</a></li>
                 </ul>
-            </div>
-        </div>
     </div>
+<div class="col-md-10">
     <div ui-view></div>
+</div>
     <footer class="navbar navbar-fixed-bottom">
         <hr class="divider">
         <div class="container">
@@ -62,4 +60,3 @@
             </p>
         </div>
     </footer>
-</div>
