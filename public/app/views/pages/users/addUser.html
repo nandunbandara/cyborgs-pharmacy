@@ -10,14 +10,14 @@
 </div>
 <div class="row" style="margin-top: 10px">
     <div class="col-md-6 col-md-offset-3">
-        <form class="form-horizontal" ng-submit="admin_user.addUser(admin.regData)">
+        <form class="form-horizontal" ng-submit="admin_user.addUser(admin_user.regData)">
             <!--username-->
             <div class="form-group">
                 <div class="col-sm-4">
                     <label for="username" class="control-label">Username</label>
                 </div>
                 <div class="col-sm-8">
-                    <input type="text" id="username" class="form-control" ng-model="admin.regData.username" placeholder="Username">
+                    <input type="text" id="username" class="form-control" ng-model="admin_user.regData.username" placeholder="Username">
                 </div>
             </div>
             <!--name-->
@@ -26,7 +26,7 @@
                     <label for="name" class="control-label">Name</label>
                 </div>
                 <div class="col-sm-8">
-                    <input type="text" id="name" class="form-control" ng-model="admin.regData.name" placeholder="Name">
+                    <input type="text" id="name" class="form-control" ng-model="admin_user.regData.name" placeholder="Name">
                 </div>
             </div>
             <!--email-->
@@ -35,7 +35,7 @@
                     <label for="email" class="control-label">Email</label>
                 </div>
                 <div class="col-sm-8">
-                    <input type="text" id="email" class="form-control" ng-model="admin.regData.email" placeholder="Email">
+                    <input type="text" id="email" class="form-control" ng-model="admin_user.regData.email" placeholder="Email">
                 </div>
             </div>
             <!--password-->
@@ -44,7 +44,7 @@
                     <label for="password" class="control-label">Password</label>
                 </div>
                 <div class="col-sm-8">
-                    <input type="password" id="password" class="form-control" ng-model="admin.regData.password" placeholder="Password">
+                    <input type="password" id="password" class="form-control" ng-model="admin_user.regData.password" placeholder="Password">
                 </div>
             </div>
             <!--confirm password-->
@@ -53,7 +53,26 @@
                     <label for="password_confirm" class="control-label">Confirm Password</label>
                 </div>
                 <div class="col-sm-8">
-                    <input type="password" id="password_confirm" class="form-control" ng-model="admin.regData.password_confirm" placeholder="Confirm Password">
+                    <input type="password" id="password_confirm" class="form-control" ng-model="admin_user.regData.password_confirm" placeholder="Confirm Password">
+                </div>
+            </div>
+            <!--user permission-->
+            <div class="form-group">
+                <div class="col-sm-4">
+                    <label class="control-label">Permission Level</label>
+                </div>
+                <div class="col-sm-8">
+                    <div class="btn-group" data-toggle="buttons">
+                        <label class="btn btn-danger" ng-click="admin_user.setPermission('admin')">
+                            <input type="radio" name="options" id="option1" autocomplete="off" checked > Administrator
+                        </label>
+                        <label class="btn btn-warning" ng-click="admin_user.setPermission('chief')">
+                            <input type="radio" name="options" id="option2" autocomplete="off" > Chief
+                        </label>
+                        <label class="btn btn-primary" ng-click="admin_user.setPermission('user')">
+                            <input type="radio" name="options" id="option3" autocomplete="off" > Assistant
+                        </label>
+                    </div>
                 </div>
             </div>
             <!--button-->

@@ -55,5 +55,10 @@ angular.module('userController', [])
         })
     }
 
+    app.setPermission = function(permission){
+        app.regData.permission = permission;
+        console.log(app.regData);
+    }
+
 }])
 
