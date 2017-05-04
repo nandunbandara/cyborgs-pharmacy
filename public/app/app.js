@@ -21,29 +21,24 @@ angular.module('cyborgPharmacy', [
 
 
 .run( ['$rootScope','$location','Auth', function($rootScope, $location, Auth) {
-    // $rootScope.$watch(function() {
-    //         return $location.path();
-    //     },
-    //     function(a){
-    //         if(!Auth.isLoggedIn()){
-    //             $location.path('/login');
-    //         }else{
-    //             //get user data
-    //             Auth.getUser().then(function(data){
-    //                 $rootScope.user = data;
-    //             })
-    //         }
-    // });
 
-    $rootScope.$on('$routeChangeStart', function(event, next, current){
-        console.log("route changed")
-        if(!Auth.isLoggedIn()){
-            $location.path('/login');
-        }else{
-            //get user data
-            Auth.getUser().then(function(data){
-                $rootScope.user = data;
-            })
+    $rootScope.$on('$stateChangeStart', function(event, toState, toParams, fromState, fromParams){
+        if(toState.authenticated==true){
+            if(!Auth.isLoggedIn()){
+                event.preventDefault();
+                $location.path('/login');
+            }else{
+                //get user data
+                Auth.getUser().then(function(data){
+                    $rootScope.user = data;
+                })
+            }
+        }else if (toState.authenticated==false){
+            if(Auth.isLoggedIn()){
+                event.preventDefault();
+                $location.path('/');
+            }
         }
+
     })
 }]);

@@ -6,11 +6,6 @@ angular.module('userController', [])
 .controller('loginCtrl', ['Auth','$timeout','$location', function(Auth,$timeout,$location){
     const app = this;
 
-    //check if the user is logged in
-    if(Auth.isLoggedIn()){
-        $location.path('/');
-    }
-
     //user login function
     app.doLogin = function(loginData){
         Auth.login(app.loginData).then(function(data){

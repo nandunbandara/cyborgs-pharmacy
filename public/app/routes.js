@@ -9,31 +9,36 @@ angular.module('cyborgPharmacy.routes',['ui.router'])
         .state('login',{
             url: '/login',
             templateUrl: 'app/views/pages/users/login.html',
-            controller: 'loginCtrl as login'
+            controller: 'loginCtrl as login',
+            authenticated: false
         })
 
         .state('dashboard',{
             url:'/',
             templateUrl: 'app/views/pages/dashboard.html',
-            controller: 'dashboardCtrl as dash'
+            controller: 'dashboardCtrl as dash',
+            authenticated: true
         })
 
         .state('admin',{
             url:'/admin',
             templateUrl:'app/views/pages/admin.html',
-            controller: 'adminCtrl as admin'
+            controller: 'adminCtrl as admin',
+            authenticated: true
         })
 
         .state('admin.users',{
             url:'/users',
             templateUrl: 'app/views/pages/users/users.html',
-            controller: 'admin_usersController as admin_user'
+            controller: 'admin_usersController as admin_user',
+            authenticated: true
         })
 
         .state('admin.newUser',{
             url: '/new_user',
             templateUrl: 'app/views/pages/users/addUser.html',
-            controller: 'admin_usersController as admin_user'
+            controller: 'admin_usersController as admin_user',
+            authenticated: true
         })
 
 
