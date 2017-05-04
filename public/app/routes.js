@@ -24,21 +24,24 @@ angular.module('cyborgPharmacy.routes',['ui.router'])
             url:'/admin',
             templateUrl:'app/views/pages/admin.html',
             controller: 'adminCtrl as admin',
-            authenticated: true
+            authenticated: true,
+            permissions: ['admin']
         })
 
         .state('admin.users',{
             url:'/users',
             templateUrl: 'app/views/pages/users/users.html',
             controller: 'admin_usersController as admin_user',
-            authenticated: true
+            authenticated: true,
+            permissions: ['admin']
         })
 
         .state('admin.newUser',{
             url: '/new_user',
             templateUrl: 'app/views/pages/users/addUser.html',
             controller: 'admin_usersController as admin_user',
-            authenticated: true
+            authenticated: true,
+            permissions: ['admin']
         })
 
         .state('dashboard.drug',{
