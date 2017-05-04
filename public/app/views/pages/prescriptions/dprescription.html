@@ -1,0 +1,82 @@
+<div class="col-md-10 side-body">
+    <div class="panel panel-default">
+        <div class="panel-heading">
+            Doctor Prescription
+        </div>
+        <div class="panel-body">
+            <div class="row">
+                <div class="col-md-6">
+                    <form class="form-inline">
+                        <div class="input-group">
+                            <input type="text" class="form-control" ng-model="dprescriptions.search_key">
+                            <div class="input-group-addon">
+                                <span class="glyphicon glyphicon-search"></span>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+
+            <table class="table table-bordered">
+                <thead>
+                <tr>
+                    <th>Prescription ID</th>
+                    <th>Doctor Name</th>
+                    <th>Patient Name</th>
+                    <th>Patient Age</th>
+                    <th>Date</th>
+                    <th>Dispensed</th>
+                    <th>Undispensed</th>
+                    <th></th>
+                </tr>
+                </thead>
+
+                <tbody ng-repeat="item in dprescriptions.dprescription | filter:dprescriptions.search_key">
+                    <tr>
+                        <td>{{item.dpId}}</td>
+                        <td>{{item.dName}}</td>
+                        <td>{{item.pName}}</td>
+                        <td>{{item.pAge}}</td>
+                        <td>{{item.date}}</td>
+                        <td>
+                            <table>
+                                <tr ng-repeat="available in item.availableDrugs">
+                                    <td style="text-align: left; padding-right: 10px; ">{{available.name}}</td>
+                                    <td style="text-align: center; padding-left: 10px;border-left: 2px solid #e1e1e1;">{{available.qty}}</td>
+                                </tr>
+                            </table>
+                        </td>
+                        <td style="background-color: red; color: white;">
+                            <table>
+                                <tr ng-repeat="unavailable in item.unavailableDrugs">
+                                    <td>{{unavailable.name}}</td>
+                                    <td style="text-align: center; padding-left: 10px;border-left: 2px solid #e1e1e1;">{{unavailable.qty}}</td>
+                                </tr>
+                            </table>
+                        </td>
+                        <!--   <td><i class="btn-link" ng-click="getDetails(item.dpId)">View</i></td> -->
+                       </tr>
+                     <!--  <tr ng-show="item.dpId===dprescriptions.someitem.dpId">
+                           <td colspan="8">
+                               <h1>{Details{dprescriptions.someitem.pName}}</h1>
+                               <table>
+                                   <td>{{item.dpId}}</td>
+                                   <td>{{item.dName}}</td>
+                                   <td>{{item.pAge}}</td>
+                                   <td>{{item.date}}</td>
+                                   <tr ng-repeat="available in item.availableDrugs">
+                                       <td style="text-align: left; padding-right: 10px; ">{{available.name}}</td>
+                                       <td style="text-align: center; padding-left: 10px;border-left: 2px solid #e1e1e1;">{{available.qty}}</td>
+                                   </tr>
+                                   <tr ng-repeat="unavailable in item.unavailableDrugs">
+                                       <td>{{unavailable.name}}</td>
+                                       <td style="text-align: center; padding-left: 10px;border-left: 2px solid #e1e1e1;">{{unavailable.qty}}</td>
+                                   </tr>
+                               </table>>
+                           </td>
+                       </tr> -->
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>

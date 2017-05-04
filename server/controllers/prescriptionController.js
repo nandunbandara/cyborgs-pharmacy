@@ -196,3 +196,32 @@ exports.getPhprescriptionByPharmacistName = function (req,res) {
         res.json(obj);
     })
 };
+
+exports.getDocPrescription= function (req,res) {
+    dPrescription.find({},function (err,docs) {
+        if(err){
+            console.log(err);
+        }
+        res.json(docs);
+    })
+};
+
+
+exports.getPhPrescription= function (req,res) {
+    phPrescription.find({},function (err,docs) {
+        if(err){
+            console.log(err);
+        }
+        res.json(docs);
+    })
+};
+
+exports.getDocPrescriptionDetail= function (req,res) {
+    var id = req.params.number;
+    dPrescription.findOne({ 'dpId': id },function (err,docs) {
+        if(err){
+            console.log(err);
+        }
+        res.json(docs);
+    })
+};
