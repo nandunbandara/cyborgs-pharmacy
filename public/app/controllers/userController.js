@@ -38,10 +38,22 @@ angular.module('userController', [])
 
     app.users;
 
+
+
     User.getUsers().then(function(data){
         app.users = data.data;
     })
 
+    //add new user
+    app.regData = {};
+    app.showErrorMsg = false;
+
+    app.addUser = function(regData){
+        app.showErrorMsg = false;
+        User.addUser(regData).then(function(data){
+            console.log(data);
+        })
+    }
 
 }])
 

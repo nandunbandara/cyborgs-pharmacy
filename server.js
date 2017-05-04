@@ -40,7 +40,7 @@ app.get('/addNewDrug',drugController.addNewDrug);
 app.get('/getAllDrugDetails',drugController.getAllDrugDetails);
 
 //user routes
-app.post('/addUser',userController.addUser);
+app.post('/users',userController.addUser);
 app.post('/authenticate', userController.authenticate);
 app.get('/me', userController.me);
 app.get('/users', userController.users)
