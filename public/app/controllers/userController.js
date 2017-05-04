@@ -60,5 +60,19 @@ angular.module('userController', [])
         console.log(app.regData);
     }
 
+    //delete user
+    app.deleteUser = function(username){
+        User.deleteUser(username).then(function(data){
+            console.log(data);
+            app.loadData();
+        })
+    }
+
+    app.loadData = function(){
+        User.getUsers().then(function(data){
+            app.users = data.data;
+        })
+    }
+
 }])
 

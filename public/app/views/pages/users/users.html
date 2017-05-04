@@ -34,13 +34,13 @@
                 <td>{{item.email}}</td>
                 <td>{{item.permission}}</td>
                 <td>
-                    <a href="">
+                    <a >
                         <button class="btn btn-primary">
                             <span class="glyphicon glyphicon-edit"></span>
                             Edit
                         </button>
                     </a>
-                    <a href="">
+                    <a ng-click="admin_user.deleteUser(item.username)">
                         <button class="btn btn-danger">
                             <span class="glyphicon glyphicon-remove"></span>
                             Delete
