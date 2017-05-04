@@ -12,9 +12,25 @@ angular.module('drugController',[])
     }
 
     app.drugs = [];
+    app.curPage = 0;
 
     Drug.getAllDrugs().then(function (res) {
         app.drugs = res.data;
     })
 
 }])
+
+.filter('pagination', function() {
+
+    return function(input, start) {
+        start = +start;
+        return input.slice(start);
+    };
+})
+
+.filter('roundup', function () {
+    return function (value) {
+        return Math.ceil(value);
+    };
+})
+

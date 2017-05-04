@@ -5,8 +5,22 @@
         </div>
         <div class="panel-body">
             <div class="row">
+
                 <div class="col-md-6">
-                    <form class="form-inline">
+                    <div class="col-md-2">
+                        <select class="form-control" name="singleSelect" id="singleSelect" ng-model="data.singleSelect">
+                            <option value="1">3</option>
+                            <option value="25">25</option>
+                            <option value="50">50</option>
+                        </select>
+                    </div>
+                    <div class="col-md-4">
+                        <p>Records Per Page</p>
+                    </div>
+                </div>
+
+                <div class="col-md-6">
+                    <form class="form-inline text-right">
                         <div class="input-group">
                             <input type="text" class="form-control" ng-model="drug.search_key">
                             <div class="input-group-addon">
@@ -16,6 +30,8 @@
                     </form>
                 </div>
             </div>
+
+            <br/>
 
             <table class="table table-bordered">
                 <thead>
@@ -28,7 +44,7 @@
                     <th>Drug Quantity</th>
                 </tr>
                 </thead>
-                <tbody ng-repeat="item in drug.drugs | filter:drug.search_key">
+                <tbody ng-repeat="item in drug.drugs | pagination: drug.curPage * data.singleSelect | limitTo:data.singleSelect | filter:drug.search_key">
                 <td>{{item.dId}}</td>
                 <td>{{item.dName}}</td>
                 <td>{{item.dUnit}}</td>
@@ -37,6 +53,19 @@
                 <td>{{item.dQuantity}}</td>
                 </tbody>
             </table>
+
+            <div class="row">
+                <div class="col-md-12 text-right">
+                    <div class="pagination" ng-show="drug.drugs.length">
+                        <ul class="pagination">
+                            <li><button type="button" class="btn btn-primary" ng-disabled="drug.curPage==0" ng-click="drug.curPage=drug.curPage-1">&lt; PREV</button></li>
+                            <li><span>Page {{drug.curPage + 1 }} of {{ drug.drugs.length/data.singleSelect | roundup }}</span></li>
+                            <li><button type="button" class="btn btn-primary" ng-disabled="drug.curPage>drug.drugs.length/data.singleSelect-2" ng-click="drug.curPage = drug.curPage+1">NEXT &gt;</button></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
         </div>
     </div>
 
