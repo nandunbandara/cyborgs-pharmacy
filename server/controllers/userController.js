@@ -16,16 +16,16 @@ exports.addUser = function(req,res){
     user.permission = req.body.permission;
     user.save(function(err){
         if(req.body.username==null || req.body.username==""){
-            res.status(400).json({ success:false, message:'Username not set'});
+            res.status(406).json({ success:false, message:'Username not set'});
         }else if (req.body.password==null || req.body.password==""){
-            res.status(400).json({ success:false, message: 'Password not set'});
+            res.status(406).json({ success:false, message: 'Password not set'});
         }else if (req.body.name==null || req.body.name==""){
-            res.status(400).json({ success:false, message: 'Name not set'});
+            res.status(406).json({ success:false, message: 'Name not set'});
         }else if (req.body.email==null || req.body.email==""){
-            res.status(400).json({ success:false, message:'Email not set'});
+            res.status(406).json({ success:false, message:'Email not set'});
         }else{
             if(err){
-                res.status(400).json({ success:false, message:'Username or Email already exists'});
+                res.status(406).json({ success:false, message:'Username or Email already exists'});
             }else{
                 res.status(201).json({ success:true, message: 'User created!'});
             }
