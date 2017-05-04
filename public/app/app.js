@@ -9,13 +9,16 @@ angular.module('cyborgPharmacy', [
     'userServices',
     'drugServices',
     'expiredBatchsServices',
+    'dprescriptionServices',
+    'phprescriptionServices',
 
     //controllers
     'userController',
     'dashboardController',
     'adminController',
     'drugController',
-    'reportsController'
+    'reportsController',
+    'prescriptionController',
 
 ])
 

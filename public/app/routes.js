@@ -62,6 +62,12 @@ angular.module('cyborgPharmacy.routes',['ui.router'])
             permissions: ['admin']
         })
 
+        .state('dashboard.dprescriptions',{
+            url:'dprescriptions',
+            templateUrl:'app/views/pages/prescriptions/dprescription.html',
+            controller: 'dprescriptionCtrl as dprescriptions'
+        })
+
         .state('404', {
             url: '/error',
             templateUrl: 'app/views/pages/404.html'

@@ -62,6 +62,9 @@ app.post('/getPhprescriptionByDate',prescriptionController.getPhprescriptionByDa
 app.post('/getPhprescriptionByDocName',prescriptionController.getPhprescriptionByDocName);
 app.post('/getPhprescriptionByPatientName',prescriptionController.getPhprescriptionByPatientName);
 app.post('/getPhprescriptionByPharmacistName',prescriptionController.getPhprescriptionByPharmacistName);
+app.get('/getDocPrescription',prescriptionController.getDocPrescription);
+app.get('/getPhPrescription',prescriptionController.getPhPrescription);
+app.get('/getDocPrescriptionDetail/:number',prescriptionController.getDocPrescriptionDetail);
 
 //reports routes
 app.get('/viewAllDrugs',reportController.viewAllDrugs);
