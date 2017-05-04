@@ -1,0 +1,27 @@
+
+<div class="col-md-10">
+    <table class="table table-bordered">
+        <thead>
+        <tr>
+            <th>ID</th>
+            <th>Batch Number</th>
+            <th>Drug Name</th>
+            <th>Batch Type</th>
+            <th>Added Date</th>
+            <th>Manufacturer Date </th>
+            <th>Expiration Data</th>
+            <th>Quantity</th>
+        </tr>
+        </thead>
+        <tbody ng-repeat="i in reportsBatchs.batchs">
+        <td>{{i.bId}}</td>
+        <td>{{i.bNumber}}</td>
+        <td>{{i.drugName}}</td>
+        <td>{{i.bType}}</td>
+        <td>{{i.bAdded}}</td>
+        <td>{{i.bManufac}}</td>
+        <td>{{i.bExpire}}</td>
+        <td>{{i.bQuantity}}</td>
+        </tbody>
+    </table>
+</div>
