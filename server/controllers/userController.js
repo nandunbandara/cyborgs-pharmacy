@@ -33,6 +33,16 @@ exports.addUser = function(req,res){
     });
 }
 
+exports.deleteUser = function(req,res){
+    User.find({ username: req.params.username }).remove().exec(function(err,data){
+        if(err){
+            res.status(304).json({ success:false, message: "Could not delete user record!"});
+        }else{
+            res.status(200).json({ success:true, message: "User deleted!"});
+        }
+    })
+}
+
 exports.authenticate = function(req,res){
     User.findOne({ username: req.body.username }).select('username password email name permission').exec(function(err,user){
         if(err) throw err;

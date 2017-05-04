@@ -44,6 +44,7 @@ app.post('/users',userController.addUser);
 app.post('/authenticate', userController.authenticate);
 app.get('/me', userController.me);
 app.get('/users', userController.users)
+app.delete('/users/:username', userController.deleteUser);
 
 //batch routes
 app.post('/addBatch',batchController.addBatch);
