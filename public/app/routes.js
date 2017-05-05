@@ -26,11 +26,7 @@ angular.module('cyborgPharmacy.routes',['ui.router'])
             controller: 'drugCtrl as drug'
         })
 
-        .state('dashboard.drugsReport',{
-            url:'viewAllDrugs',
-            templateUrl:'app/views/pages/reports/drugs.html',
-            controller:'reportsDrugsCtrl as reportsDrugs'
-        })
+        
 
         .state('dashboard.expiredBatchsReport',{
             url:'expiredBatchs' ,
