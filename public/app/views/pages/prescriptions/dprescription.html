@@ -27,7 +27,6 @@
                     <th>Date</th>
                     <th>Dispensed</th>
                     <th>Undispensed</th>
-                    <th></th>
                 </tr>
                 </thead>
 
@@ -46,7 +45,7 @@
                                 </tr>
                             </table>
                         </td>
-                        <td style="background-color: red; color: white;">
+                        <td style="color: red;">
                             <table>
                                 <tr ng-repeat="unavailable in item.unavailableDrugs">
                                     <td>{{unavailable.name}}</td>
