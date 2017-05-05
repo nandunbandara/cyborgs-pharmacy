@@ -1,0 +1,49 @@
+
+
+
+    <div class="panel panel-default">
+        <div class="panel-heading">
+            Expired Batches
+        </div>
+        <div class="panel-body">
+            <div class="row">
+                <div class="col-md-6">
+                    <form class="form-inline">
+                        <div class="input-group">
+
+                                 <input type="text" class="form-control" ng-model="batch.search_key">
+                                 <div class="input-group-addon">
+                                     <span class="glyphicon glyphicon-search"></span>
+                                 </div>
+
+                        </div>
+                    </form>
+                </div>
+            </div>
+
+            <table class="table table-bordered">
+                <thead>
+                <tr>
+                    <th>ID</th>
+                    <th>Batch Number</th>
+                    <th>Drug Name</th>
+                    <th>Batch Type</th>
+                    <th>Added Date</th>
+                    <th>Manufacturer Date </th>
+                    <th>Expiration Data</th>
+                    <th>Quantity</th>
+                </tr>
+                </thead>
+                <tbody ng-repeat="i in reportsBatchs.batchs |  filter:batch.search_key">
+                <td>{{i.bId}}</td>
+                <td>{{i.bNumber}}</td>
+                <td>{{i.drugName}}</td>
+                <td>{{i.bType}}</td>
+                <td>{{i.bAdded}}</td>
+                <td>{{i.bManufac}}</td>
+                <td>{{i.bExpire}}</td>
+                <td>{{i.bQuantity}}</td>
+                </tbody>
+            </table>
+        </div>
+    </div>
