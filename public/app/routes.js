@@ -63,6 +63,12 @@ angular.module('cyborgPharmacy.routes',['ui.router'])
             controller: 'dprescriptionCtrl as dprescriptions'
         })
 
+        .state('dashboard.mailSender',{
+            url:'drugs/mailSender',
+            templateUrl:'app/views/pages/drugs/requestDrug.html',
+            controller: 'mailCtrl as mail'
+        })
+
         .state('404', {
             url: '/error',
             templateUrl: 'app/views/pages/404.html'

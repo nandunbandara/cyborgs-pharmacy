@@ -11,6 +11,7 @@ angular.module('cyborgPharmacy', [
     'expiredBatchsServices',
     'dprescriptionServices',
     'phprescriptionServices',
+    'mailServices',
 
     //controllers
     'userController',
@@ -19,6 +20,7 @@ angular.module('cyborgPharmacy', [
     'drugController',
     'reportsController',
     'prescriptionController',
+    'mailController'
 
 ])
 
