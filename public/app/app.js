@@ -11,6 +11,7 @@ angular.module('cyborgPharmacy', [
     'expiredBatchsServices',
     'dprescriptionServices',
     'phprescriptionServices',
+    'mailServices',
 
     //controllers
     'userController',
@@ -19,6 +20,7 @@ angular.module('cyborgPharmacy', [
     'drugController',
     'reportsController',
     'prescriptionController',
+    'mailController'
 
 ])
 
@@ -32,6 +34,7 @@ angular.module('cyborgPharmacy', [
     $rootScope.$on('$stateChangeStart', function(event, toState, toParams, fromState, fromParams){
         if(toState.authenticated==true){
             if(!Auth.isLoggedIn()){
+                event.preventDefault();
                 $location.path('/login');
             }else{
                 //get user data
@@ -51,6 +54,7 @@ angular.module('cyborgPharmacy', [
             }
         }else if (toState.authenticated==false){
             if(Auth.isLoggedIn()){
+                event.preventDefault();
                 $location.path('/');
             }
         }

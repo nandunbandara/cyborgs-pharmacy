@@ -26,6 +26,13 @@ angular.module('cyborgPharmacy.routes',['ui.router'])
             controller: 'drugCtrl as drug'
         })
 
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+        
+=======
+>>>>>>> 2a385595d888e93a994f411ad75d072b379486ff
+>>>>>>> 19882bd805b2427bf4f69cf8bbd3e6233118718d
 
         .state('dashboard.expiredBatchsReport',{
             url:'expiredBatchs' ,
@@ -61,6 +68,12 @@ angular.module('cyborgPharmacy.routes',['ui.router'])
             url:'dprescriptions',
             templateUrl:'app/views/pages/prescriptions/dprescription.html',
             controller: 'dprescriptionCtrl as dprescriptions'
+        })
+
+        .state('dashboard.mailSender',{
+            url:'drugs/mailSender',
+            templateUrl:'app/views/pages/drugs/requestDrug.html',
+            controller: 'mailCtrl as mail'
         })
 
         .state('404', {

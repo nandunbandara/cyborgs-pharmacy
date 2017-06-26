@@ -22,8 +22,14 @@
                         Account
                         <span class="caret"></span></a>
                     <ul class="dropdown-menu" role="menu">
+                        <li>
+                            <a>
+                                Settings
+                            </a>
+                        </li>
+                        <li class="divider"></li>
                         <li><a ng-click="admin.logout()">
-                            <span class="glyphicon glyphicon-log-out"></span>
+                            <!--<span class="glyphicon glyphicon-log-out"></span>-->
                             Logout
                         </a></li>
                     </ul>
@@ -34,7 +40,6 @@
 </nav>
 
     <div class="col-md-2">
-        <div style="height: 100%; background: #34495e; border:0;">
             <div class="sidebar-nav">
                 <ul class="nav nav-stacked">
                     <li class="active"><a ui-sref=".users"><i class="fa fa-home fa-fw"></i>User Management</a></li>
@@ -42,7 +47,6 @@
                     <li><a><i class="fa fa-cogs fa-fw"></i>Settings</a></li>
                 </ul>
             </div>
-        </div>
     </div>
     <div class="col-md-10">
             <div class="panel panel-default">
