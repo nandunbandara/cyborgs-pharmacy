@@ -10,15 +10,12 @@
                 <div class="col-md-6">
                     <form class="form-inline">
                         <div class="input-group">
-                            <div class="col-sm-6">
+
                                  <input type="text" class="form-control" ng-model="batch.search_key">
                                  <div class="input-group-addon">
                                      <span class="glyphicon glyphicon-search"></span>
                                  </div>
-                            </div>
-                            <div class="col-sm-6">
 
-                            </div>
                         </div>
                     </form>
                 </div>
@@ -42,9 +39,9 @@
                 <td>{{i.bNumber}}</td>
                 <td>{{i.drugName}}</td>
                 <td>{{i.bType}}</td>
-                <td>{{i.bAdded}}</td>
-                <td>{{i.bManufac}}</td>
-                <td>{{i.bExpire}}</td>
+                <td>{{i.bAdded.substr(0,10)}}</td>
+                <td>{{i.bManufac.substr(0,10)}}</td>
+                <td>{{i.bExpire.substr(0,10)}}</td>
                 <td>{{i.bQuantity}}</td>
                 </tbody>
             </table>
