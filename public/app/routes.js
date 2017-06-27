@@ -27,6 +27,7 @@ angular.module('cyborgPharmacy.routes',['ui.router'])
         })
 
 
+
         .state('dashboard.expiredBatchsReport',{
             url:'expiredBatchs' ,
             templateUrl:'app/views/pages/reports/expiredBatchs.html',

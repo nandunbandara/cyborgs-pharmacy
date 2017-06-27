@@ -4,6 +4,7 @@
 angular.module('reportsController',[])
 
 
+
 .controller('reportsExpiredCtrl',['Batchs',function(Batchs){
     const app = this;
     app.batchs = [];
