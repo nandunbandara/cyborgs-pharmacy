@@ -32,12 +32,12 @@ app.listen(port, function(){
 });
 
 //drug routes
-app.post('/getDrugDetails',drugController.getDrugDetails);
-app.post('/getDrugNamesByCat',drugController.getDrugNamesByCat);
-app.get('/getCatList',drugController.getCatList);
-app.get('/getDrugNames',drugController.getDrugNames);
-app.get('/addNewDrug',drugController.addNewDrug);
-app.get('/getAllDrugDetails',drugController.getAllDrugDetails);
+app.get('/drug/details/:id',drugController.getDrugDetails);
+app.get('/drug/name/:id',drugController.getDrugNamesByCat);
+app.get('/drug/category',drugController.getCatList);
+app.get('/drug/name',drugController.getDrugNames);
+app.post('/drug',drugController.addNewDrug);
+app.get('/drug',drugController.getAllDrugDetails);
 
 //user routes
 app.post('/users',userController.addUser);
@@ -47,7 +47,7 @@ app.get('/users', userController.users)
 app.delete('/users/:username', userController.deleteUser);
 
 //batch routes
-app.post('/addBatch',batchController.addBatch);
+app.post('/batch',batchController.addBatch);
 
 
 //prescription routes

@@ -15,7 +15,7 @@ exports.getAllDrugDetails= function (req,res) {
 };
 
 exports.getDrugDetails= function (req,res) {
-    var id = req.body.dId;
+    var id = req.params.id;
     drug.find({'dId':id},function (err,docs) {
         if(err){
             console.log(err);
@@ -25,7 +25,8 @@ exports.getDrugDetails= function (req,res) {
 };
 
 exports.getDrugNamesByCat = function (req,res) {
-    var category = req.body.dCategory;
+    var category = req.params.id;
+
     drug.find({'dCategory':category},function (err,data) {
         if(err){
             console.log(err);
