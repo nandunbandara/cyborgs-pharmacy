@@ -26,13 +26,7 @@ angular.module('cyborgPharmacy.routes',['ui.router'])
             controller: 'drugCtrl as drug'
         })
 
-<<<<<<< HEAD
-=======
-<<<<<<< HEAD
-        
-=======
->>>>>>> 2a385595d888e93a994f411ad75d072b379486ff
->>>>>>> 19882bd805b2427bf4f69cf8bbd3e6233118718d
+
 
         .state('dashboard.expiredBatchsReport',{
             url:'expiredBatchs' ,
