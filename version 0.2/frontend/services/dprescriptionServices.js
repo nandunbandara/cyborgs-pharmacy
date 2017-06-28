@@ -7,12 +7,12 @@ angular.module('dprescriptionServices',[])
         const dprescriptionFactory = [];
 
         dprescriptionFactory.getDocPrescription = function(){
-            return $http.get('/getDocPrescription').then(function(data){
+            return $http.get(Conf.prescription_service.concat('/dprescriptions')).then(function(data){
                 return data;
             })
         };
         dprescriptionFactory.getDetails = function(number){
-            return $http.get('/getDocPrescriptionDetail/' + number).then(function(data){
+            return $http.get(Conf.prescription_service.concat('/dprescriptions/' + number)).then(function(data){
                 return data;
             })
         };

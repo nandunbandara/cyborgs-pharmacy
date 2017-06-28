@@ -7,7 +7,7 @@ angular.module('phprescriptionServices',[])
         const phprescriptionFactory = [];
 
         phprescriptionFactory.getPhPrescription = function(){
-            return $http.get('/getPhPrescription').then(function(data){
+            return $http.get(Conf.prescription_service.concat('/phprescriptions')).then(function(data){
                 return data;
             })
         }
