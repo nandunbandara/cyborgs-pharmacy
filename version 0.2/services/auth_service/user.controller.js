@@ -34,8 +34,33 @@ exports.addUser = function(req,res){
 }
 
 exports.updateUser = function(req,res){
-
+    const user = new User();
+    user.update({username:req.body.username},{
+        $set:{
+            name: req.body.name,
+            email: req.body.email,
+            password: req.body.password,
+            permission: req.body.permission
+        }
+    }, function(err){
+        if(req.body.username==null || req.body.username==""){
+            res.status(406).json({ success:false, message:'Username not set'});
+        }else if (req.body.password==null || req.body.password==""){
+            res.status(406).json({ success:false, message: 'Password not set'});
+        }else if (req.body.name==null || req.body.name==""){
+            res.status(406).json({ success:false, message: 'Name not set'});
+        }else if (req.body.email==null || req.body.email==""){
+            res.status(406).json({ success:false, message:'Email not set'});
+        }else{
+            if(err){
+                res.status(406).json({ success:false, message:'Username or Email already exists'});
+            }else{
+                res.status(201).json({ success:true, message: 'User created!'});
+            }
+        }
+    });
 }
+
 
 exports.deleteUser = function(req,res){
     User.find({ username: req.params.username }).remove().exec(function(err,data){
