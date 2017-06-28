@@ -3,20 +3,37 @@
  */
 angular.module('drugController',[])
 
-.controller('drugCtrl',['Auth','$location','$rootScope','Drug',function(Auth,$location,$rootScope,Drug){
+.controller('drugCtrl',['Auth','$location','Drug',function(Auth,$location,Drug){
     const app = this;
-    app.username = $rootScope.user.data.name;
-    app.logout = function(){
-        Auth.logout();
-        $location.path('/login');
-    }
 
     app.drugs = [];
     app.curPage = 0;
+    app.selectedPage = 25;
 
     Drug.getAllDrugs().then(function (res) {
         app.drugs = res.data;
+        app.addColorProperty();
     })
+
+    app.addColorProperty = function () {
+        for(var item in app.drugs){
+
+            if(app.drugs[item].dQuantity < app.drugs[item].dangerLevel){
+                app.drugs[item].dangerColor = true;
+            }else if (app.drugs[item].dQuantity < app.drugs[item].reorderLevel) {
+                app.drugs[item].reorderColor = true;
+            }
+            else{
+                app.drugs[item].reorderColor = false;
+                app.drugs[item].dangerColor = false;
+            }
+
+        }
+    }
+    
+    app.setPagination = function (data) {
+        app.selectedPage = data;
+    }
 
 }])
 
