@@ -8,7 +8,7 @@ angular.module('drugServices',[])
     const drugFactory = [];
 
     drugFactory.getAllDrugs = function () {
-        return $http.get('/getAllDrugDetails').then(function (data) {
+        return $http.get('/drug').then(function (data) {
             return data;
         })
     }
