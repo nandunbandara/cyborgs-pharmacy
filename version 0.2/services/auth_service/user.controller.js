@@ -34,8 +34,7 @@ exports.addUser = function(req,res){
 }
 
 exports.updateUser = function(req,res){
-    const user = new User();
-    user.update({username:req.body.username},{
+    User.update({username:req.params.username},{
         $set:{
             name: req.body.name,
             email: req.body.email,
@@ -43,9 +42,7 @@ exports.updateUser = function(req,res){
             permission: req.body.permission
         }
     }, function(err){
-        if(req.body.username==null || req.body.username==""){
-            res.status(406).json({ success:false, message:'Username not set'});
-        }else if (req.body.password==null || req.body.password==""){
+        if (req.body.password==null || req.body.password==""){
             res.status(406).json({ success:false, message: 'Password not set'});
         }else if (req.body.name==null || req.body.name==""){
             res.status(406).json({ success:false, message: 'Name not set'});
@@ -55,7 +52,7 @@ exports.updateUser = function(req,res){
             if(err){
                 res.status(406).json({ success:false, message:'Username or Email already exists'});
             }else{
-                res.status(201).json({ success:true, message: 'User created!'});
+                res.status(201).json({ success:true, message: 'User updated!'});
             }
         }
     });
@@ -119,9 +116,20 @@ exports.me = function(req,res){
 exports.users = function(req,res){
     User.find({}).select(' username password email name permission ').exec(function(err, users){
         if(err){
-            res.json({ success:false, message: "Could not retrieve users"})
+            res.json({ success:false, message: "Could not retrieve users"});
         }else{
             res.json(users);
+        }
+    })
+}
+
+//get user by username
+exports.userByUsername = function(req,res){
+    User.find({username: req.params.username}).select('username password email name permission').exec(function(err,user){
+        if(err){
+            res.json({ success:false, message: "Coudl not retreive user"});
+        }else{
+            res.json(user);
         }
     })
 }
