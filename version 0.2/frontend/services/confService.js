@@ -7,7 +7,7 @@ angular.module('cyborgPharmacy.confService',[])
     const con = {};
 
     con.auth_service = "http://localhost:9001";
-
+    con.drug_service = "http://localhost:9002";
     //set your service URIs here
 
     return con;
