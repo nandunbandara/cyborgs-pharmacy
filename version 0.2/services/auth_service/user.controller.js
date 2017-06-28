@@ -33,6 +33,10 @@ exports.addUser = function(req,res){
     });
 }
 
+exports.updateUser = function(req,res){
+
+}
+
 exports.deleteUser = function(req,res){
     User.find({ username: req.params.username }).remove().exec(function(err,data){
         if(err){

@@ -33,9 +33,11 @@ app.listen(port, function(){
 });
 
 //user routes
+app.get('/users', userController.users)
 app.post('/users',userController.addUser);
+app.put('/users/:username', userController.updateUser);
+app.delete('/users/:username', userController.deleteUser);
 app.post('/authenticate', userController.authenticate);
 app.get('/me', userController.me);
-app.get('/users', userController.users)
-app.delete('/users/:username', userController.deleteUser);
+
 

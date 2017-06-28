@@ -4,11 +4,11 @@
 
 angular.module('drugServices',[])
 
-.factory('Drug',['$http',function ($http) {
+.factory('Drug',['$http','Conf',function ($http,Conf) {
     const drugFactory = [];
 
     drugFactory.getAllDrugs = function () {
-        return $http.get('/drug').then(function (data) {
+        return $http.get(Conf.drug_service.concat('/drug')).then(function (data) {
             return data;
         })
     }
