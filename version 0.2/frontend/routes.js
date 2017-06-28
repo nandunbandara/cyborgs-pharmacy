@@ -58,6 +58,14 @@ angular.module('cyborgPharmacy.routes',['ui.router'])
             permissions: ['admin']
         })
 
+        .state('admin.updateUser',{
+            url:'/updateUser',
+            tempateUrl: 'views/pages/users/updateUser.html',
+            controller: 'admin_updateUserController as admin_update_user',
+            authenticated: true,
+            permissions: ['admin']
+        })
+
         .state('dashboard.dprescriptions',{
             url:'dprescriptions',
             templateUrl:'views/pages/prescriptions/dprescription.html',
