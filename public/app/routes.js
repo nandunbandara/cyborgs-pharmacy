@@ -70,6 +70,12 @@ angular.module('cyborgPharmacy.routes',['ui.router'])
             controller: 'mailCtrl as mail'
         })
 
+        .state('dashboard.addDrug',{
+            url:'drugs/addDrug',
+            templateUrl:'app/views/pages/drugs/addDrug.html',
+            controller: 'drugCtrl as drug'
+        })
+
         .state('404', {
             url: '/error',
             templateUrl: 'app/views/pages/404.html'
