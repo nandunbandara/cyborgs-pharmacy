@@ -71,16 +71,9 @@ exports.addNewDrug = function (req,res) {
             lastId=data[j].dId;
         }
         lastId++;
-        var newDrug = drug({
-            "dId":lastId,
-            "dCategory":req.body.dCategory,
-            "dName":req.body.dName,
-            "dPrice":req.body.dPrice,
-            "dUnit":req.body.dUnit,
-            "dangerLevel":req.body.dangerLevel,
-            "reorderLevel":req.body.reorderLevel,
-            "dQuantity":req.body.dQuantity
-        });
+        var data2 = req.body;
+        data2.dId = lastId;
+        var newDrug = new drug(data2)
 
         newDrug.save(function (err) {
             if(err){
