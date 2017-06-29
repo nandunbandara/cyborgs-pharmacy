@@ -76,7 +76,7 @@ angular.module('cyborgPharmacy.routes',['ui.router'])
         })
 
         .state('dashboard.dprescriptions',{
-            url:'dprescriptions',
+            url:'prescription/doctor',
             templateUrl:'views/pages/prescriptions/dprescription.html',
             controller: 'dprescriptionCtrl as dprescriptions'
         })
@@ -103,6 +103,23 @@ angular.module('cyborgPharmacy.routes',['ui.router'])
             url:'drugs/requestDrug',
             templateUrl:'views/pages/drugs/viewRequests.html',
             controller: 'drugCtrl as drug'
+        })
+        .state('dashboard.addDocPrescription',{
+            url:'prescription/doctor/addDprescription',
+            templateUrl:'views/pages/prescriptions/addDocPrescription.html',
+            controller: 'dprescriptionCtrl as dprescriptions'
+        })
+
+        .state('dashboard.phprescriptions',{
+            url:'prescription/pharmacist',
+            templateUrl:'views/pages/prescriptions/phprescription.html',
+            controller: 'phprescriptionCtrl as phprescriptions'
+        })
+
+        .state('dashboard.addPhPrescription',{
+            url:'prescription/pharmacist/addPhprescription',
+            templateUrl:'views/pages/prescriptions/addPhPrescription.html',
+            controller: 'phprescriptionCtrl as phprescriptions'
         })
 
         .state('404', {
