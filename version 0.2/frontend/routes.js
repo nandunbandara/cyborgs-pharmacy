@@ -122,6 +122,12 @@ angular.module('cyborgPharmacy.routes',['ui.router'])
             controller: 'phprescriptionCtrl as phprescriptions'
         })
 
+        .state('dashboard.addBatch',{
+            url:'drugs/addBatch',
+            templateUrl:'views/pages/drugs/addBatch.html',
+            controller: 'batchCtrl as batch'
+        })
+
         .state('404', {
             url: '/error',
             templateUrl: 'views/pages/404.html'

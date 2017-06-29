@@ -13,6 +13,7 @@ angular.module('cyborgPharmacy', [
     'dprescriptionServices',
     'phprescriptionServices',
     'mailServices',
+    'batchServices',
 
     //controllers
     'userController',
@@ -21,7 +22,8 @@ angular.module('cyborgPharmacy', [
     'drugController',
     'reportsController',
     'prescriptionController',
-    'mailController'
+    'mailController',
+    'batchController'
 
 ])
 
