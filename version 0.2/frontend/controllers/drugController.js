@@ -8,11 +8,12 @@ angular.module('drugController',[])
 
     app.drugs = [];//all drug details
     app.categories = [];//all categories
+    app.drugNames = []; // all drug names
     app.curPage = 0;
     app.selectedPage = 25;
     app.errorMessage = null;
     app.successMessage = null;
-
+    app.drugData = {};
     Drug.getAllDrugs().then(function (res) {
         app.drugs = res.data;
         app.addColorProperty();
@@ -71,6 +72,41 @@ angular.module('drugController',[])
             return false;
         else
             return true;
+    }
+
+    app.categoryChange = function () {
+
+        Drug.getDrugNameByCategory(app.drugData.dCategory).then(function (res) {
+            app.drugNames = res.data;
+        })
+    }
+
+    app.drugNameChange = function () {
+
+        Drug.getDrugDetailsByName(app.drugData.dName).then(function (res) {
+            app.drugData = res.data[0];
+        })
+    }
+    
+    
+    app.updateTheDrug = function (details) {
+        if(app.validateDrug(details)){
+            Drug.updateDrug(details).then(function (res) {
+                if(res.data.message=="error"){
+                    app.successMessage = null;
+                    app.errorMessage = "Drug cannot be updated !"
+                }else{
+                    app.successMessage = "Drug updated successfully !";
+                    app.errorMessage = null;
+                    app.drugData = null;
+                    $scope.updateDrugFrom.$setPristine();
+                    $scope.updateDrugFrom.$setUntouched();
+                }
+            })
+        } else{
+            app.successMessage = null;
+            app.errorMessage = "Drug cannot be updated !"
+        }
     }
 
 }])
