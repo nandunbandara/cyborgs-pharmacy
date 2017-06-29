@@ -61,13 +61,11 @@ angular.module('userController', [])
     //set selected permission to registration data
     app.setPermission = function(permission){
         app.regData.permission = permission;
-        console.log(app.regData);
     }
 
     //delete a user
     app.deleteUser = function(username){
         User.deleteUser(username).then(function(data){
-            console.log(data);
             app.loadData();
         })
     }
@@ -98,26 +96,38 @@ angular.module('userController', [])
         app.username = UserData.getData();
         User.getUserByUsername(app.username).then(function(data){
             //load form data
-            console.log(data.data);
-            console.log(data.data.name);
             app.regData.name = data.data.name;
             app.regData.email = data.data.email;
+            //load permission on form
+            if(data.data.permission=='admin')
+                document.getElementById('admin').checked = true;
+            else if(data.data.permission=='chief')
+                document.getElementById('chief').checked = true;
+            else if(data.data.permission=='user')
+                document.getElementById('assistant').checked = true;
+
         }).catch(function(err){
             //store error on data load
             app.data_load_error = err;
         })
 
-        //load permission on form
     }
 
     app.update = function(){
-        User.updateUser(app.username, regData).then(function(data){
+        User.updateUser(app.username, app.regData).then(function(data){
             //store response from the update response
             app.update_response = data;
+            console.log(app.update_response);
         }).catch(function(err){
             //store error from the update response
             app.update_error = err;
+            console.log(app.update_error);
         })
+    }
+
+    //set selected permission to update data
+    app.setPermission = function(permission){
+        app.regData.permission = permission;
     }
 
 }])
