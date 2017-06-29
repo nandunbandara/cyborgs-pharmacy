@@ -33,17 +33,17 @@ app.listen(port, function(){
 });
 
 //user routes
-app.post('/addPHprescription',prescriptionController.addPHprescription);
-app.post('/addDprescription',prescriptionController.addDprescription);
-app.post('/getDPrescriptionDetails',prescriptionController.getDPrescriptionDetails);
-app.post('/getPhPrescriptionDetails',prescriptionController.getPhPrescriptionDetails);
-app.post('/getDprescriptionByDocName',prescriptionController.getDprescriptionByDocName);
-app.post('/getDprescriptionByPatientName',prescriptionController.getDprescriptionByPatientName);
-app.post('/getDprescriptionByDate',prescriptionController.getDprescriptionByDate);
-app.post('/getPhprescriptionByDate',prescriptionController.getPhprescriptionByDate);
-app.post('/getPhprescriptionByDocName',prescriptionController.getPhprescriptionByDocName);
-app.post('/getPhprescriptionByPatientName',prescriptionController.getPhprescriptionByPatientName);
-app.post('/getPhprescriptionByPharmacistName',prescriptionController.getPhprescriptionByPharmacistName);
-app.get('/getDocPrescription',prescriptionController.getDocPrescription);
-app.get('/getPhPrescription',prescriptionController.getPhPrescription);
-app.get('/getDocPrescriptionDetail/:number',prescriptionController.getDocPrescriptionDetail);
+app.post('/prescription/pharmacist',prescriptionController.addPHprescription);
+app.post('/prescription/doctor',prescriptionController.addDprescription);
+app.get('/prescription/doctor/:number',prescriptionController.getDPrescriptionDetails);
+app.get('/prescription/pharmacist/:number',prescriptionController.getPhPrescriptionDetails);
+app.get('/prescription/doctor/dname/:name',prescriptionController.getDprescriptionByDocName);
+app.get('/prescription/doctor/pname/:name',prescriptionController.getDprescriptionByPatientName);
+app.get('/prescription/doctor/date/:date',prescriptionController.getDprescriptionByDate);
+app.get('/prescription/pharmacist/date/:date',prescriptionController.getPhprescriptionByDate);
+app.get('/prescription/pharmacist/dname/:name',prescriptionController.getPhprescriptionByDocName);
+app.get('/prescription/pharmacist/pname/:name',prescriptionController.getPhprescriptionByPatientName);
+app.get('/prescription/pharmacist/phname/:name',prescriptionController.getPhprescriptionByPharmacistName);
+app.get('/prescription/doctor',prescriptionController.getDocPrescription);
+app.get('/prescription/pharmacist',prescriptionController.getPhPrescription);
+//app.get('/dprescription/:number',prescriptionController.getDocPrescriptionDetail);
