@@ -9,7 +9,7 @@ angular.module('cyborgPharmacy', [
     'authServices',
     'userServices',
     'drugServices',
-    'expiredBatchsServices',
+    'reportsServices',
     'dprescriptionServices',
     'phprescriptionServices',
     'mailServices',

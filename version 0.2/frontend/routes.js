@@ -26,12 +26,21 @@ angular.module('cyborgPharmacy.routes',['ui.router'])
             controller: 'drugCtrl as drug'
         })
 
-
-
         .state('dashboard.expiredBatchsReport',{
             url:'expiredBatchs' ,
             templateUrl:'views/pages/reports/expiredBatchs.html',
-            controller:'reportsExpiredCtrl as reportsBatchs'
+            controller:'reportsCtrl as reportsBatchs'
+        })
+
+        .state('dashboard.viewUsage',{
+            url:'usages',
+            templateUrl:'views/pages/reports/usage.html',
+            controller:'reportsCtrl as reportsPrescription'
+        })
+        .state('dashboard.batches',{
+            url:'batches',
+            templateUrl:'views/pages/reports/batches.html',
+            controller:'reportsCtrl as reportsAllBatchs'
         })
 
         .state('admin',{
