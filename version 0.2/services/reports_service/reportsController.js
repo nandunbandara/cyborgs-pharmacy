@@ -105,4 +105,11 @@ exports.viewUsage = function(req, res){
 
 };
 
+exports.getPhprescription = function (req,res) {
+   // var date = req.body.date;
+    var date = new Date();
+    var year = d.getFullYear();
+  //  phPrescription.find({"date":{$gt: new Date()}}).count().
+};
+
 
