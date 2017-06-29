@@ -12,8 +12,7 @@ const phPrescriptionSchema = new mongoose.Schema({
     pName:{ type:String, required: true},
     pAge:{ type:Number, required: true},
     date:{ type:Date, required: true},
-    deliveredDrugs:[],
-    undeliveredDrugs:[]
+    deliveredDrugs:[]
 });
 
 const phPrescription = mongoose.model('phPrescription',phPrescriptionSchema);
