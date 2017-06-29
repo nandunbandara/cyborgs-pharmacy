@@ -16,7 +16,7 @@ exports.getAllDrugDetails= function (req,res) {
 
 exports.getDrugDetails= function (req,res) {
     var id = req.params.id;
-    drug.find({'dId':id},function (err,docs) {
+    drug.find({'dName':id},function (err,docs) {
         if(err){
             console.log(err);
         }
@@ -84,3 +84,28 @@ exports.addNewDrug = function (req,res) {
 
     res.send("success");
 };
+
+exports.updateDrug = function (req,res) {
+    console.log(req.body)
+    drug.update({dId:req.body.dId},{
+        $set:{
+            dPrice:req.body.dPrice,
+            dangerLevel:req.body.dangerLevel,
+            reorderLevel:req.body.reorderLevel,
+            dRemarks:req.body.dRemarks
+        }
+    },function (err,data) {
+            if(err){
+                var msg = {
+                    "message":"error"
+                }
+                console.log(err);
+                res.send(msg);
+                return;
+            }
+            var msg = {
+                "message":"success"
+            }
+            res.send(msg);
+    })
+}

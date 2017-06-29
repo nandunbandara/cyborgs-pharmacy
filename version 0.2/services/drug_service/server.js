@@ -38,6 +38,7 @@ app.get('/drug/name/:id',drugController.getDrugNamesByCat);
 app.get('/drug/category',drugController.getCatList);
 app.get('/drug/name',drugController.getDrugNames);
 app.post('/drug',drugController.addNewDrug);
+app.put('/drug',drugController.updateDrug);
 app.get('/drug',drugController.getAllDrugDetails);
 
 //batch routes
