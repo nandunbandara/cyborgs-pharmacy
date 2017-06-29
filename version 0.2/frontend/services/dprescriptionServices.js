@@ -7,12 +7,32 @@ angular.module('dprescriptionServices',[])
         const dprescriptionFactory = [];
 
         dprescriptionFactory.getDocPrescription = function(){
-            return $http.get(Conf.prescription_service.concat('/dprescriptions')).then(function(data){
+            return $http.get(Conf.prescription_service.concat('/prescription/doctor')).then(function(data){
                 return data;
             })
         };
-        dprescriptionFactory.getDetails = function(number){
-            return $http.get(Conf.prescription_service.concat('/dprescriptions/' + number)).then(function(data){
+        dprescriptionFactory.getDPrescriptionDetails = function(number){
+            return $http.get(Conf.prescription_service.concat('/prescription/doctor/' + number)).then(function(data){
+                return data;
+            })
+        };
+        dprescriptionFactory.getDprescriptionByDocName = function(name){
+            return $http.get(Conf.prescription_service.concat('/prescription/doctor/dname/' + name)).then(function(data){
+                return data;
+            })
+        };
+        dprescriptionFactory.getDprescriptionByPatientName = function(name){
+            return $http.get(Conf.prescription_service.concat('/prescription/doctor/pname/' + name)).then(function(data){
+                return data;
+            })
+        };
+        dprescriptionFactory.getDprescriptionByDate = function(date){
+            return $http.get(Conf.prescription_service.concat('/prescription/doctor/date/' + date)).then(function(data){
+                return data;
+            })
+        };
+        dprescriptionFactory.addDprescription = function(data){
+            return $http.post(Conf.prescription_service.concat('/prescription/doctor'),data).then(function(data){
                 return data;
             })
         };

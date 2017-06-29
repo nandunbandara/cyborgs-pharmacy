@@ -3,11 +3,8 @@
  */
 'use strict'
 
-const dPrescription = require('../models/dprescription');
-const phPrescription = require('../models/phprescription');
-const webtoken = require('jsonwebtoken');
-
-
+const dPrescription = require('./dprescription.model');
+const phPrescription = require('./phprescription.model');
 
 exports.addPHprescription = function(req,res){
     const phPrescriptions = new phPrescription();
@@ -73,7 +70,7 @@ exports.addDprescription = function(req,res){
 }
 
 exports.getDPrescriptionDetails= function (req,res) {
-    var id = req.body.dpId;
+    var id = req.params.number;
     dPrescription.find({'dpId':id},function (err,docs) {
         if(err){
             console.log(err);
@@ -83,7 +80,7 @@ exports.getDPrescriptionDetails= function (req,res) {
 };
 
 exports.getPhPrescriptionDetails= function (req,res) {
-    var id = req.body.phpId;
+    var id = req.params.number;
     phPrescription.find({'phpId':id},function (err,docs) {
         if(err){
             console.log(err);
@@ -93,7 +90,7 @@ exports.getPhPrescriptionDetails= function (req,res) {
 };
 
 exports.getDprescriptionByDocName = function (req,res) {
-    var docName = req.body.dName;
+    var docName = req.params.name;
     dPrescription.find({'dName':docName},function (err,data) {
         if(err){
             console.log(err);
@@ -108,7 +105,7 @@ exports.getDprescriptionByDocName = function (req,res) {
 };
 
 exports.getDprescriptionByPatientName = function (req,res) {
-    var patName = req.body.pName;
+    var patName = req.params.name;
     dPrescription.find({'pName':patName},function (err,data) {
         if(err){
             console.log(err);
@@ -123,7 +120,7 @@ exports.getDprescriptionByPatientName = function (req,res) {
 };
 
 exports.getDprescriptionByDate = function (req,res) {
-    var date = req.body.date;
+    var date = req.params.date;
     dPrescription.find({'date':date},function (err,data) {
         if(err){
             console.log(err);
@@ -138,7 +135,7 @@ exports.getDprescriptionByDate = function (req,res) {
 };
 
 exports.getPhprescriptionByDate = function (req,res) {
-    var date = req.body.date;
+    var date = req.params.date;
     phPrescription.find({'date':date},function (err,data) {
         if(err){
             console.log(err);
@@ -153,7 +150,7 @@ exports.getPhprescriptionByDate = function (req,res) {
 };
 
 exports.getPhprescriptionByDocName = function (req,res) {
-    var docName = req.body.dName;
+    var docName = req.params.name;
     phPrescription.find({'dName':docName},function (err,data) {
         if(err){
             console.log(err);
@@ -168,7 +165,7 @@ exports.getPhprescriptionByDocName = function (req,res) {
 };
 
 exports.getPhprescriptionByPatientName = function (req,res) {
-    var patName = req.body.pName;
+    var patName = req.params.name;
     phPrescription.find({'pName':patName},function (err,data) {
         if(err){
             console.log(err);
@@ -183,7 +180,7 @@ exports.getPhprescriptionByPatientName = function (req,res) {
 };
 
 exports.getPhprescriptionByPharmacistName = function (req,res) {
-    var pharmaName = req.body.phName;
+    var pharmaName = req.params.name;
     phPrescription.find({'phName':pharmaName},function (err,data) {
         if(err){
             console.log(err);

@@ -92,6 +92,6 @@
 #	modified:   server.js
 #	new file:   server/controllers/prescriptionController.js
 #	new file:   server/models/dprescription.js
-#	new file:   server/models/phprescription.js
+#	new file:   server/models/phprescription.model.js
 
 
