@@ -18,7 +18,7 @@ angular.module('userServices',[])
 
     //get user by username
     userFactory.getUserByUsername = function(uname){
-        return $http.get(Conf.auth_service.contact('/users/').contact(uname)).then(function(data){
+        return $http.get(Conf.auth_service.concat('/users/').concat(uname)).then(function(data){
             return data;
         }).catch(function(err){
             return err;
@@ -53,4 +53,20 @@ angular.module('userServices',[])
     }
 
     return userFactory;
+}])
+
+
+.factory('UserData', [function(){
+    const userDataFac = {};
+    var user_data;
+
+    userDataFac.setData = function(data){
+        user_data = data;
+    }
+
+    userDataFac.getData = function(){
+        return user_data;
+    }
+
+    return userDataFac;
 }])

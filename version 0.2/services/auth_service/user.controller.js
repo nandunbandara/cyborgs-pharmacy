@@ -38,13 +38,10 @@ exports.updateUser = function(req,res){
         $set:{
             name: req.body.name,
             email: req.body.email,
-            password: req.body.password,
             permission: req.body.permission
         }
     }, function(err){
-        if (req.body.password==null || req.body.password==""){
-            res.status(406).json({ success:false, message: 'Password not set'});
-        }else if (req.body.name==null || req.body.name==""){
+        if (req.body.name==null || req.body.name==""){
             res.status(406).json({ success:false, message: 'Name not set'});
         }else if (req.body.email==null || req.body.email==""){
             res.status(406).json({ success:false, message:'Email not set'});
@@ -125,7 +122,7 @@ exports.users = function(req,res){
 
 //get user by username
 exports.userByUsername = function(req,res){
-    User.find({username: req.params.username}).select('username password email name permission').exec(function(err,user){
+    User.findOne({username: req.params.username}).select('username password email name permission').exec(function(err,user){
         if(err){
             res.json({ success:false, message: "Coudl not retreive user"});
         }else{

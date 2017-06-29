@@ -69,7 +69,7 @@ angular.module('cyborgPharmacy.routes',['ui.router'])
 
         .state('admin.updateUser',{
             url:'/updateUser',
-            tempateUrl: 'views/pages/users/updateUser.html',
+            templateUrl: 'views/pages/users/updateUser.html',
             controller: 'admin_updateUserController as admin_update_user',
             authenticated: true,
             permissions: ['admin']
