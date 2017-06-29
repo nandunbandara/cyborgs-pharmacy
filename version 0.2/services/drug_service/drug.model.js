@@ -13,7 +13,10 @@ const drugSchema = new mongoose.Schema({
     "dUnit":{type:String, required:true},
     "dangerLevel":{type:Number, required:true},
     "reorderLevel":{type:Number, required:true},
-    "dQuantity":{type:Number, required:true}
+    "dQuantity":{type:Number, required:false, default:0},
+    "dDosage":{type:String, required:false},
+    "dFrequency":{type:String, required:false},
+    "dRemarks":{type:String, required:false}
 });
 
 const Drug = mongoose.model('Drug',drugSchema);
