@@ -41,6 +41,8 @@ angular.module('userController', [])
 .controller('admin_usersController',['User','UserData','$location', function(User,UserData,$location){
     const app = this;
     app.users;
+    app.filter='name';
+    app.order = 'username';
 
     //retreive all the registered users
     User.getUsers().then(function(data){
@@ -85,7 +87,12 @@ angular.module('userController', [])
 
     //set filter in search
     app.setFilter = function(filter){
-        app.key = filter;
+        app.filter = filter;
+    }
+
+    //set order by
+    app.setOrderBy = function(order){
+        app.order = order;
     }
 
 }])
