@@ -12,5 +12,17 @@ angular.module('drugServices',[])
             return data;
         })
     }
+
+    drugFactory.getAllCategories = function () {
+        return $http.get(Conf.drug_service.concat('/drug/category')).then(function (data) {
+            return data;
+        })
+    }
+
+    drugFactory.addNewDrug = function (data) {
+        return $http.post(Conf.drug_service.concat('/drug'),data).then(function (res) {
+            return res;
+        })
+    }
     return drugFactory;
 }])

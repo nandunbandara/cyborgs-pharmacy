@@ -84,6 +84,18 @@ angular.module('cyborgPharmacy.routes',['ui.router'])
             controller: 'drugCtrl as drug'
         })
 
+        .state('dashboard.updateDrug',{
+            url:'drugs/updateDrug',
+            templateUrl:'views/pages/drugs/updateDrug.html',
+            controller: 'drugCtrl as drug'
+        })
+
+        .state('dashboard.requestDrug',{
+            url:'drugs/requestDrug',
+            templateUrl:'views/pages/drugs/viewRequests.html',
+            controller: 'drugCtrl as drug'
+        })
+
         .state('404', {
             url: '/error',
             templateUrl: 'views/pages/404.html'
