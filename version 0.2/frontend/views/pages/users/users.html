@@ -1,6 +1,6 @@
 
         <div class="row">
-            <div class="col-md-6">
+            <div class="col-md-10">
                 <form class="form-inline">
                     <div class="input-group">
                         <input type="text" class="form-control" ng-model="admin_user.search_key">
@@ -8,9 +8,23 @@
                             <span class="glyphicon glyphicon-search"></span>
                         </div>
                     </div>
+                    <div class="input-group">
+                        &nbsp;&nbsp;&nbsp;&nbsp;<label>Filter:</label>
+                        &nbsp;&nbsp;&nbsp;<div class="btn-group" data-toggle="buttons">
+                            <label class="btn btn-info" ng-click="admin_user.setPermission('admin')">
+                                <input type="radio" name="options" id="option1" autocomplete="off" checked> Username
+                            </label>
+                            <label class="btn btn-info" ng-click="admin_user.setPermission('chief')">
+                                <input type="radio" name="options" id="option2" autocomplete="off" > Name
+                            </label>
+                            <label class="btn btn-info" ng-click="admin_user.setPermission('user')">
+                                <input type="radio" name="options" id="option3" autocomplete="off" > Email
+                            </label>
+                        </div>
+                    </div>
                 </form>
             </div>
-            <div class="col-md-2 col-md-offset-4">
+            <div class="col-md-2">
                 <div class="btn-toolbar">
                     <button class="btn btn-primary" ui-sref="admin.newUser">
                         <span class="glyphicon glyphicon-plus"></span>
@@ -22,6 +36,7 @@
         <table class="table table-hover" style="margin-top: 10px">
             <thead>
             <tr>
+                <th>Username</th>
                 <th>Name</th>
                 <th>Email</th>
                 <th>Permission</th>
@@ -30,6 +45,7 @@
             </thead>
             <tbody>
             <tr ng-repeat="item in admin_user.users | filter:admin_user.search_key">
+                <td>{{item.username}}</td>
                 <td>{{item.name}}</td>
                 <td>{{item.email}}</td>
                 <td>{{item.permission}}</td>

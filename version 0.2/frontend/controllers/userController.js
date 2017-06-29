@@ -83,6 +83,11 @@ angular.module('userController', [])
         $location.path('/admin/updateUser');
     }
 
+    //set filter in search
+    app.setFilter = function(filter){
+        app.key = filter;
+    }
+
 }])
 
 .controller('admin_updateUserController',['UserData', 'User','$location', function(UserData,User,$location){
