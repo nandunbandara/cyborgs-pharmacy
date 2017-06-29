@@ -5,7 +5,14 @@ angular.module('adminController',[])
 
 .controller('adminCtrl',['Auth','$rootScope','$location', function(Auth, $rootScope, $location){
     const app = this;
-    app.username = $rootScope.user.data.name;
+
+    if($rootScope.user){
+        app.username = $rootScope.user.data.name;
+    }else{
+        Auth.logout();
+        $location.path('/login');
+    }
+
     app.logout = function(){
         Auth.logout();
         $location.path('/login');
