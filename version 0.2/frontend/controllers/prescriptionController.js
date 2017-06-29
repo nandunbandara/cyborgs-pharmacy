@@ -39,7 +39,7 @@ angular.module('prescriptionController',[])
         };
         app.addDprescription = function(addDpre){
             app.showErrorMsg = false;
-            User.addDprescription(addDpre).then(function(data){
+            dPrescription.addDprescription(addDpre).then(function(data){
                 console.log(data);
             })
         };
@@ -62,33 +62,33 @@ angular.module('prescriptionController',[])
             app.phprescription = data.data;
         });
         $scope.getPhPrescriptionDetails = function(number){
-            dPrescription.getPhPrescriptionDetails(number).then(function(data){
+            phPrescription.getPhPrescriptionDetails(number).then(function(data){
                 app.dprescriptionByID = data.data;
             });
         };
         $scope.getPhprescriptionByDate = function(date){
-            dPrescription.getPhprescriptionByDate(date).then(function(data){
+            phPrescription.getPhprescriptionByDate(date).then(function(data){
                 app.phprescriptionByDate = data.data;
             });
         };
         $scope.getPhprescriptionByDocName = function(name){
-            dPrescription.getPhprescriptionByDocName(name).then(function(data){
+            phPrescription.getPhprescriptionByDocName(name).then(function(data){
                 app.phprescriptionByDocName = data.data;
             });
         };
         $scope.getPhprescriptionByPatientName = function(name){
-            dPrescription.getPhprescriptionByPatientName(name).then(function(data){
+            phPrescription.getPhprescriptionByPatientName(name).then(function(data){
                 app.phprescriptionByPatName = data.data;
             });
         };
         $scope.getPhprescriptionByPharmacistName = function(name){
-            dPrescription.getPhprescriptionByPharmacistName(name).then(function(data){
+            phPrescription.getPhprescriptionByPharmacistName(name).then(function(data){
                 app.phprescriptionByPharName = data.data;
             });
         };
         app.addPHprescription = function(addPHpre){
             app.showErrorMsg = false;
-            User.addPHprescription(addPHpre).then(function(data){
+            phPrescription.addPHprescription(addPHpre).then(function(data){
                 console.log(data);
             })
         };
