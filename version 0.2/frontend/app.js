@@ -47,7 +47,7 @@ angular.module('cyborgPharmacy', [
                     }
                 })
                 if(toState.permissions){
-                    if($root.Scope.user){
+                    if($rootScope.user){
                         if($rootScope.user.data.permission != toState.permissions[0]){
                             //add more permission checks here
                             $location.path('/drugs');

@@ -24,13 +24,14 @@
                     <ul class="dropdown-menu" role="menu">
                         <li>
                             <a>
-                                Settings
+                                <span class="glyphicon glyphicon-cog"></span>
+                                &nbsp;&nbsp; Settings
                             </a>
                         </li>
-                        <li class="divider"></li>
-                        <li><a ng-click="admin.logout()">
-                            <!--<span class="glyphicon glyphicon-log-out"></span>-->
-                            Logout
+                        <li>
+                            <a ng-click="admin.logout()">
+                                <span class="glyphicon glyphicon-log-out"></span>
+                                &nbsp;&nbsp; Logout
                         </a></li>
                     </ul>
                 </li>
@@ -39,8 +40,8 @@
     </div><!-- /.container-fluid -->
 </nav>
 
-    <div class="col-md-2">
-            <div class="sidebar-nav">
+    <div class="col-md-2" style="padding: 0px;">
+            <div class="sidebar-nav" style="margin-left: 0px;">
                 <ul class="nav nav-stacked">
                     <li class="active"><a ui-sref=".users"><i class="fa fa-home fa-fw"></i>User Management</a></li>
                     <!--add items to sidebar here-->
