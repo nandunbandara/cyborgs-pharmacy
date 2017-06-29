@@ -42,7 +42,7 @@ angular.module('reportsController',[])
                         'rgba(255, 99, 132, 0.2)',
                         'rgba(75, 192, 192, 0.2)',
                         'rgba(153, 102, 255, 0.2)',
-                        'rgba(54, 162, 235, 0.2)'
+                        'rgba(54, 162, 235, 0.2)',
                     ],
                     borderColor: [
                         'rgba(255,99,132,1)',
@@ -56,7 +56,7 @@ angular.module('reportsController',[])
                         'rgba(255, 206, 86, 1)',
                         'rgba(75, 192, 192, 1)',
                         'rgba(153, 102, 255, 1)',
-                        'rgba(255, 159, 64, 1)'
+                        'rgba(255, 159, 64, 1)',
                     ],
                     borderWidth: 1
                 }]
@@ -75,5 +75,21 @@ angular.module('reportsController',[])
 
     Reports.getAllBatchs().then(function (res) {
         app.allBatchs = res.data;
-    })
-}])
+    });
+
+//save graphs as a pdf
+
+    window.onload = function() {
+        var saveGraphs = document.getElementById('saveBtn');
+        saveGraphs.onclick = function () {
+            var canvas = document.getElementById("myChart");
+            var imgData = canvas.toDataURL("image/jpeg", 1.0);
+            var pdf = new jsPDF();
+
+            pdf.addImage(imgData, 'JPEG', 0, 0);
+            var download = document.getElementById('myChart');
+
+            pdf.save("download.pdf");
+        }
+    }
+}]);
