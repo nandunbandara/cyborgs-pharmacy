@@ -59,7 +59,7 @@
                 <td>{{item.dCategory}}</td>
                 <td>{{item.dPrice}}</td>
                 <td ng-class='{red : item.dangerColor, orange: item.reorderColor}'>{{item.dQuantity}}</td>
-                <td><a ui-sref="dashboard.mailSender"><button type="button" class="btn btn-primary">Place Order</button></a></td>
+                <td><a ui-sref="dashboard.mailSender"><button type="button" class="btn btn-primary" ng-click="drug.setRowDataToLocal(item)">Place Order</button></a></td>
                 </tbody>
             </table>
 
@@ -74,6 +74,7 @@
                     </div>
                 </div>
             </div>
+
         </div>
         <style type="text/css">
             .red {

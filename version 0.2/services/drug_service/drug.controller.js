@@ -64,7 +64,11 @@ exports.addNewDrug = function (req,res) {
     drug.find({},function(err,data){
         var lastId=0;
         if(err){
-            console.log(err);
+            var msg = {
+                "message":"error"
+            }
+            res.send(msg);
+            return;
         }
 
         for(var j=0;j<data.length;j++){
@@ -82,7 +86,10 @@ exports.addNewDrug = function (req,res) {
         });
     });
 
-    res.send("success");
+    var msg = {
+        "message":"success"
+    }
+    res.send(msg);
 };
 
 exports.updateDrug = function (req,res) {

@@ -9,6 +9,7 @@ angular.module('drugController',[])
     app.drugs = [];//all drug details
     app.categories = [];//all categories
     app.drugNames = []; // all drug names
+    app.inventoryRowData = {}; //data of a selected row
     app.curPage = 0;
     app.selectedPage = 25;
     app.errorMessage = null;
@@ -47,12 +48,17 @@ angular.module('drugController',[])
         if(app.validateDrug(details)){
 
             Drug.addNewDrug(details).then(function (res) {
-                app.successMessage = "Drug added successfully !";
-                app.errorMessage = null;
+                if(res.data.message=="success"){
+                    app.successMessage = "Drug added successfully !";
+                    app.errorMessage = null;
 
-                $scope.data = null;
-                $scope.addDrugFrom.$setPristine();
-                $scope.addDrugFrom.$setUntouched();
+                    $scope.data = null;
+                    $scope.addDrugFrom.$setPristine();
+                    $scope.addDrugFrom.$setUntouched();
+                }else {
+                    app.successMessage = null;
+                    app.errorMessage = "Drug cannot be added !"
+                }
             })
 
 
@@ -109,6 +115,9 @@ angular.module('drugController',[])
         }
     }
 
+    app.setRowDataToLocal = function (data) {
+        localStorage.setItem('rowData',JSON.stringify(data));
+    }
 }])
 
 .filter('pagination', function() {
