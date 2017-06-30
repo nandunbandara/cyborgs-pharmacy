@@ -27,6 +27,13 @@ angular.module('reportsController',[])
         })
     };
 
+    //delete a expired batch
+    app.deleteBatch = function(bId){
+        Reports.deleteUser(bId).then(function(data){
+            console.log(data);
+        })
+    }
+
 
 
     Reports.getAllPrescription().then(function (res) {
