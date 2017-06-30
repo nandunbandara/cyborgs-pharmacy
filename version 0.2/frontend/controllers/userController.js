@@ -69,7 +69,7 @@ angular.module('userController', [])
         else if (app.regData.email==""||app.regData.email==undefined)
             app.error_message = "Please enter an email address";
         //valid email address
-        else if (!app.regData.email.match('[A-Z0-9._%+-]+@[A-Z0-9.-]+.[A-Z]{2,4}'))
+        else if (!app.regData.email.match('[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,3}$'))
             app.error_message = "Please enter a valid email address";
         //password validation (null or undefined)
         else if (app.regData.password==""||app.regData.password==undefined)
@@ -81,7 +81,7 @@ angular.module('userController', [])
         else if (app.regData.password_strength==30)
             app.error_message = "Your password is not strong enough";
         //check for permissions
-        else if (app.regData.permission==""||app.regDat.permission==undefined)
+        else if (app.regData.permission==""||app.regData.permission==undefined)
             app.error_message = "Please set user permission";
         else{
             User.addUser(regData).then(function(data){
@@ -110,20 +110,32 @@ angular.module('userController', [])
 
     //check password strength
     app.checkPasswordStrength = function(){
-        if(app.regData.password.match('^(?=.*[A-Z].*[A-Z])(?=.*[a-z].*[a-z].*[a-z])$')){
+        // if(app.regData.password.match('^(?=.*[A-Z].*[A-Z])(?=.*[a-z].*[a-z].*[a-z])$')){
+        //     app.password_strength = 30;
+        //     app.password_strength_message = "Week";
+        // }
+        // else if (app.regData.password.match('^(?=.*[A-Z].*[A-Z])(?=.*[a-z].*[a-z].*[a-z]).{8}$')) {
+        //     app.password_strength = 50;
+        //     app.password_strength_message = "Good";
+        // }
+        // else if (app.regData.password.match('^(?=.*[A-Z].*[A-Z])(?=.*[!@#$&*])(?=.*[0-9].*[0-9])(?=.*[a-z].*[a-z].*[a-z]).{8}$')){
+        //     app.password_strength = 100;
+        //     app.password_strength_message = "Excellent";
+        // }
+        // else {
+        //     app.password_strength = 0;
+        // }
+        if(app.regData.password.match('^(?:([A-Z])*){8,12}$')){
             app.password_strength = 30;
             app.password_strength_message = "Week";
         }
-        else if (app.regData.password.match('^(?=.*[A-Z].*[A-Z])(?=.*[a-z].*[a-z].*[a-z]).{8}$')) {
+        else if (app.regData.password.match('^(?:([A-Z])*([a-z])*(\d)*){8,12}$')) {
             app.password_strength = 50;
             app.password_strength_message = "Good";
         }
-        else if (app.regData.password.match('^(?=.*[A-Z].*[A-Z])(?=.*[!@#$&*])(?=.*[0-9].*[0-9])(?=.*[a-z].*[a-z].*[a-z]).{8}$')){
+        else if (app.regData.password.match('^(?:([A-Z])*([a-z])*(\d)*(\W)*){8,12}$')){
             app.password_strength = 100;
             app.password_strength_message = "Excellent";
-        }
-        else {
-            app.password_strength = 0;
         }
     }
 
@@ -230,9 +242,9 @@ angular.module('userController', [])
 
 }])
 
-.controller('admin_UserLogsController',['User',function(User){
+.controller('admin_UserLogsController',['UserLogs',function(UserLogs){
     const app = this;
-    User.getAllLogs().then(function(data){
+    UserLogs.getAllLogs().then(function(data){
         app.logs = data.data;
         console.log(app.logs);
     }).catch(function(err){

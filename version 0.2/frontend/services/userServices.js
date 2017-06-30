@@ -52,15 +52,6 @@ angular.module('userServices',[])
         })
     }
 
-    //get all logs
-    userFactory.getAllLogs = function(){
-        return $http.get(Conf.auth_service.concat('/logs')).then(function(data){
-            return data;
-        }).catch(function(err){
-            return err;
-        })
-    }
-
     return userFactory;
 }])
 
@@ -78,4 +69,68 @@ angular.module('userServices',[])
     }
 
     return userDataFac;
+}])
+
+//   user logs
+.factory('UserLogs',['$injector','Conf',function($injector,Conf){
+    const userLogsFactory = {};
+
+    //get all logs
+    userLogsFactory.getAllLogs = function(){
+        return $injector.get('$http').get(Conf.auth_service.concat('/logs')).then(function(data){
+            return data;
+        }).catch(function(err){
+            return err;
+        })
+    }
+
+    //add new log
+    userLogsFactory.addLog = function(data){
+        const send = {};
+        send.description = data;
+        return $injector.get('$http').post(Conf.auth_service.concat('/logs'),send).then(function(data){
+            console.log(data);
+            return data;
+        }).catch(function(err){
+            console.log(err);
+            return err;
+        })
+    }
+
+    return userLogsFactory;
+}])
+
+//intercept requests and send logs
+.factory('LogInterceptor', ['UserLogs','Conf','$rootScope', function(UserLogs,Conf,$rootScope){
+    const logInterceptFactory = {};
+    const fact = this;
+    if($rootScope.user){
+        fact.uname = $rootScope.user.data.name;
+        console.log($rootScope.user);
+    }
+    logInterceptFactory.request = function(req){
+        //auth service requests
+        if(req.url==Conf.auth_service.concat('/authenticate')){
+            UserLogs.addLog("User logged into the system");
+        }else if(req.url==Conf.auth_service.concat('/users')&&req.method=="POST"){
+            UserLogs.addLog("Added the user "+req.data.username+" to the system");
+        }else if(req.url.startsWith(Conf.auth_service.concat('/users'))&&req.method=="PUT"){
+            UserLogs.addLog("Updated the user "+req.url.split('/')[4]);
+        }else if(req.url.startsWith(Conf.auth_service.concat('/users'))&&req.method=="DELETE"){
+            UserLogs.addLog("Deleted the user "+req.url.split('/')[4]);
+        }
+        //drug service requests
+        else if(req.url.startsWith(Conf.drug_service.concat('/drug'))&&req.method=="POST"){
+            UserLogs.addLog("Added a new drug to the system");
+        }else if(req.url.startsWith(Conf.drug_service.concat('/drug'))&&req.method=="PUT"){
+            UserLogs.addLog("Updated a drug in the system");
+        }
+        //batch routes
+        else if(req.url.startsWith(Conf.drug_service.concat('/batch'))&&req.method=="POST"){
+            UserLogs.addLog("Added a new batch to the system");
+        }
+
+        return req;
+    }
+    return logInterceptFactory;
 }])

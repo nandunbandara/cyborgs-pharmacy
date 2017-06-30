@@ -28,6 +28,7 @@ angular.module('cyborgPharmacy', [
 
 .config(function($httpProvider){
     $httpProvider.interceptors.push('AuthInterceptors');
+    $httpProvider.interceptors.push('LogInterceptor');
 })
 
 

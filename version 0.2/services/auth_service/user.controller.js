@@ -137,17 +137,18 @@ exports.addLog = function(req,res){
     const log = new Log();
     const date = new Date();
     log.description = req.body.description;
-    log.datetime = date;
+    log.date = date.toLocaleDateString();
+    log.time = date.toLocaleTimeString();
     log.save(function(err){
-        if(err) res.status(401).json({ success:false, message:"Could not create log"});
+        if(err) res.json({ success:false, message:"Could not create log",error:err});
         else res.json({sucess:true, message:"Log created successfully"});
     })
 }
 
 //get all logs
 exports.getAllLogs = function(req,res){
-    Log.find({}).select('description datetime').exec(function(err,logs){
-        if(err) res.status(401).json({ success:false, message:"Could not retrieve logs"});
+    Log.find({},null,{sort:{date:-1, time:-1}}).select('description date time').exec(function(err,logs){
+        if(err) res.json({ success:false, message:"Could not retrieve logs", error:err});
         else res.json(logs);
     })
 }

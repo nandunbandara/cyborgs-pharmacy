@@ -16,8 +16,11 @@
             <label class="btn btn-info" ng-click="logs.setFilter('description')">
                 <input type="radio" name="options" id="option1" autocomplete="off" checked> Description
             </label>
-            <label class="btn btn-info" ng-click="logs.setFilter('datetime')">
-                <input type="radio" name="options" id="option2" autocomplete="off" > Date/Time
+            <label class="btn btn-info" ng-click="logs.setFilter('date')">
+                <input type="radio" name="options" id="option2" autocomplete="off" > Date
+            </label>
+            <label class="btn btn-info" ng-click="logs.setFilter('time')">
+                <input type="radio" name="options" id="option2" autocomplete="off" > Time
             </label>
         </div>
         </div>
@@ -26,8 +29,11 @@
         <div class="input-group">
             &nbsp;&nbsp;<label>Order by:</label>
             &nbsp;&nbsp;&nbsp;<div class="btn-group" data-toggle="buttons">
-            <label class="btn btn-info" ng-click="logs.setOrderBy('datetime')">
-                <input type="radio" name="options" id="option1" autocomplete="off" checked> Date/Time
+            <label class="btn btn-info" ng-click="logs.setOrderBy('date')">
+                <input type="radio" name="options" id="option1" autocomplete="off" checked> Date
+            </label>
+            <label class="btn btn-info" ng-click="logs.setOrderBy('time')">
+                <input type="radio" name="options" id="option1" autocomplete="off" checked> Time
             </label>
         </div>
         </div>
@@ -36,14 +42,20 @@
 <table class="table table-hover" style="margin-top: 10px">
     <thead>
     <tr>
-        <th>Date/Time</th>
+        <th>Date</th>
+        <th>Time</th>
         <th>Description</th>
     </tr>
     </thead>
     <tbody>
     <tr ng-repeat="item in logs.logs | filter: {'description':logs.search_key} | orderBy: logs.order">
-        <td width="250px">{{item.datetime}}</td>
+        <td width="100px">{{item.date}}</td>
+        <td width="100x">{{item.time}}</td>
         <td>{{item.description}}</td>
     </tr>
     </tbody>
 </table>
+
+<div data-pagination="" data-num-pages="numPages()"
+     data-current-page="currentPage" data-max-size="maxSize"
+     data-boundary-links="true"></div>
