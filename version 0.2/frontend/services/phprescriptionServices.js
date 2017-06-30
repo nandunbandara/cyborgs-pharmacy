@@ -3,7 +3,7 @@
  */
 angular.module('phprescriptionServices',[])
 
-    .factory('phPrescription', ['$http', function($http){
+    .factory('phPrescription', ['$http','Conf', function($http,Conf){
         const phprescriptionFactory = [];
 
         phprescriptionFactory.getPhPrescription = function(){
