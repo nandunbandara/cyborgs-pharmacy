@@ -17,6 +17,7 @@ app.use(cors());
 
 //controller
 var drugController = require('./drug.controller');
+var batchController = require('./batch.controller');
 
 //database connection
 mongoose.connect('mongodb://cyborg_root:pass123$@ds149800.mlab.com:49800/pharmacy',function(){
@@ -42,4 +43,4 @@ app.put('/drug',drugController.updateDrug);
 app.get('/drug',drugController.getAllDrugDetails);
 
 //batch routes
-//app.post('/batch',batchController.addBatch);
+app.post('/batch',batchController.addBatch);
