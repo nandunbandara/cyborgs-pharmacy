@@ -65,24 +65,151 @@
                         </div>
                     </div>
 
-                    <div class="form-group" ng-show="batch.cartons && batch.tablets && (batch.bbottles || batch.bcards)">
+
+
+                    <!-- Cartons, Tablets, Bottles -->
+
+                    <div class="form-group" ng-show="batch.cartons && batch.tablets" >
                         <label for="noOfCartons" class="col-md-4 control-label" >Number of Cartons</label>
                         <div class="col-md-8">
-                            <input type="number" min="0" id="noOfCartons" class="form-control" >
+                            <input type="number" min="0" id="noOfCartons" class="form-control" ng-model="set.data1">
                         </div>
                     </div>
 
                     <div class="form-group" ng-show="batch.cartons && batch.tablets && batch.bbottles">
-                        <label for="noOfBottleCartons" class="col-md-4 control-label" >Number of Bottles per Cartoon</label>
+                        <label for="noOfBottleCartons" class="col-md-4 control-label" >Number of Bottles per Carton</label>
                         <div class="col-md-8">
-                            <input type="number" min="0" id="noOfBottleCartons" class="form-control" >
+                            <input type="number" min="0" id="noOfBottleCartons" class="form-control"  ng-model="set.data2">
                         </div>
                     </div>
 
                     <div class="form-group" ng-show="batch.cartons && batch.tablets && batch.bbottles">
-                        <label for="noOfTabletCartons" class="col-md-4 control-label" >Number of Tablets per Carton</label>
+                        <label for="noOfTabletBottles1" class="col-md-4 control-label" >Number of Tablets per Bottle</label>
                         <div class="col-md-8">
-                            <input type="number" min="0" id="noOfTabletCartons" class="form-control">
+                            <input type="number" min="0" id="noOfTabletBottles1" class="form-control"  ng-model="set.data3">
+                        </div>
+                    </div>
+
+                    <div class="form-group" ng-show="batch.cartons && batch.tablets && batch.bbottles">
+                        <div class="col-md-4"></div>
+                        <div class="col-md-4">
+                            <button type="button" class="form-control btn btn-primary" ng-click="batch.calculateQuantity(set)">Calculate Quantity</button>
+                        </div>
+                    </div>
+
+                    <!-- Cartons, Tablets, Cards -->
+
+
+                    <div class="form-group" ng-show="batch.cartons && batch.tablets && batch.bcards">
+                        <label for="noOfCardsCartons" class="col-md-4 control-label" >Number of Cards per Carton</label>
+                        <div class="col-md-8">
+                            <input type="number" min="0" id="noOfCardsCartons" class="form-control" ng-model="set.data2">
+                        </div>
+                    </div>
+
+                    <div class="form-group" ng-show="batch.cartons && batch.tablets && batch.bcards">
+                        <label for="noOfTabletCard" class="col-md-4 control-label" >Number of Tablets per Card</label>
+                        <div class="col-md-8">
+                            <input type="number" min="0" id="noOfTabletCard" class="form-control" ng-model="set.data3">
+                        </div>
+                    </div>
+
+                    <div class="form-group" ng-show="batch.cartons && batch.tablets && batch.bcards">
+                        <div class="col-md-4"></div>
+                        <div class="col-md-4">
+                            <button type="button" class="form-control btn btn-primary" ng-click="batch.calculateQuantity(set)">Calculate Quantity</button>
+                        </div>
+                    </div>
+
+                    <!-- Cartons, Liquid -->
+
+                    <div class="form-group" ng-show="batch.cartons &&  batch.liquid">
+                        <label for="noOfCartons2" class="col-md-4 control-label" >Number of Cartons</label>
+                        <div class="col-md-8">
+                            <input type="number" min="0" id="noOfCartons2" class="form-control" ng-model="set3.data1">
+                        </div>
+                    </div>
+
+                    <div class="form-group" ng-show="batch.cartons && batch.liquid ">
+                        <label for="noOfBottleCartons2" class="col-md-4 control-label" >Number of Bottles per Carton</label>
+                        <div class="col-md-8">
+                            <input type="number" min="0" id="noOfBottleCartons2" class="form-control" ng-model="set3.data2">
+                        </div>
+                    </div>
+
+                    <div class="form-group" ng-show="batch.cartons && batch.liquid">
+                        <div class="col-md-4"></div>
+                        <div class="col-md-4">
+                            <button type="button" class="form-control btn btn-primary" ng-click="batch.calculateQuantity(set3)">Calculate Quantity</button>
+                        </div>
+                    </div>
+
+                    <!-- bottles, tablet -->
+
+                    <div class="form-group" ng-show="batch.bottles && batch.tablets">
+                        <label for="noOfBottels" class="col-md-4 control-label" >Number of Bottles</label>
+                        <div class="col-md-8">
+                            <input type="number" min="0" id="noOfBottels" class="form-control" ng-model="set4.data1">
+                        </div>
+                    </div>
+
+                    <div class="form-group" ng-show="batch.bottles && batch.tablets">
+                        <label for="noOfTabletBottles2" class="col-md-4 control-label" >Number of Tablets per Bottle</label>
+                        <div class="col-md-8">
+                            <input type="number" min="0" id="noOfTabletBottles2" class="form-control" ng-model="set4.data2">
+                        </div>
+                    </div>
+
+                    <div class="form-group" ng-show="batch.bottles && batch.tablets">
+                        <div class="col-md-4"></div>
+                        <div class="col-md-4">
+                            <button type="button" class="form-control btn btn-primary" ng-click="batch.calculateQuantity(set4)">Calculate Quantity</button>
+                        </div>
+                    </div>
+
+                    <!-- bottles, liquid -->
+
+                    <div class="form-group" ng-show="batch.bottles && batch.liquid">
+                        <label for="noOfBottels2" class="col-md-4 control-label" >Number of Bottles</label>
+                        <div class="col-md-8">
+                            <input type="number" min="0" id="noOfBottels2" class="form-control" ng-model="set5.data1">
+                        </div>
+                    </div>
+
+                    <div class="form-group" ng-show="batch.bottles && batch.liquid">
+                        <div class="col-md-4"></div>
+                        <div class="col-md-4">
+                            <button type="button" class="form-control btn btn-primary" ng-click="batch.calculateQuantity(set5)">Calculate Quantity</button>
+                        </div>
+                    </div>
+
+                    <!-- end of dynamic form -->
+
+                    <div class="form-group" >
+                        <label for="quantity" class="col-md-4 control-label" >Quantity</label>
+                        <div class="col-md-8">
+                            <input type="text" id="quantity" class="form-control" ng-model="batch.quantity" required disabled>
+                        </div>
+                    </div>
+
+                    <div class="form-group" >
+                        <label for="manufacDate" class="col-md-4 control-label" >Manufacture Date</label>
+                        <div class="col-md-8">
+                            <input type="date" id="manufacDate" class="form-control" placeholder="yyyy-mm-dd" required>
+                        </div>
+                    </div>
+
+                    <div class="form-group" >
+                        <label for="expireDate" class="col-md-4 control-label" >Expire Date</label>
+                        <div class="col-md-8">
+                            <input type="date" id="expireDate" class="form-control"  required  placeholder="yyyy-mm-dd">
+                        </div>
+                    </div>
+
+                    <div class="form-group" >
+                        <div class="col-md-4"></div>
+                        <div class="col-md-2">
+                            <button type="submit" class="form-control btn btn-primary">Add</button>
                         </div>
                     </div>
 
