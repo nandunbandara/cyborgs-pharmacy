@@ -35,7 +35,7 @@ angular.module('cyborgPharmacy.routes',['ui.router'])
         .state('dashboard.viewUsage',{
             url:'usages',
             templateUrl:'views/pages/reports/usage.html',
-            controller:'reportsCtrl as reportsPrescription'
+            controller:'reportsCtrl as reportsUsage'
         })
         .state('dashboard.batches',{
             url:'batches',

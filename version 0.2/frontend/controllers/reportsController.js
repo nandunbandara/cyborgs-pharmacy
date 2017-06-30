@@ -14,13 +14,15 @@ angular.module('reportsController',[])
     app.reqDate ={};
 
 
+
     app.getToBeExpiredBatches1 = function (date) {
 
         Reports.getToBeExpiredBatches(date).then(function (res) {
             app.batchs = res.data;
-            console.log(res.data);
         })
     };
+
+
 
     Reports.getAllPrescription().then(function (res) {
         var date = new Date().getFullYear();
@@ -56,11 +58,12 @@ angular.module('reportsController',[])
             }
         }
 
-
-
-
         //generate graph
         var ctx = document.getElementById("myChart").getContext('2d');
+
+        Chart.defaults.global.responsive = true;
+        Chart.defaults.global.animationSteps = 150;
+
         var myChart = new Chart(ctx, {
             type: 'bar',
             data: {
@@ -111,12 +114,26 @@ angular.module('reportsController',[])
         });
     });
 
+
     Reports.getAllBatchs().then(function (res) {
         app.allBatchs = res.data;
     });
 
 
-function saveasPdf(){
-    console.log('function is working');
-}
+
+
+    app.saveasPdf = function(){
+         html2canvas(document.getElementById('exportthis'), {
+            onrendered: function (canvas) {
+                var data = canvas.toDataURL();
+                var docDefinition = {
+                    content: [{
+                        image: data,
+                        width: 500,
+                    }]
+                };
+                pdfMake.createPdf(docDefinition).download("usageDetails.pdf");
+            }
+        });
+    }
 }]);
