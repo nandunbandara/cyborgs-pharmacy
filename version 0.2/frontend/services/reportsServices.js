@@ -7,13 +7,6 @@ angular.module('reportsServices',[])
     .factory('Reports',['$http','Conf',function ($http,Conf) {
         const ReportsFactory = [];
 
-        //get all expired batches
-        ReportsFactory.getAllExpiredBatchs = function () {
-            return $http.get(Conf.report_service.concat('/reports/ExpiredBatchs')).then(function (data) {
-                return data;
-            })
-        }
-
         //get all  batches
         ReportsFactory.getAllBatchs = function () {
             return $http.get(Conf.report_service.concat('/reports/Batches')).then(function (data) {
@@ -22,8 +15,15 @@ angular.module('reportsServices',[])
         }
         //get all prescriptions
         ReportsFactory.getAllPrescription = function(){
-            return $http.get(Conf.report_service.concat('/reports/viewUsage')).then(function (data) {
+            return $http.get(Conf.report_service.concat('/reports/Usage')).then(function (data) {
                 return data;
+            })
+        }
+
+        ReportsFactory.getToBeExpiredBatches = function (date) {
+
+            return $http.post(Conf.report_service.concat('/reports/toBeExpired'),date).then(function (res) {
+                return res;
             })
         }
 
