@@ -52,6 +52,15 @@ angular.module('userServices',[])
         })
     }
 
+    //get all logs
+    userFactory.getAllLogs = function(){
+        return $http.get(Conf.auth_service.concat('/logs')).then(function(data){
+            return data;
+        }).catch(function(err){
+            return err;
+        })
+    }
+
     return userFactory;
 }])
 

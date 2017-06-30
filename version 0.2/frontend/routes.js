@@ -51,6 +51,14 @@ angular.module('cyborgPharmacy.routes',['ui.router'])
             permissions: ['admin']
         })
 
+        .state('admin.logs',{
+            url:'/logs',
+            templateUrl:'views/pages/users/logs.html',
+            controller:'admin_UserLogsController as logs',
+            authenticated: true,
+            permissions: ['admin']
+        })
+
         .state('admin.users',{
             url:'/users',
             templateUrl: 'views/pages/users/users.html',

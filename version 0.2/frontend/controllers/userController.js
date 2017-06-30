@@ -230,3 +230,13 @@ angular.module('userController', [])
 
 }])
 
+.controller('admin_UserLogsController',['User',function(User){
+    const app = this;
+    User.getAllLogs().then(function(data){
+        app.logs = data.data;
+        console.log(app.logs);
+    }).catch(function(err){
+        app.log_err = err;
+    })
+}])
+
