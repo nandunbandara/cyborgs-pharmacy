@@ -38,11 +38,14 @@ angular.module('userController', [])
     }
 }])
 
-.controller('admin_usersController',['User','UserData','$location', function(User,UserData,$location){
+.controller('admin_usersController',['User','UserData','$location','$timeout', function(User,UserData,$location,$timeout){
     const app = this;
     app.users;
     app.filter='name';
     app.order = 'username';
+
+    app.password_strength = 30;
+    app.password_confirm = false;
 
     //retreive all the registered users
     User.getUsers().then(function(data){
@@ -51,13 +54,77 @@ angular.module('userController', [])
 
     //add new user
     app.regData = {};
-    app.showErrorMsg = false;
-
     app.addUser = function(regData){
-        app.showErrorMsg = false;
-        User.addUser(regData).then(function(data){
-            console.log(data);
-        })
+        //validate user entered data
+        //username validation
+        if(app.regData.username==""||app.regData.username==undefined)
+            app.error_message = "Please enter a username!";
+        //name validation for null or undefined
+        else if (app.regData.name==""||app.regData.name==undefined)
+            app.error_message = "Please enter a name";
+        //name validation for invalid names
+        else if (!app.regData.name.match('^[a-zA-Z ]+$'))
+            app.error_message = "Please enter a valid name";
+        //null or undefined email
+        else if (app.regData.email==""||app.regData.email==undefined)
+            app.error_message = "Please enter an email address";
+        //valid email address
+        else if (!app.regData.email.match('[A-Z0-9._%+-]+@[A-Z0-9.-]+.[A-Z]{2,4}'))
+            app.error_message = "Please enter a valid email address";
+        //password validation (null or undefined)
+        else if (app.regData.password==""||app.regData.password==undefined)
+            app.error_message = "Please enter a password";
+        //check password confirmation
+        else if (app.regData.password!=app.regData.password_confirm)
+            app.error_message = "Please confirm your password";
+        //check password strength
+        else if (app.regData.password_strength==30)
+            app.error_message = "Your password is not strong enough";
+        //check for permissions
+        else if (app.regData.permission==""||app.regDat.permission==undefined)
+            app.error_message = "Please set user permission";
+        else{
+            User.addUser(regData).then(function(data){
+                console.log(data);
+                if(data.data.success){
+                    //user created successfully and is redirected to view of all users
+                    app.success_message = data.data.message;
+                    $timeout(function(){
+                        $location.path('/admin/users');
+                    },2000);
+                }else{
+                    //user creation is unsuccessful
+                    //error message is displayed
+                    app.error_message = data.data.message;
+                }
+            })
+        }
+    }
+
+    //check  password confirmation
+    app.checkPasswordConfirm = function(){
+        if(app.regData.password==app.regData.password_confirm)
+            app.password_confirm = true;
+        else app.password_confirm = false;
+    }
+
+    //check password strength
+    app.checkPasswordStrength = function(){
+        if(app.regData.password.match('^(?=.*[A-Z].*[A-Z])(?=.*[a-z].*[a-z].*[a-z])$')){
+            app.password_strength = 30;
+            app.password_strength_message = "Week";
+        }
+        else if (app.regData.password.match('^(?=.*[A-Z].*[A-Z])(?=.*[a-z].*[a-z].*[a-z]).{8}$')) {
+            app.password_strength = 50;
+            app.password_strength_message = "Good";
+        }
+        else if (app.regData.password.match('^(?=.*[A-Z].*[A-Z])(?=.*[!@#$&*])(?=.*[0-9].*[0-9])(?=.*[a-z].*[a-z].*[a-z]).{8}$')){
+            app.password_strength = 100;
+            app.password_strength_message = "Excellent";
+        }
+        else {
+            app.password_strength = 0;
+        }
     }
 
     //set selected permission to registration data
