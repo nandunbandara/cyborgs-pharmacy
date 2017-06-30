@@ -33,7 +33,7 @@ exports.addBatch = function (req,res) {
                 var msg = {
                     "message":"error"
                 }
-                console.log(err);
+
                 res.send(msg);
                 return;
             }
@@ -43,20 +43,19 @@ exports.addBatch = function (req,res) {
                     var msg = {
                         "message":"error"
                     }
-                    console.log(err);
+
                     res.send(msg);
                     return;
                 }
 
                 var newQuantity = data[0].dQuantity + req.body.bQuantity;
 
-                console.log(data)
                 drug.findOneAndUpdate({"dName":req.body.drugName},{$set:{'dQuantity':newQuantity}},function (err,data) {
                     if(err){
                         var msg = {
                             "message":"error"
                         }
-                        console.log(err);
+
                         res.send(msg);
                         return;
                     }

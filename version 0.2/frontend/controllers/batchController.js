@@ -30,9 +30,11 @@ angular.module('batchController',[])
         if(val=="cartons"){
             app.cartons = true;
             app.bottles = false;
+            app.batchData.bType = val;
         } else if(val == "bottles"){
             app.bottles = true;
             app.cartons = false;
+            app.batchData.bType = val;
         }
     }
 
@@ -40,11 +42,9 @@ angular.module('batchController',[])
         if(val == "tablets"){
             app.tablets = true;
             app.liquid = false;
-            app.batchData.bType = val;
         }else if(val == "liquid"){
             app.tablets = false;
             app.liquid = true;
-            app.batchData.bType = val;
         }
     }
     
