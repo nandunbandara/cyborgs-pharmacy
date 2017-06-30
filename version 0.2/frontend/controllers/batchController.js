@@ -13,6 +13,9 @@ angular.module('batchController',[])
     app.liquid = false;
     app.bbottles = false;
     app.bcards = false;
+    app.quantity = 0;
+    app.dquantity = 1;
+    app.set = {};
 
     app.setType = function (val) {
         if(val=="cartons"){
@@ -43,4 +46,17 @@ angular.module('batchController',[])
             app.bcards = true;
         }
     }
+
+    app.calculateQuantity = function (data) {
+        app.quantity = 0;
+        app.dquantity = 1;
+
+       for(var item in data){
+            app.dquantity = app.dquantity * data[item];
+       }
+       console.log(data);
+
+       app.quantity = app.dquantity;
+    }
+
 }])
