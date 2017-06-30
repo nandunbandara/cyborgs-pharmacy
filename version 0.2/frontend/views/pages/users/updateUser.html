@@ -64,5 +64,14 @@
                 </div>
             </div>
         </form>
+
+        <!--message area-->
+        <div class="row show-hide-message" ng-show="admin_update_user.success_message">
+            <div class="alert alert-success">{{admin_update_user.success_message}}</div>
+        </div>
+
+        <div class="row show-hide-message" ng-show="admin_update_user.error_message">
+            <div class="alert alert-danger">{{admin_update_user.error_message}}</div>
+        </div>
     </div>
 </div>

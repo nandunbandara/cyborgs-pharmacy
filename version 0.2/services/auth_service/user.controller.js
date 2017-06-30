@@ -124,7 +124,7 @@ exports.users = function(req,res){
 exports.userByUsername = function(req,res){
     User.findOne({username: req.params.username}).select('username password email name permission').exec(function(err,user){
         if(err){
-            res.json({ success:false, message: "Coudl not retreive user"});
+            res.json({ success:false, message: "Could not retrieve user"});
         }else{
             res.json(user);
         }

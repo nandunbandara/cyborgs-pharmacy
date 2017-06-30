@@ -164,7 +164,7 @@ angular.module('userController', [])
 
 }])
 
-.controller('admin_updateUserController',['UserData', 'User','$location', function(UserData,User,$location){
+.controller('admin_updateUserController',['UserData', 'User','$location','$timeout', function(UserData,User,$location,$timeout){
     const app = this;
     app.regData = {};
     //if user data is not set, redirect the user back to the list of users
@@ -193,15 +193,34 @@ angular.module('userController', [])
     }
 
     app.update = function(){
-        User.updateUser(app.username, app.regData).then(function(data){
-            //store response from the update response
-            app.update_response = data;
-            console.log(app.update_response);
-        }).catch(function(err){
-            //store error from the update response
-            app.update_error = err;
-            console.log(app.update_error);
-        })
+        //validate entered data
+        //name validation for null or undefined
+        if (app.regData.name==""||app.regData.name==undefined)
+            app.error_message = "Please enter a name";
+        //name validation for invalid names
+        else if (!app.regData.name.match('^[a-zA-Z ]+$'))
+            app.error_message = "Please enter a valid name";
+        //null or undefined email
+        else if (app.regData.email==""||app.regData.email==undefined)
+            app.error_message = "Please enter an email address";
+        //valid email address
+        else if (!app.regData.email.match('[A-Z0-9._%+-]+@[A-Z0-9.-]+.[A-Z]{2,4}'))
+            app.error_message = "Please enter a valid email address";
+        else if (app.regData.permission==""||app.regDat.permission==undefined)
+            app.error_message = "Please set user permission";
+        else{
+            User.updateUser(app.username, app.regData).then(function(data){
+                //show success message and redirect user to the view of all users
+                app.success_message = data.data.message;
+                $timeout(function(){
+                    $location.path('/admin/users');
+                },2000);
+            }).catch(function(err){
+                //update unsuccessful
+                //display error message
+                app.error_message = data.data.message;
+            })
+        }
     }
 
     //set selected permission to update data
