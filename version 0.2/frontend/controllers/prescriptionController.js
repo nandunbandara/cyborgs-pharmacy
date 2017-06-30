@@ -12,11 +12,13 @@ angular.module('prescriptionController',[])
         app.dprescriptionByID = {};
         app.dprescriptionByDocName = {};
         app.dprescriptionByDate = {};
-        app.addDpre = { availableDrugs: [] };
+        app.addDpre = { availableDrugs: [] , unavailableDrugs : [] };
         app.dprescriptionByPatName = {};
         app.availableDrugs = {};
+        app.unavailableDrugs = {};
         app.addAvailableDrug = [];
         $scope.temp = {};
+        $scope.temps = {};
 
         Drug.getAllDrugs().then(function (data) {
                 app.availableDrugs = data.data;
@@ -29,6 +31,15 @@ angular.module('prescriptionController',[])
                 };
                 // app.addAvailableDrug.push(dDrug);
             app.addDpre.availableDrugs.push(dDrug);
+        };
+
+        $scope.addToUnList = function(){
+            var duDrug = {
+                name: $scope.temps.name,
+                qty: $scope.temps.qty
+            };
+            // app.addAvailableDrug.push(dDrug);
+            app.addDpre.unavailableDrugs.push(duDrug);
         };
 
         /*$scope.addAadil = function(data)
