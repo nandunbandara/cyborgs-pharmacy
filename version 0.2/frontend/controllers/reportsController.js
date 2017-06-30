@@ -28,8 +28,8 @@ angular.module('reportsController',[])
     };
 
     //delete a expired batch
-    app.deleteBatch = function(bId){
-        Reports.deleteUser(bId).then(function(data){
+    app.deleteExpiredBatch = function(bId){
+        Reports.deleteBatch(bId).then(function(data){
             console.log(data);
         })
     }
