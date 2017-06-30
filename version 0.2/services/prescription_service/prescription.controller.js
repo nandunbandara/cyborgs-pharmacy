@@ -8,7 +8,22 @@ const phPrescription = require('./phprescription.model');
 
 exports.addPHprescription = function(req,res){
     const phPrescriptions = new phPrescription();
-    phPrescriptions.phpId = req.body.phpId;
+
+    phPrescriptions.find({},function(err,data) {
+        var lastId = 0;
+        if (err) {
+            console.log(err);
+        }
+
+        for (var j = 0; j < data.length; j++) {
+            lastId = data[j].phpId;
+        }
+        lastId++;
+
+         var data2 = req.body;
+         data2.phpId = lastId;
+    phPrescriptions.phpId = data2.phpId;
+    })
     phPrescriptions.dName = req.body.dName;
     phPrescriptions.pName = req.body.pName;
     phPrescriptions.pAge = req.body.pAge;
@@ -40,7 +55,21 @@ exports.addPHprescription = function(req,res){
 }
 exports.addDprescription = function(req,res){
     const dPrescriptions = new dPrescription();
-    dPrescriptions.dpId = req.body.dpId;
+    dPrescriptions.find({},function(err,data) {
+        var lastId = 0;
+        if (err) {
+            console.log(err);
+        }
+
+        for (var j = 0; j < data.length; j++) {
+            lastId = data[j].dpId;
+        }
+        lastId++;
+
+        var data2 = req.body;
+        data2.dpId = lastId;
+        dPrescriptions.dpId = data2.dpId;
+    })
     dPrescriptions.dName = req.body.dName;
     dPrescriptions.pName = req.body.pName;
     dPrescriptions.pAge = req.body.pAge;

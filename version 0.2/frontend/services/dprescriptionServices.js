@@ -3,7 +3,7 @@
  */
 angular.module('dprescriptionServices',[])
 
-    .factory('dPrescription', ['$http', function($http){
+    .factory('dPrescription', ['$http','Conf', function($http,Conf){
         const dprescriptionFactory = [];
 
         dprescriptionFactory.getDocPrescription = function(){

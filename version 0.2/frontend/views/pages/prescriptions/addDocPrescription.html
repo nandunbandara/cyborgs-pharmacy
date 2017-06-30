@@ -1,71 +1,106 @@
-<div class="row">
-    <div class="col-md-2">
-        <div class="btn-toolbar">
-            <button class="btn btn-primary" ui-sref="dashboard.addDocPrescription">
-                <span class="glyphicon glyphicon-backward"></span>
-                Back
-            </button>
-        </div>
+<div class="panel panel-default">
+    <div class="panel-heading">
+        Add new Doctor Prescription
     </div>
-</div>
-<div class="row" style="margin-top: 10px">
-    <div class="col-md-6 col-md-offset-3">
-        <form class="form-horizontal" ng-submit="dprescriptions.addDprescription(dprescriptions.addDpre)">
-            <!--prescription ID-->
-            <div class="form-group">
-                <div class="col-sm-4">
-                    <label for="dpId" class="control-label">PrescriptionID</label>
-                </div>
-                <div class="col-sm-8">
-                    <input type="text" id="dpId" class="form-control" ng-model="dprescriptions.addDpre.dpId" placeholder="PrescriptionID">
-                </div>
-            </div>
-            <!--doctor name-->
-            <div class="form-group">
-                <div class="col-sm-4">
-                    <label for="dName" class="control-label">Doctor Name</label>
-                </div>
-                <div class="col-sm-8">
-                    <input type="text" id="dName" class="form-control" ng-model="dprescriptions.addDpre.dName" placeholder="Doctor Name">
-                </div>
-            </div>
-            <!--patient name-->
-            <div class="form-group">
-                <div class="col-sm-4">
-                    <label for="pName" class="control-label">Patient Name</label>
-                </div>
-                <div class="col-sm-8">
-                    <input type="text" id="pName" class="form-control" ng-model="dprescriptions.addDpre.pName" placeholder="Patient Name">
-                </div>
-            </div>
-            <!--patient age-->
-            <div class="form-group">
-                <div class="col-sm-4">
-                    <label for="pAge" class="control-label">Patient Age</label>
-                </div>
-                <div class="col-sm-8">
-                    <input type="text" id="pAge" class="form-control" ng-model="dprescriptions.addDpre.pAge" placeholder="Patient Age">
-                </div>
-            </div>
-            <!--date-->
-            <div class="form-group">
-                <div class="col-sm-4">
-                    <label for="date" class="control-label">Date</label>
-                </div>
-                <div class="col-sm-8">
-                    <input type="text" id="date" class="form-control" ng-model="dprescriptions.addDpre.date" placeholder="Date">
-                </div>
-            </div>
-            <!--avilable-->
+    <div class="panel-body">
+        <div class="row" style="margin-top: 10px">
+            <div class="col-md-6 col-md-offset-3">
+                <form class="form-horizontal" ng-submit="dprescriptions.addDprescription(dprescriptions.addDpre)">
+                    <!--doctor name-->
+                    <div class="form-group">
+                        <div class="col-sm-4">
+                            <label for="dName" class="control-label">Doctor Name</label>
+                        </div>
+                        <div class="col-sm-8">
+                            <input type="text" id="dName" class="form-control" ng-model="dprescriptions.addDpre.dName" placeholder="Doctor Name">
+                        </div>
+                    </div>
+                    <!--patient name-->
+                    <div class="form-group">
+                        <div class="col-sm-4">
+                            <label for="pName" class="control-label">Patient Name</label>
+                        </div>
+                        <div class="col-sm-8">
+                            <input type="text" id="pName" class="form-control" ng-model="dprescriptions.addDpre.pName" placeholder="Patient Name">
+                        </div>
+                    </div>
+                    <!--patient age-->
+                    <div class="form-group">
+                        <div class="col-sm-4">
+                            <label for="pAge" class="control-label">Patient Age</label>
+                        </div>
+                        <div class="col-sm-8">
+                            <input type="text" id="pAge" class="form-control" ng-model="dprescriptions.addDpre.pAge" placeholder="Patient Age">
+                        </div>
+                    </div>
+                    <!--date-->
+                    <div class="form-group">
+                        <div class="col-sm-4">
+                            <label for="date" class="control-label">Date</label>
+                        </div>
+                        <div class="col-sm-8">
+                            <input type="text" id="date" class="form-control" ng-model="dprescriptions.addDpre.date" placeholder="Date">
+                        </div>
+                    </div>
+                    <!--avilable-->
+                    <div class="form-group">
+                        <div class="col-sm-4">
+                        <label for="availableDrugs" class="control-label">availableDrugs</label>
+                            <ul>
+                            <li>
+                                <div class="form-group">
+                                <div class="col-sm-4">
+                                    <label id = "availableDrugs" class="control-label">Name</label>
+                                </div>
 
-            <!--unavailable-->
+                                    <div class="col-sm-8">
+                                        <select ng-model="temp.add">
+                                            <option ng-repeat="name in dprescriptions.availableDrugs" value="{{name.dName}}">{{name.dName}}</option>
+                                        </select>
+                                        {{dprescriptions.addAvailableDrug}}
+                                    </div>
+                                </div>
+                            </li>
+                            </ul>
 
-            <!--button-->
-            <div class="form-group">
-                <div class="col-md-8 col-md-offset-4">
-                    <button type="submit" class="btn btn-default form-control">Add Prescription</button>
+                            <ul>
+                                <li>
+                                    <div class="form-group">
+                                        <div class="col-sm-4">
+                                            <label for="qty"  class="control-label">Quantity</label>
+                                        </div>
+                                    <div class="col-sm-8">
+                                        <input type="text" id="qty" class="form-control" ng-model="temp.qty" placeholder="Name">
+                                    </div>
+                                    </div>
+                                </li>
+                            </ul>
+                            <button type="button" ng-click="addToList();">Add Drug</button>
+                        </div>
+
+                        <!--unavailable-->
+
+                        <!--button-->
+                        <div class="form-group">
+                            <div class="col-md-4 col-md-offset-4">
+                                <button type="submit" class="btn btn-default form-control">Add Prescription</button>
+                            </div>
+                        </div>
+                        <div clas="form-group">
+                            <div class="col-md-4"></div>
+                            <div class="col-md-8">
+                                <div class="row show-hide-message" ng-show="dprescriptions.successMessage">
+                                    <div class="alert alert-success">{{dprescriptions.successMessage}}</div>
+                                </div>
+
+                                <div class="row show-hide-message" ng-show="dprescriptions.successMessage">
+                                    <div class="alert alert-danger">{{dprescriptions.successMessage}}</div>
+                                </div>
+                            </div>
+
+                        </div>
+                    </form>
                 </div>
             </div>
-        </form>
     </div>
 </div>

@@ -3,16 +3,32 @@
  */
 angular.module('prescriptionController',[])
 
-    .controller('dprescriptionCtrl',['$scope','$location','$rootScope','dPrescription',function($scope,$location,$rootScope,dPrescription){
+    .controller('dprescriptionCtrl',['$scope','$location','$rootScope','dPrescription', 'Drug',function($scope,$location,$rootScope,dPrescription, Drug){
         const app = this;
 
         app.showErrorMsg = false;
+        app.successMessage = null;
         app.dprescription = [];
         app.dprescriptionByID = {};
         app.dprescriptionByDocName = {};
         app.dprescriptionByDate = {};
         app.addDpre = {};
         app.dprescriptionByPatName = {};
+        app.availableDrugs = {};
+        app.addAvailableDrug = [];
+
+        Drug.getAllDrugs().then(function (data) {
+                app.availableDrugs = data.data;
+            })
+
+        // model.availableDrugs = addAvailableDrug
+        $scope.addToList = function(){
+                var dDrug = {
+                    name: $scope.temp.add,
+                    qty: $scope.temp.qty
+                };
+                app.addAvailableDrug.push(dDrug);
+        };
 
         dPrescription.getDocPrescription().then(function (data) {
             app.dprescription = data.data;
@@ -40,6 +56,8 @@ angular.module('prescriptionController',[])
         app.addDprescription = function(addDpre){
             app.showErrorMsg = false;
             dPrescription.addDprescription(addDpre).then(function(data){
+
+                app.successMessage = "Prescription added successfully !";
                 console.log(data);
             })
         };
