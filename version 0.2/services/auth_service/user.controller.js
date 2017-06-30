@@ -4,6 +4,7 @@
 'use strict'
 
 const User = require('./user.model');
+const Log  = require('./log.model');
 const webtoken = require('jsonwebtoken');
 const secret = '#cyb0rgz!';
 
@@ -131,4 +132,23 @@ exports.userByUsername = function(req,res){
     })
 }
 
+//add user action log
+exports.addLog = function(req,res){
+    const log = new Log();
+    const date = new Date();
+    log.description = req.body.description;
+    log.datetime = date;
+    log.save(function(err){
+        if(err) res.status(401).json({ success:false, message:"Could not create log"});
+        else res.json({sucess:true, message:"Log created successfully"});
+    })
+}
+
+//get all logs
+exports.getAllLogs = function(req,res){
+    Log.find({}).select('description datetime').exec(function(err,logs){
+        if(err) res.status(401).json({ success:false, message:"Could not retrieve logs"});
+        else res.json(logs);
+    })
+}
 

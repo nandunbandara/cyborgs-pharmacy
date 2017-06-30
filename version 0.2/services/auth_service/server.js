@@ -41,4 +41,9 @@ app.delete('/users/:username', userController.deleteUser);
 app.post('/authenticate', userController.authenticate);
 app.get('/me', userController.me);
 
+//log routes
+app.get('/logs', userController.getAllLogs);
+app.post('/logs', userController.addLog);
+
+
 
