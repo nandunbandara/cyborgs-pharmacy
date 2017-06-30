@@ -13,7 +13,6 @@ angular.module('cyborgPharmacy', [
     'dprescriptionServices',
     'phprescriptionServices',
     'mailServices',
-    'batchServices',
 
     //controllers
     'userController',
