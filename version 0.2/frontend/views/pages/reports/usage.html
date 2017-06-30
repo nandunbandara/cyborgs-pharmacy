@@ -1,11 +1,17 @@
 <div class="panel panel-default">
     <div class="panel-heading">
         Usage
-        <button ng-click="reportsUsage.saveasPdf()">Save </button>
+
     </div>
     <div class="panel-body" id="exportthis">
-        <canvas id="myChart" width="10" height="10"></canvas>
+        <canvas id="myChart" width="1225" height="450"></canvas>
     </div>
 
+</div>
+<br>
+<div class="raw">
+    <div class="col-sm-4">
+        <button class="btn btn-success" ng-click="reportsUsage.saveasPdf('exportthis')">Save as PDF</button>
+    </div>
 </div>
 
