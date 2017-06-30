@@ -16,7 +16,7 @@
                         </div>
                         <div class ="col-md-6">
                             <div class="input-group">
-                                <input type="text" class="form-control" ng-model="batch.search_key">
+                                <input type="text" class="form-control" ng-model="batch.search_key" placeholder="Batch Name">
                                 <div class="input-group-addon">
                                     <span class="glyphicon glyphicon-search"></span>
                                 </div>
@@ -26,29 +26,48 @@
                 </div>
             </div>
             <br>
-            <table class="table table-bordered" id="expiredBatchesTable">
-                <thead>
-                <tr>
-                    <th>ID</th>
-                    <th>Batch Number</th>
-                    <th>Drug Name</th>
-                    <th>Batch Type</th>
-                    <th>Added Date</th>
-                    <th>Manufacturer Date </th>
-                    <th>Expiration Data</th>
-                    <th>Quantity</th>
-                </tr>
-                </thead>
-                <tbody ng-repeat="i in reportsBatchs.batchs |  filter:batch.search_key">
-                <td>{{i.bId}}</td>
-                <td>{{i.bNumber}}</td>
-                <td>{{i.drugName}}</td>
-                <td>{{i.bType}}</td>
-                <td>{{i.bAdded.substr(0,10)}}</td>
-                <td>{{i.bManufac.substr(0,10)}}</td>
-                <td>{{i.bExpire.substr(0,10)}}</td>
-                <td>{{i.bQuantity}}</td>
-                </tbody>
-            </table>
+            <div id="expiredBatcheTable">
+                <table class="table table-bordered" id="expiredBatchesTable">
+                    <thead>
+                    <tr>
+                        <th>ID</th>
+                        <th>Batch Number</th>
+                        <th>Drug Name</th>
+                        <th>Batch Type</th>
+                        <th>Added Date</th>
+                        <th>Manufacturer Date </th>
+                        <th>Expiration Date</th>
+                        <th>Quantity</th>
+                    </tr>
+                    </thead>
+                    <tbody ng-repeat="i in reportsBatchs.batchs |  filter:batch.search_key">
+                    <td>{{i.bId}}</td>
+                    <td>{{i.bNumber}}</td>
+                    <td>{{i.drugName}}</td>
+                    <td>{{i.bType}}</td>
+                    <td>{{i.bAdded.substr(0,10)}}</td>
+                    <td>{{i.bManufac.substr(0,10)}}</td>
+                    <td>{{i.bExpire.substr(0,10)}}</td>
+                    <td>{{i.bQuantity}}</td>
+                    </tbody>
+                </table>
+            </div>
         </div>
     </div>
+    <div clas="form-group">
+    </div>
+    <div class="raw">
+        <div class="col-sm-4">
+            <button class="btn btn-success" ng-click="reportsBatchs.saveasPdf('expiredBatcheTable')" ng-disabled="reportsBatchs.status">Save as PDF</button>
+        </div>
+    </div>
+    <br>
+    <br>
+        <div class="raw">
+        <div class="col-md-8"></div>
+            <div class="row show-hide-message" ng-show="reportsBatchs.status">
+                <div class="alert alert-success">No Expired Batches</div>
+            </div>
+        </div>
+
+
