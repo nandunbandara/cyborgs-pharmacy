@@ -8,26 +8,24 @@
             <div class="row">
                 <div>
                     <form class="form-inline" ng-submit="reportsBatchs.getToBeExpiredBatches1(reportsBatchs.reqDate)">
-                        <div class="input-group">
-                            <div class ="col-sm-6">
-                                <form id="expiredBatchesForm" ng-submit="reportsBatchs.getToBeExpiredBatches1(reportsBatchs.reqDate.date)">
-                                    <div class="form-group">
-                                        <input type="text" class="form-control" ng-model="reportsBatchs.reqDate.date" placeholder="yyyy-mm-dd" required>
-                                        <button type="submit" class="form-control btn btn-primary">Check</button>
-                                    </div>
-                                </form>
+                        <div class ="col-md-6">
+                            <div class="form-group">
+                                <input type="text" class="form-control" ng-model="reportsBatchs.reqDate.date" placeholder="yyyy-mm-dd" required>
+                                <button type="submit" class="form-control btn btn-primary">Check</button>
                             </div>
-                            <div class ="col-sm-6">
-                                 <input type="text" class="form-control" ng-model="batch.search_key">
-                                 <div class="input-group-addon">
-                                     <span class="glyphicon glyphicon-search"></span>
-                                 </div>
+                        </div>
+                        <div class ="col-md-6">
+                            <div class="input-group">
+                                <input type="text" class="form-control" ng-model="batch.search_key">
+                                <div class="input-group-addon">
+                                    <span class="glyphicon glyphicon-search"></span>
+                                </div>
                             </div>
                         </div>
                     </form>
                 </div>
             </div>
-
+            <br>
             <table class="table table-bordered" id="expiredBatchesTable">
                 <thead>
                 <tr>

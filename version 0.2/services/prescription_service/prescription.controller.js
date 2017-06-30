@@ -23,39 +23,39 @@ exports.addPHprescription = function(req,res){
          var data2 = req.body;
          data2.phpId = lastId;
     phPrescriptions.phpId = data2.phpId;
-    })
-    phPrescriptions.dName = req.body.dName;
-    phPrescriptions.pName = req.body.pName;
-    phPrescriptions.pAge = req.body.pAge;
-    phPrescriptions.date = req.body.date;
-    phPrescriptions.availableDrugs  = req.body.availableDrugs;
-    phPrescriptions.unavailableDrugs  = req.body.unavailableDrugs;
-    phPrescriptions.save(function(err){
-        if(req.body.phpId==null){
-            res.json({ success:false, message:'Pharmacy Prescription ID is not set'});
-        }else if (req.body.dName==null || req.body.dName=="") {
-            res.json({success: false, message: 'Doctor Name is not set'});
-        }else if (req.body.phName==null || req.body.phName==""){
-            res.json({ success:false, message: 'Pharmacist Name is not set'});
-        }else if (req.body.pName==null || req.body.pName==""){
-            res.json({ success:false, message: 'Patient Name is not set'});
-        }else if (req.body.pAge==null){
-            res.json({ success:false, message:'Patient Age is not set'});
-        }else if(req.body.date==null) {
-            res.json({success: false, message: 'Date is not set'});
-        }else if(req.body.deliveredDrugs==null) {
-            res.json({success: false, message: 'Delivered Drugs are not set'});
-        }else if(req.body.undeliveredDrugs==null) {
-            res.json({success: false, message: 'UnDelivered Drugs are not set'});
-        }else{
+        phPrescriptions.dName = req.body.dName;
+        phPrescriptions.pName = req.body.pName;
+        phPrescriptions.pAge = req.body.pAge;
+        phPrescriptions.date = req.body.date;
+        phPrescriptions.deliveredDrugs  = req.body.deliveredDrugs;
+        phPrescriptions.save(function(err){
+            if(req.body.phpId==null){
+                res.json({ success:false, message:'Pharmacy Prescription ID is not set'});
+            }else if (req.body.dName==null || req.body.dName=="") {
+                res.json({success: false, message: 'Doctor Name is not set'});
+            }else if (req.body.phName==null || req.body.phName==""){
+                res.json({ success:false, message: 'Pharmacist Name is not set'});
+            }else if (req.body.pName==null || req.body.pName==""){
+                res.json({ success:false, message: 'Patient Name is not set'});
+            }else if (req.body.pAge==null){
+                res.json({ success:false, message:'Patient Age is not set'});
+            }else if(req.body.date==null) {
+                res.json({success: false, message: 'Date is not set'});
+            }else if(req.body.deliveredDrugs==null) {
+                res.json({success: false, message: 'Delivered Drugs are not set'});
+            }else if(req.body.undeliveredDrugs==null) {
+                res.json({success: false, message: 'UnDelivered Drugs are not set'});
+            }else{
 
-            res.json({ success:true, message: 'Pharmacy Prescription Added!'});
-        }
-    });
+                res.json({ success:true, message: 'Pharmacy Prescription Added!'});
+            }
+        });
+    })
+
 }
 exports.addDprescription = function(req,res){
-    const dPrescriptions = new dPrescription();
-    dPrescriptions.find({},function(err,data) {
+    var dPrescriptions = new dPrescription(req.body);
+    dPrescription.find({},function(err,data) {
         var lastId = 0;
         if (err) {
             console.log(err);
@@ -65,37 +65,37 @@ exports.addDprescription = function(req,res){
             lastId = data[j].dpId;
         }
         lastId++;
-
         var data2 = req.body;
         data2.dpId = lastId;
-        dPrescriptions.dpId = data2.dpId;
-    })
-    dPrescriptions.dName = req.body.dName;
-    dPrescriptions.pName = req.body.pName;
-    dPrescriptions.pAge = req.body.pAge;
-    dPrescriptions.date = req.body.date;
-    dPrescriptions.availableDrugs  = req.body.availableDrugs;
-    dPrescriptions.unavailableDrugs  = req.body.unavailableDrugs;
-    dPrescriptions.save(function(err){
-        if(req.body.dpId==null){
-            res.json({ success:false, message:'Doctor Prescription ID is not set'});
-        }else if (req.body.dName==null || req.body.dName==""){
-            res.json({ success:false, message: 'Doctor Name is not set'});
-        }else if (req.body.pName==null || req.body.pName==""){
-            res.json({ success:false, message: 'Patient Name is not set'});
-        }else if (req.body.pAge==null){
-            res.json({ success:false, message:'Patient Age is not set'});
-        }else if(req.body.date==null) {
-            res.json({success: false, message: 'Date is not set'});
-        }else if(req.body.availableDrugs==null) {
-            res.json({success: false, message: 'Available Drugs are not set'});
-        }else if(req.body.unavailableDrugs==null) {
-            res.json({success: false, message: 'Unavailable Drugs are not set'});
-        }else{
+        dPrescriptions.dpId = lastId;
+        dPrescriptions.dName = req.body.dName;
+        dPrescriptions.pName = req.body.pName;
+        dPrescriptions.pAge = req.body.pAge;
+        dPrescriptions.date = req.body.date;
+        dPrescriptions.availableDrugs = req.body.availableDrugs;
+        dPrescriptions.unavailableDrugs = req.body.unavailableDrugs;
+        dPrescriptions.save(function(err){
+            if( dPrescriptions.dpId ==null){
+                res.json({ success:false, message:'Doctor Prescription ID is not set'});
+            }else if (req.body.dName==null || req.body.dName==""){
+                res.json({ success:false, message: 'Doctor Name is not set'});
+            }else if (req.body.pName==null || req.body.pName==""){
+                res.json({ success:false, message: 'Patient Name is not set'});
+            }else if (req.body.pAge==null){
+                res.json({ success:false, message:'Patient Age is not set'});
+            }else if(req.body.date==null) {
+                res.json({success: false, message: 'Date is not set'});
+            }else if(req.body.availableDrugs==null) {
+                res.json({success: false, message: 'Available Drugs are not set'});
+            }else if(req.body.unavailableDrugs==null) {
+                res.json({success: false, message: 'Unavailable Drugs are not set'});
+            }else{
 
-            res.json({ success:true, message: 'Doctor Prescription Added!'});
-        }
-    });
+                res.json({ success:true, message: 'Doctor Prescription Added!'});
+            }
+        });
+    })
+
 }
 
 exports.getDPrescriptionDetails= function (req,res) {
