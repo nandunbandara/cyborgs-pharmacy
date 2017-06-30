@@ -12,23 +12,35 @@ angular.module('prescriptionController',[])
         app.dprescriptionByID = {};
         app.dprescriptionByDocName = {};
         app.dprescriptionByDate = {};
-        app.addDpre = {};
+        app.addDpre = { availableDrugs: [] };
         app.dprescriptionByPatName = {};
         app.availableDrugs = {};
         app.addAvailableDrug = [];
+        $scope.temp = {};
 
         Drug.getAllDrugs().then(function (data) {
                 app.availableDrugs = data.data;
             })
 
-        // model.availableDrugs = addAvailableDrug
         $scope.addToList = function(){
                 var dDrug = {
                     name: $scope.temp.add,
                     qty: $scope.temp.qty
                 };
-                app.addAvailableDrug.push(dDrug);
+                // app.addAvailableDrug.push(dDrug);
+            app.addDpre.availableDrugs.push(dDrug);
         };
+
+        /*$scope.addAadil = function(data)
+        {
+            dPrescription.addAadil(data).then(function (data) {
+                $scope.Aadil  = "Success";
+                console.log("Success");
+            }, function (err) {
+                $scope.Aadil = "Error";
+                console.log("error");
+            });
+        };*/
 
         dPrescription.getDocPrescription().then(function (data) {
             app.dprescription = data.data;
@@ -64,7 +76,7 @@ angular.module('prescriptionController',[])
 
     }])
 
-    .controller('phprescriptionCtrl',['$location','$rootScope','phPrescription',function($location,$rootScope,phPrescription){
+    .controller('phprescriptionCtrl',['$scope','$location','$rootScope','phPrescription','Drug',function($scope,$location,$rootScope,phPrescription,Drug){
         const app = this;
 
         app.phprescription = [];
@@ -75,6 +87,22 @@ angular.module('prescriptionController',[])
         app.phprescriptionByPharName = {};
         app.addPHpre = {};
         app.showErrorMsg = false;
+        app.successMessage = null;
+        app.deliveredDrugs = {};
+        app.addDeliveredDrug = [];
+
+        Drug.getAllDrugs().then(function (data) {
+            app.deliveredDrugs = data.data;
+        })
+
+        // model.availableDrugs = addAvailableDrug
+        $scope.addToList = function(){
+            var phDrug = {
+                name: $scope.temp.add,
+                qty: $scope.temp.qty
+            };
+            app.addDeliveredDrug.push(phDrug);
+        };
 
         phPrescription.getPhPrescription().then(function (data) {
             app.phprescription = data.data;
@@ -107,6 +135,8 @@ angular.module('prescriptionController',[])
         app.addPHprescription = function(addPHpre){
             app.showErrorMsg = false;
             phPrescription.addPHprescription(addPHpre).then(function(data){
+
+                app.successMessage = "Prescription added successfully !";
                 console.log(data);
             })
         };

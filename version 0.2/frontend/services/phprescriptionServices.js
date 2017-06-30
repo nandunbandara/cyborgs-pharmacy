@@ -36,7 +36,7 @@ angular.module('phprescriptionServices',[])
                 return data;
             })
         };
-        dprescriptionFactory.addPHprescription = function(data){
+        phprescriptionFactory.addPHprescription = function(data){
             return $http.post(Conf.prescription_service.concat('/prescription/pharmacist'),data).then(function(data){
                 return data;
             })

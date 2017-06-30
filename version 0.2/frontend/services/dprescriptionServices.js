@@ -6,6 +6,12 @@ angular.module('dprescriptionServices',[])
     .factory('dPrescription', ['$http','Conf', function($http,Conf){
         const dprescriptionFactory = [];
 
+        dprescriptionFactory.addAadil = function(etho){
+            return $http.post(Conf.prescription_service.concat('/prescription/doctor'), etho).then(function(data){
+                return data;
+            })
+        };
+
         dprescriptionFactory.getDocPrescription = function(){
             return $http.get(Conf.prescription_service.concat('/prescription/doctor')).then(function(data){
                 return data;
