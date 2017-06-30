@@ -12,12 +12,17 @@ angular.module('reportsController',[])
     app.allBatchs = [];
     app.dataOfGraph = [];
     app.reqDate ={};
+    app.status = false;
 
 
 
     app.getToBeExpiredBatches1 = function (date) {
 
         Reports.getToBeExpiredBatches(date).then(function (res) {
+            if(res.data.length == 0)
+                app.status = true;
+            else
+                app.status = false;
             app.batchs = res.data;
         })
     };
@@ -27,6 +32,7 @@ angular.module('reportsController',[])
     Reports.getAllPrescription().then(function (res) {
         var date = new Date().getFullYear();
        app.prescriptions = res.data;
+
 //get count from database and store
         for(var item in app.prescriptions){
 
@@ -60,7 +66,7 @@ angular.module('reportsController',[])
 
         //generate graph
         var ctx = document.getElementById("myChart").getContext('2d');
-
+        ctx.height = 500;
         Chart.defaults.global.responsive = true;
         Chart.defaults.global.animationSteps = 150;
 
@@ -109,7 +115,10 @@ angular.module('reportsController',[])
                             beginAtZero:true
                         }
                     }]
-                }
+                },
+                responsive:false,width:500,
+                height:300,
+
             }
         });
     });
@@ -122,8 +131,8 @@ angular.module('reportsController',[])
 
 
 
-    app.saveasPdf = function(){
-         html2canvas(document.getElementById('exportthis'), {
+    app.saveasPdf = function(id){
+         html2canvas(document.getElementById(id), {
             onrendered: function (canvas) {
                 var data = canvas.toDataURL();
                 var docDefinition = {
