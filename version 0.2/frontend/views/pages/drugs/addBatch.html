@@ -6,29 +6,29 @@
     <div class="panel-body">
         <div class="row">
             <div class="col-md-6">
-                <form class="form-horizontal" id="addBatchForm" ng-submit="">
+                <form class="form-horizontal" id="addBatchForm" ng-submit="batch.addBatch()">
                     <div class="form-group">
                         <label for="drugCategory" class="col-md-4 control-label" >Drug Category</label>
                         <div class="col-md-8">
-                            <select id="drugCategory" class="form-control" ng-model="" required>
+                            <select id="drugCategory" class="form-control" ng-model="batch.batchData.dCategory" ng-change="batch.changeCategory()" required>
                                 <option value="" disabled="disabled" selected="selected">Please select a type</option>
-                                <option ng-repeat="" value="{{item}}">{{item}}</option>
+                                <option ng-repeat="item in batch.cats" value="{{item}}">{{item}}</option>
                             </select>
                         </div>
                     </div>
                     <div class="form-group">
                         <label for="drugName" class="col-md-4 control-label" >Drug Name</label>
                         <div class="col-md-8">
-                            <select id="drugName" class="form-control" ng-model="" required>
+                            <select id="drugName" class="form-control" ng-model="batch.batchData.drugName" required>
                                 <option value="" disabled="disabled" selected="selected">Please select a type</option>
-                                <option ng-repeat="" value="{{item.dName}}">{{item.dName}}</option>
+                                <option ng-repeat="item in batch.drugNames2" value="{{item.dName}}">{{item.dName}}</option>
                             </select>
                         </div>
                     </div>
                     <div class="form-group">
                         <label for="batchNo" class="col-md-4 control-label" >Batch Number</label>
                         <div class="col-md-8">
-                            <input type="text" id="batchNo" class="form-control" ng-model="" required>
+                            <input type="text" id="batchNo" class="form-control" ng-model="batch.batchData.bNumber"  required>
                         </div>
                     </div>
                     <div class="form-group">
@@ -195,14 +195,14 @@
                     <div class="form-group" >
                         <label for="manufacDate" class="col-md-4 control-label" >Manufacture Date</label>
                         <div class="col-md-8">
-                            <input type="date" id="manufacDate" class="form-control" placeholder="yyyy-mm-dd" required>
+                            <input type="text" id="manufacDate" class="form-control" ng-model="batch.batchData.bManufac" placeholder="yyyy-mm-dd"  required>
                         </div>
                     </div>
 
                     <div class="form-group" >
                         <label for="expireDate" class="col-md-4 control-label" >Expire Date</label>
                         <div class="col-md-8">
-                            <input type="date" id="expireDate" class="form-control"  required  placeholder="yyyy-mm-dd">
+                            <input type="text" id="expireDate" class="form-control"  ng-model="batch.batchData.bExpire"  placeholder="yyyy-mm-dd" required >
                         </div>
                     </div>
 
@@ -210,6 +210,18 @@
                         <div class="col-md-4"></div>
                         <div class="col-md-2">
                             <button type="submit" class="form-control btn btn-primary">Add</button>
+                        </div>
+                    </div>
+                    <div clas="form-group">
+                        <div class="col-md-4"></div>
+                        <div class="col-md-8">
+                            <div class="row show-hide-message" ng-show="batch.successMessage">
+                                <div class="alert alert-success">{{batch.successMessage}}</div>
+                            </div>
+
+                            <div class="row show-hide-message" ng-show="batch.errorMessage">
+                                <div class="alert alert-danger">{{batch.errorMessage}}</div>
+                            </div>
                         </div>
                     </div>
 

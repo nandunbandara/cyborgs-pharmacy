@@ -41,5 +41,11 @@ angular.module('drugServices',[])
             return res;
         })
     }
+
+    drugFactory.addNewBatch = function (data) {
+        return $http.post(Conf.drug_service.concat('/batch'), data).then(function (res) {
+            return res;
+        })
+    }
     return drugFactory;
 }])
