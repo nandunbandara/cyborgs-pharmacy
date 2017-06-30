@@ -20,18 +20,18 @@ exports.viewAllDrugs = function(req, res){
         })
 };
 
-//view drugs by name
-exports.viewDrugbyName = function(req, res){
-    drug.find({dName:req.body.drugName})
-        .exec(function(err, drug){
-            if(err){
-                res.send('error has occured');
-            }
-            else{
-                res.json(book);
-            }
-        })
+//delete expired batch
+
+exports.deleteExpiredBatch = function(req,res){
+    batch.find({ bId: req.params.bId }).remove().exec(function(err,data){
+        if(err){
+            res.status(304).json({ message: "Could not delete"});
+        }else{
+            res.status(200).json({ message: "Batch deleted!"});
+        }
+    })
 };
+
 
 //view all batches
 exports.viewAllBatches = function(req, res){

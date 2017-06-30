@@ -49,18 +49,22 @@
                     <td>{{i.bManufac.substr(0,10)}}</td>
                     <td>{{i.bExpire.substr(0,10)}}</td>
                     <td>{{i.bQuantity}}</td>
+                    <td><button type="button" class="btn btn-primary" ng-click="reportsBatchs.deleteBatch(i.bId)">Delete Batch</button></td>
                     </tbody>
                 </table>
+
+            </div>
+            <div class="raw">
+                <div class="col-sm-4">
+                    <button class="btn btn-success" ng-click="reportsBatchs.saveasPdf('expiredBatcheTable')" ng-disabled="reportsBatchs.status">Save as PDF</button>
+                </div>
             </div>
         </div>
+
     </div>
     <div clas="form-group">
     </div>
-    <div class="raw">
-        <div class="col-sm-4">
-            <button class="btn btn-success" ng-click="reportsBatchs.saveasPdf('expiredBatcheTable')" ng-disabled="reportsBatchs.status">Save as PDF</button>
-        </div>
-    </div>
+
     <br>
     <br>
         <div class="raw">
