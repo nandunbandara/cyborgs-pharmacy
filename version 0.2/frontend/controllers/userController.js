@@ -108,6 +108,10 @@ angular.module('userController', [])
         else app.password_confirm = false;
     }
 
+    //password strength
+    app.pwd_weak = false;
+    app.pwd_good = false;
+    app.pwd_strong = false;
     //check password strength
     app.checkPasswordStrength = function(){
         // if(app.regData.password.match('^(?=.*[A-Z].*[A-Z])(?=.*[a-z].*[a-z].*[a-z])$')){
@@ -126,16 +130,19 @@ angular.module('userController', [])
         //     app.password_strength = 0;
         // }
         if(app.regData.password.match('^(?:([A-Z])*){8,12}$')){
-            app.password_strength = 30;
-            app.password_strength_message = "Week";
+            app.pwd_weak = true;
+            app.pwd_good = false;
+            app.pwd_strong = false;
         }
         else if (app.regData.password.match('^(?:([A-Z])*([a-z])*(\d)*){8,12}$')) {
-            app.password_strength = 50;
-            app.password_strength_message = "Good";
+            app.pwd_weak = false;
+            app.pwd_good = true;
+            app.pwd_strong = false;
         }
         else if (app.regData.password.match('^(?:([A-Z])*([a-z])*(\d)*(\W)*){8,12}$')){
-            app.password_strength = 100;
-            app.password_strength_message = "Excellent";
+            app.pwd_weak = false;
+            app.pwd_good = false;
+            app.pwd_strong = true;
         }
     }
 
