@@ -7,14 +7,26 @@
         <div class="panel-body">
             <div class="row">
                 <div class="col-md-6">
-                    <form class="form-inline">
+                    <form class="form-inline" ng-submit="reportsBatchs.getToBeExpiredBatches1(reportsBatchs.reqDate)">
                         <div class="input-group">
-
+                            <div class ="col-sm-4">
+                                <form id="expiredBatchesForm" ng-submit="reportsBatchs.getToBeExpiredBatches1(reportsBatchs.reqDate.date)">
+                                    <div class="form-group">
+                                        <input type="text" class="form-control" ng-model="reportsBatchs.reqDate.date" placeholder="yyyy-mm-dd" required>
+                                    </div>
+                                    <div class="form-group">
+                                        <button type="submit" class="form-control btn btn-primary">Check</button>
+                                    </div>
+                                </form>
+                            </div>
+                            <div class="col-sm-4">
+                            </div>
+                            <div class ="col-sm-4">
                                  <input type="text" class="form-control" ng-model="batch.search_key">
                                  <div class="input-group-addon">
                                      <span class="glyphicon glyphicon-search"></span>
                                  </div>
-
+                            </div>
                         </div>
                     </form>
                 </div>
@@ -44,6 +56,5 @@
                 <td>{{i.bQuantity}}</td>
                 </tbody>
             </table>
-            <button onclick="demoFromHTML();">PDF</button>
         </div>
     </div>

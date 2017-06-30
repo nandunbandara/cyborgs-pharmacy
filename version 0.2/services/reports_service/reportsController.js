@@ -60,25 +60,25 @@ exports.viewBatchesByName = function(req, res){
 };
 
 //view all drugs to be expired
-exports.viewBatchesToBeExpired = function(req, res){
+exports.viewBatchesToBeExpiredByDate = function(req, res){
+    var reqDate = req.params.id;
     batch.find({
-        bExpire:{$lt:new Date(req.body.requiredDate.toISOString())}
+        bExpire:{$lt:new Date(reqDate)}
     })
         .exec(function(err, batches){
             if(err){
                 res.send('error has occured');
             }
             else{
-                res.json(batches);
+                res.json(req);
             }
         })
 };
 
-//view all expired batch
-exports.viewAllExpiredBatches = function(req, res){
-    var currentDate = new Date();
+exports.viewBatchesToBeExpired = function(req, res){
+    var reqDate = req.body.date;
     batch.find({
-        bExpire:{$lt:new Date(currentDate.toISOString())}
+        bExpire:{$lt:new Date(reqDate)}
     })
         .exec(function(err, batches){
             if(err){
@@ -88,15 +88,38 @@ exports.viewAllExpiredBatches = function(req, res){
                 res.json(batches);
             }
         })
+
 };
 
 
 //view all drugs to be expired
 exports.viewUsage = function(req, res){
-    phPrescription.find({})
+    phPrescription.aggregate(
+        {
+            "$project": {
+                "y": {
+                    "$year": "$date"
+                },
+                "m": {
+                    "$month": "$date"
+                }
+            }
+        },
+        {
+            "$group": {
+                "_id": {
+                    "year": "$y",
+                    "month": "$m"
+                },
+                count: {
+                    "$sum": 1
+                }
+            }
+        })
+
         .exec(function(err, usages){
             if(err){
-                res.send('error has occured');
+                res.send('error has occured' + err);
             }
             else{
                 res.json(usages);
@@ -105,11 +128,5 @@ exports.viewUsage = function(req, res){
 
 };
 
-exports.getPhprescription = function (req,res) {
-   // var date = req.body.date;
-    var date = new Date();
-    var year = d.getFullYear();
-  //  phPrescription.find({"date":{$gt: new Date()}}).count().
-};
 
 

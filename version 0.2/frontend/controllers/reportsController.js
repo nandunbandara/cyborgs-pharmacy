@@ -10,16 +10,54 @@ angular.module('reportsController',[])
     app.batchs = [];
     app.prescriptions = [];
     app.allBatchs = [];
+    app.dataOfGraph = [];
+    app.reqDate ={};
 
 
-    Reports.getAllExpiredBatchs().then(function (res){
-        app.batchs = res.data;
+    app.getToBeExpiredBatches1 = function (date) {
 
-    });
+        Reports.getToBeExpiredBatches(date).then(function (res) {
+            app.batchs = res.data;
+            console.log(res.data);
+        })
+    };
 
     Reports.getAllPrescription().then(function (res) {
         var date = new Date().getFullYear();
-        app.prescriptions = res.data;
+       app.prescriptions = res.data;
+//get count from database and store
+        for(var item in app.prescriptions){
+
+            if(app.prescriptions[item]._id.year == date){
+                if(app.prescriptions[item]._id.month == 1)
+                    app.dataOfGraph[0]=app.prescriptions[item].count;
+                if(app.prescriptions[item]._id.month == 2)
+                    app.dataOfGraph[1]=app.prescriptions[item].count;
+                if(app.prescriptions[item]._id.month == 3)
+                    app.dataOfGraph[2]=app.prescriptions[item].count;
+                if(app.prescriptions[item]._id.month == 4)
+                    app.dataOfGraph[3]=app.prescriptions[item].count;
+                if(app.prescriptions[item]._id.month == 5)
+                    app.dataOfGraph[4]=app.prescriptions[item].count;
+                if(app.prescriptions[item]._id.month == 6)
+                    app.dataOfGraph[5]=app.prescriptions[item].count;
+                if(app.prescriptions[item]._id.month == 7)
+                    app.dataOfGraph[6]=app.prescriptions[item].count;
+                if(app.prescriptions[item]._id.month == 8)
+                    app.dataOfGraph[7]=app.prescriptions[item].count;
+                if(app.prescriptions[item]._id.month == 9)
+                    app.dataOfGraph[8]=app.prescriptions[item].count;
+                if(app.prescriptions[item]._id.month == 10)
+                    app.dataOfGraph[9]=app.prescriptions[item].count;
+                if(app.prescriptions[item]._id.month == 11)
+                    app.dataOfGraph[10]=app.prescriptions[item].count;
+                if(app.prescriptions[item]._id.month == 12)
+                    app.dataOfGraph[11]=app.prescriptions[item].count;
+            }
+        }
+
+
+
 
         //generate graph
         var ctx = document.getElementById("myChart").getContext('2d');
@@ -29,7 +67,7 @@ angular.module('reportsController',[])
                 labels: ["Jan", "Feb", "March", "Apr", "May", "June","July","Aug","Sep","Oct","Nov","Des"],
                 datasets: [{
                     label: 'Number Of customers Vs '+ date,
-                    data: [1, 1, 3, 4, 0, 0, 6, 7, 10, 5, 11, 57],
+                    data: app.dataOfGraph,
                     backgroundColor: [
                         'rgba(255, 99, 132, 0.2)',
                         'rgba(54, 162, 235, 0.2)',
@@ -77,19 +115,8 @@ angular.module('reportsController',[])
         app.allBatchs = res.data;
     });
 
-//save graphs as a pdf
 
-    window.onload = function() {
-        var saveGraphs = document.getElementById('saveBtn');
-        saveGraphs.onclick = function () {
-            var canvas = document.getElementById("myChart");
-            var imgData = canvas.toDataURL("image/jpeg", 1.0);
-            var pdf = new jsPDF();
-
-            pdf.addImage(imgData, 'JPEG', 0, 0);
-            var download = document.getElementById('myChart');
-
-            pdf.save("download.pdf");
-        }
-    }
+function saveasPdf(){
+    console.log('function is working');
+}
 }]);
