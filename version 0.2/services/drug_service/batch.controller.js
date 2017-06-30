@@ -4,6 +4,7 @@
 'use strict'
 
 const batch = require('./batch.model');
+const drug = require('./drug.model');
 
 exports.addBatch = function (req,res) {
     batch.find({},function (err,data) {
@@ -32,13 +33,44 @@ exports.addBatch = function (req,res) {
                 var msg = {
                     "message":"error"
                 }
+                console.log(err);
                 res.send(msg);
                 return;
             }
-            var msg = {
-                "message":"success"
-            }
-            res.send(msg);
+
+            drug.find({'dName':req.body.drugName},function (err,data) {
+                if(err){
+                    var msg = {
+                        "message":"error"
+                    }
+                    console.log(err);
+                    res.send(msg);
+                    return;
+                }
+
+                var newQuantity = data[0].dQuantity + req.body.bQuantity;
+
+                console.log(data)
+                drug.findOneAndUpdate({"dName":req.body.drugName},{$set:{'dQuantity':newQuantity}},function (err,data) {
+                    if(err){
+                        var msg = {
+                            "message":"error"
+                        }
+                        console.log(err);
+                        res.send(msg);
+                        return;
+                    }
+
+                    var msg = {
+                        "message":"success"
+                    }
+                    res.send(msg);
+                })
+
+
+            })
+
+
         });
     });
 
