@@ -81,15 +81,18 @@ exports.addNewDrug = function (req,res) {
 
         newDrug.save(function (err) {
             if(err){
-                console.log(err);
+                res.send(err);
+                return;
             }
+
+            var msg = {
+                "message":"success"
+            }
+            res.send(msg);
         });
     });
 
-    var msg = {
-        "message":"success"
-    }
-    res.send(msg);
+
 };
 
 exports.updateDrug = function (req,res) {
