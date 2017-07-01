@@ -47,3 +47,5 @@ app.get('/prescription/pharmacist/phname/:name',prescriptionController.getPhpres
 app.get('/prescription/doctor',prescriptionController.getDocPrescription);
 app.get('/prescription/pharmacist',prescriptionController.getPhPrescription);
 //app.get('/dprescription/:number',prescriptionController.getDocPrescriptionDetail);
+
+module.exports = app;
