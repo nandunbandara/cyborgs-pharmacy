@@ -50,9 +50,13 @@ angular.module('cyborgPharmacy', [
                 })
                 if(toState.permissions){
                     if($rootScope.user){
-                        if($rootScope.user.data.permission != toState.permissions[0]){
+                        if($rootScope.user.data.permission != toState.permissions[0] && $rootScope.user.data.permission=='chief'){
                             //add more permission checks here
                             $location.path('/drugs');
+                        }else if($rootScope.user.data.permission != toState.permissions[0] && $rootScope.user.data.permission=='user'){
+                            $location.path('/prescription/pharmacist/addPhprescription');
+                        }else if($rootScope.user.data.permission != toState.permissions[0] && $rootScope.user.data.permission=='doctor'){
+                            $location.path('/prescription/doctor');
                         }
                     }else{
                         $location.path('/login');

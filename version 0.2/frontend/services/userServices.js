@@ -89,7 +89,6 @@ angular.module('userServices',[])
         const send = {};
         send.description = data;
         return $injector.get('$http').post(Conf.auth_service.concat('/logs'),send).then(function(data){
-            console.log(data);
             return data;
         }).catch(function(err){
             console.log(err);
@@ -109,7 +108,6 @@ angular.module('userServices',[])
         console.log($rootScope.user);
     }
     logInterceptFactory.request = function(req){
-        console.log(req);
         //auth service requests
         if(req.url==Conf.auth_service.concat('/authenticate')){
             UserLogs.addLog("User logged into the system");
