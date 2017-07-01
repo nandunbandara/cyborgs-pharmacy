@@ -47,15 +47,15 @@
                     <input type="password" id="password" class="form-control" ng-model="admin_user.regData.password"
                            placeholder="Password" ng-change="admin_user.checkPasswordStrength()">
                 </div>
-            </div>
-            <div ng-show="admin_user.password_confirm" class="col-sm-8 col-sm-offset-4">
-                <small style="color: green;">Week Password</small>
-            </div>
-            <div ng-hide="admin_user.password_confirm" class="col-sm-8 col-sm-offset-4">
-                <small style="color: red;">Good Password</small>
-            </div>
-            <div ng-hide="admin_user.password_confirm" class="col-sm-8 col-sm-offset-4">
-                <small style="color: red;">Strong Password</small>
+                <div ng-show="admin_user.pwd_weak" class="col-sm-8 col-sm-offset-4">
+                    <small style="color: red;">Weak Password</small>
+                </div>
+                <div ng-show="admin_user.pwd_good" class="col-sm-8 col-sm-offset-4">
+                    <small style="color: darkorange;">Good Password</small>
+                </div>
+                <div ng-show="admin_user.pwd_strong" class="col-sm-8 col-sm-offset-4">
+                    <small style="color: green;">Strong Password</small>
+                </div>
             </div>
             <!--confirm password-->
             <div class="form-group">

@@ -29,7 +29,6 @@ angular.module('prescriptionController',[])
                     name: $scope.temp.add,
                     qty: $scope.temp.qty
                 };
-                // app.addAvailableDrug.push(dDrug);
             app.addDpre.availableDrugs.push(dDrug);
         };
 
@@ -38,20 +37,9 @@ angular.module('prescriptionController',[])
                 name: $scope.temps.name,
                 qty: $scope.temps.qty
             };
-            // app.addAvailableDrug.push(dDrug);
             app.addDpre.unavailableDrugs.push(duDrug);
         };
 
-        /*$scope.addAadil = function(data)
-        {
-            dPrescription.addAadil(data).then(function (data) {
-                $scope.Aadil  = "Success";
-                console.log("Success");
-            }, function (err) {
-                $scope.Aadil = "Error";
-                console.log("error");
-            });
-        };*/
 
         dPrescription.getDocPrescription().then(function (data) {
             app.dprescription = data.data;
@@ -96,23 +84,23 @@ angular.module('prescriptionController',[])
         app.phprescriptionByDocName = {};
         app.phprescriptionByPatName = {};
         app.phprescriptionByPharName = {};
-        app.addPHpre = {};
+        app.addPHpre = {deliveredDrugs : []};
         app.showErrorMsg = false;
         app.successMessage = null;
         app.deliveredDrugs = {};
         app.addDeliveredDrug = [];
+        $scope.temp = {};
 
         Drug.getAllDrugs().then(function (data) {
             app.deliveredDrugs = data.data;
         })
 
-        // model.availableDrugs = addAvailableDrug
         $scope.addToList = function(){
             var phDrug = {
                 name: $scope.temp.add,
                 qty: $scope.temp.qty
             };
-            app.addDeliveredDrug.push(phDrug);
+            app.addPHpre.deliveredDrugs.push(phDrug);
         };
 
         phPrescription.getPhPrescription().then(function (data) {

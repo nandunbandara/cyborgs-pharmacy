@@ -84,6 +84,8 @@ angular.module('userController', [])
         else if (app.regData.permission==""||app.regData.permission==undefined)
             app.error_message = "Please set user permission";
         else{
+            //hide error messages if any
+            app.error_message = null;
             User.addUser(regData).then(function(data){
                 console.log(data);
                 if(data.data.success){
@@ -108,6 +110,10 @@ angular.module('userController', [])
         else app.password_confirm = false;
     }
 
+    //password strength
+    app.pwd_weak = false;
+    app.pwd_good = false;
+    app.pwd_strong = false;
     //check password strength
     app.checkPasswordStrength = function(){
         // if(app.regData.password.match('^(?=.*[A-Z].*[A-Z])(?=.*[a-z].*[a-z].*[a-z])$')){
@@ -125,17 +131,20 @@ angular.module('userController', [])
         // else {
         //     app.password_strength = 0;
         // }
-        if(app.regData.password.match('^(?:([A-Z])*){8,12}$')){
-            app.password_strength = 30;
-            app.password_strength_message = "Week";
+        if(app.regData.password.match('^[a-zA-Z]{0,8}$')){
+            app.pwd_weak = true;
+            app.pwd_good = false;
+            app.pwd_strong = false;
         }
-        else if (app.regData.password.match('^(?:([A-Z])*([a-z])*(\d)*){8,12}$')) {
-            app.password_strength = 50;
-            app.password_strength_message = "Good";
+        else if (app.regData.password.match('^[a-zA-Z0-9]{8,12}$')) {
+            app.pwd_weak = false;
+            app.pwd_good = true;
+            app.pwd_strong = false;
         }
-        else if (app.regData.password.match('^(?:([A-Z])*([a-z])*(\d)*(\W)*){8,12}$')){
-            app.password_strength = 100;
-            app.password_strength_message = "Excellent";
+        else if (app.regData.password.match('^[a-zA-Z0-9!@#$%^&*]{8,}$')){
+            app.pwd_weak = false;
+            app.pwd_good = false;
+            app.pwd_strong = true;
         }
     }
 
@@ -216,11 +225,13 @@ angular.module('userController', [])
         else if (app.regData.email==""||app.regData.email==undefined)
             app.error_message = "Please enter an email address";
         //valid email address
-        else if (!app.regData.email.match('[A-Z0-9._%+-]+@[A-Z0-9.-]+.[A-Z]{2,4}'))
+        else if (!app.regData.email.match('[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,3}$'))
             app.error_message = "Please enter a valid email address";
-        else if (app.regData.permission==""||app.regDat.permission==undefined)
+        else if (app.regData.permission==""||app.regData.permission==undefined)
             app.error_message = "Please set user permission";
         else{
+            //hide error messages if any
+            app.error_message = null;
             User.updateUser(app.username, app.regData).then(function(data){
                 //show success message and redirect user to the view of all users
                 app.success_message = data.data.message;
@@ -245,8 +256,7 @@ angular.module('userController', [])
 .controller('admin_UserLogsController',['UserLogs',function(UserLogs){
     const app = this;
     UserLogs.getAllLogs().then(function(data){
-        app.logs = data.data;
-        console.log(app.logs);
+        app.logs = data.data.reverse();
     }).catch(function(err){
         app.log_err = err;
     })
