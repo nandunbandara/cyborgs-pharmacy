@@ -27,7 +27,7 @@ angular.module('reportsServices',[])
             })
         }
         //delete expired batch record
-        userFactory.deleteExpiredBatch = function(bId){
+        ReportsFactory.deleteExpiredBatch = function(bId){
             return $http.delete(Conf.report_service.concat('/reports/batch/').concat(bId)).then(function(data){
                 return data;
             })
