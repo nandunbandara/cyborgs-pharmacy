@@ -25,9 +25,9 @@ exports.viewAllDrugs = function(req, res){
 exports.deleteExpiredBatch = function(req,res){
     batch.find({ bId: req.params.bId }).remove().exec(function(err,data){
         if(err){
-            res.status(304).json({ message: "Could not delete"});
+            res.json({ message: "Could not delete"});
         }else{
-            res.status(200).json({ message: "Batch deleted!"});
+            res.json({ message: "Batch deleted!"});
         }
     })
 };

@@ -16,6 +16,8 @@ angular.module('reportsController',[])
 
 
 
+
+
     app.getToBeExpiredBatches1 = function (date) {
 
         Reports.getToBeExpiredBatches(date).then(function (res) {
@@ -28,11 +30,12 @@ angular.module('reportsController',[])
     };
 
     //delete a expired batch
-    app.deleteExpiredBatch = function(bId){
-        Reports.deleteBatch(bId).then(function(data){
-            console.log(data);
+    app.deleteBatch = function(bId){
+        console.log('function running');
+       Reports.deleteExpiredBatch(bId).then(function(res){
+            console.log(res);
         })
-    }
+    };
 
 
 
