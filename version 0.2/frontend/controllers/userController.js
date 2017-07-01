@@ -131,17 +131,17 @@ angular.module('userController', [])
         // else {
         //     app.password_strength = 0;
         // }
-        if(app.regData.password.match('^(?:([A-Z])*){8,12}$')){
+        if(app.regData.password.match('^[a-zA-Z]{0,8}$')){
             app.pwd_weak = true;
             app.pwd_good = false;
             app.pwd_strong = false;
         }
-        else if (app.regData.password.match('^(?:([A-Z])*([a-z])*(\d)*){8,12}$')) {
+        else if (app.regData.password.match('^[a-zA-Z0-9]{8,12}$')) {
             app.pwd_weak = false;
             app.pwd_good = true;
             app.pwd_strong = false;
         }
-        else if (app.regData.password.match('^(?:([A-Z])*([a-z])*(\d)*(\W)*){8,12}$')){
+        else if (app.regData.password.match('^[a-zA-Z0-9!@#$%^&*]{8,}$')){
             app.pwd_weak = false;
             app.pwd_good = false;
             app.pwd_strong = true;

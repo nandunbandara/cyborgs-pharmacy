@@ -129,6 +129,13 @@ angular.module('userServices',[])
         else if(req.url.startsWith(Conf.drug_service.concat('/batch'))&&req.method=="POST"){
             UserLogs.addLog("Added a new batch to the system");
         }
+        //prescriptions
+        else if(req.url.startsWith(Conf.prescription_service.concat('/prescription/pharmacist'))&&req.method=="POST"){
+            UserLogs.addLog("Pharmacist added a new prescription to the system");
+        }
+        else if(req.url.startsWith(Conf.prescription_service.concat('/prescription/doctor'))&&req.method=="POST"){
+            UserLogs.addLog("Doctor added a new prescription to the system");
+        }
 
         return req;
     }
