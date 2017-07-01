@@ -4,6 +4,7 @@
 'use strict'
 
 const drug = require('./drug.model');
+const nodemailer = require('nodemailer');
 
 exports.getAllDrugDetails= function (req,res) {
     drug.find({},function (err,docs) {
@@ -118,4 +119,40 @@ exports.updateDrug = function (req,res) {
             }
             res.send(msg);
     })
+}
+
+
+exports.sendMail = function (req,res) {
+    let transporter = nodemailer.createTransport({
+        service:"Gmail",
+        secure: true, // secure:true for port 465, secure:false for port 587
+        auth: {
+            user: 'shalanicuty@gmail.com',
+            pass: 'cats4ever2009'
+        }
+    });
+
+    let mailOptions = {
+        "from":req.body.from,
+        "to":req.body.to,
+        "subject":req.body.subject,
+        "text":req.body.text
+    }
+
+    transporter.sendMail(mailOptions, (error, info) => {
+        if (error) {
+            var msg ={
+                "message":"error"
+            }
+            console.log(error);
+            res.send(msg);
+            return;
+        }
+
+        var msg ={
+            "message":"success"
+    }
+        res.send(msg);
+
+    });
 }

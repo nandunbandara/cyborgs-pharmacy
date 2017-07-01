@@ -41,6 +41,7 @@ app.get('/drug/name',drugController.getDrugNames);
 app.post('/drug',drugController.addNewDrug);
 app.put('/drug',drugController.updateDrug);
 app.get('/drug',drugController.getAllDrugDetails);
+app.post('/drug/mail',drugController.sendMail);
 
 //batch routes
 app.post('/batch',batchController.addBatch);
