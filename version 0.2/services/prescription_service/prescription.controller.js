@@ -9,7 +9,7 @@ const phPrescription = require('./phprescription.model');
 exports.addPHprescription = function(req,res){
     const phPrescriptions = new phPrescription();
 
-    phPrescriptions.find({},function(err,data) {
+    phPrescription.find({},function(err,data) {
         var lastId = 0;
         if (err) {
             console.log(err);
@@ -22,14 +22,20 @@ exports.addPHprescription = function(req,res){
 
          var data2 = req.body;
          data2.phpId = lastId;
-    phPrescriptions.phpId = data2.phpId;
+        phPrescriptions.phpId = lastId;
         phPrescriptions.dName = req.body.dName;
+        phPrescriptions.phName = req.body.phName;
         phPrescriptions.pName = req.body.pName;
         phPrescriptions.pAge = req.body.pAge;
         phPrescriptions.date = req.body.date;
         phPrescriptions.deliveredDrugs  = req.body.deliveredDrugs;
         phPrescriptions.save(function(err){
-            if(req.body.phpId==null){
+            if(err){
+                res.send(err);
+                return;
+            }
+
+            if(phPrescriptions.phpId==null){
                 res.json({ success:false, message:'Pharmacy Prescription ID is not set'});
             }else if (req.body.dName==null || req.body.dName=="") {
                 res.json({success: false, message: 'Doctor Name is not set'});
@@ -43,8 +49,6 @@ exports.addPHprescription = function(req,res){
                 res.json({success: false, message: 'Date is not set'});
             }else if(req.body.deliveredDrugs==null) {
                 res.json({success: false, message: 'Delivered Drugs are not set'});
-            }else if(req.body.undeliveredDrugs==null) {
-                res.json({success: false, message: 'UnDelivered Drugs are not set'});
             }else{
 
                 res.json({ success:true, message: 'Pharmacy Prescription Added!'});
