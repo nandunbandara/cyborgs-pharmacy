@@ -84,6 +84,8 @@ angular.module('userController', [])
         else if (app.regData.permission==""||app.regData.permission==undefined)
             app.error_message = "Please set user permission";
         else{
+            //hide error messages if any
+            app.error_message = null;
             User.addUser(regData).then(function(data){
                 console.log(data);
                 if(data.data.success){
