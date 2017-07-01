@@ -45,5 +45,8 @@ app.get('/me', userController.me);
 app.get('/logs', userController.getAllLogs);
 app.post('/logs', userController.addLog);
 
+//for testing
+module.exports = app;
+
 
 
