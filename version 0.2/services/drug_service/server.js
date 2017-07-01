@@ -44,3 +44,6 @@ app.get('/drug',drugController.getAllDrugDetails);
 
 //batch routes
 app.post('/batch',batchController.addBatch);
+
+//for testing
+module.exports = app;
