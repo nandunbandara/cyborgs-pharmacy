@@ -8,6 +8,7 @@ angular.module('adminController',[])
 
     if($rootScope.user){
         app.username = $rootScope.user.data.name;
+        app.user_permission = $rootScope.user.data.permission;
     }else{
         Auth.logout();
         $location.path('/login');
