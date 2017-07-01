@@ -109,6 +109,7 @@ angular.module('userServices',[])
         console.log($rootScope.user);
     }
     logInterceptFactory.request = function(req){
+        console.log(req);
         //auth service requests
         if(req.url==Conf.auth_service.concat('/authenticate')){
             UserLogs.addLog("User logged into the system");

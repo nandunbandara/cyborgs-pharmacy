@@ -225,11 +225,13 @@ angular.module('userController', [])
         else if (app.regData.email==""||app.regData.email==undefined)
             app.error_message = "Please enter an email address";
         //valid email address
-        else if (!app.regData.email.match('[A-Z0-9._%+-]+@[A-Z0-9.-]+.[A-Z]{2,4}'))
+        else if (!app.regData.email.match('[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,3}$'))
             app.error_message = "Please enter a valid email address";
-        else if (app.regData.permission==""||app.regDat.permission==undefined)
+        else if (app.regData.permission==""||app.regData.permission==undefined)
             app.error_message = "Please set user permission";
         else{
+            //hide error messages if any
+            app.error_message = null;
             User.updateUser(app.username, app.regData).then(function(data){
                 //show success message and redirect user to the view of all users
                 app.success_message = data.data.message;
@@ -254,8 +256,7 @@ angular.module('userController', [])
 .controller('admin_UserLogsController',['UserLogs',function(UserLogs){
     const app = this;
     UserLogs.getAllLogs().then(function(data){
-        app.logs = data.data;
-        console.log(app.logs);
+        app.logs = data.data.reverse();
     }).catch(function(err){
         app.log_err = err;
     })

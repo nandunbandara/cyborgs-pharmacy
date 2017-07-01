@@ -147,7 +147,7 @@ exports.addLog = function(req,res){
 
 //get all logs
 exports.getAllLogs = function(req,res){
-    Log.find({},null,{sort:{date:-1, time:-1}}).select('description date time').exec(function(err,logs){
+    Log.find({}).select('description date time').exec(function(err,logs){
         if(err) res.json({ success:false, message:"Could not retrieve logs", error:err});
         else res.json(logs);
     })
