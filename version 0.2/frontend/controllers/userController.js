@@ -25,8 +25,12 @@ angular.module('userController', [])
                         //Dev:add more conditions to check for more permissions
                         if(data.data.permission=="admin"){
                             $location.path('/admin/users');
-                        }else{
+                        }else if(data.data.permission=="chief"){
                             $location.path('/drugs');
+                        }else if(data.data.permission=="user"){
+                            $location.path('/prescription/pharmacist/addPhprescription');
+                        }else if(data.data.permission=="doctor"){
+                            $location.path('/prescription/doctor/addDprescription');
                         }
                     })
                 },2000);
