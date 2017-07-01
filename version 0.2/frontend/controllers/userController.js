@@ -5,40 +5,61 @@ angular.module('userController', [])
 
 .controller('loginCtrl', ['Auth','$timeout','$location','$rootScope', function(Auth,$timeout,$location,$rootScope){
     const app = this;
-
+    app.login_tries = 3;
     //user login function
     app.doLogin = function(loginData){
-        Auth.login(app.loginData).then(function(data){
-            //if successful, login user, show redirect message and take user to next view
-            if(data.data.success){
-                //error message to be shown if user is not validated
-                app.errorMessage = null;
-                //show success message
-                app.successMessage = data.data.message+" Redirecting...";
-                $timeout(function(){
-                    Auth.getUser().then(function(data){
-                        //set user data to the root scope to be shared within the application
-                        $rootScope.user = data;
-                        //check user permissions
-                        //if the user is an admin take him/her to the administrator view
-                        //else take the user to the general user view
-                        //Dev:add more conditions to check for more permissions
-                        if(data.data.permission=="admin"){
-                            $location.path('/admin/users');
-                        }else if(data.data.permission=="chief"){
-                            $location.path('/drugs');
-                        }else if(data.data.permission=="user"){
-                            $location.path('/prescription/pharmacist/addPhprescription');
-                        }else if(data.data.permission=="doctor"){
-                            $location.path('/prescription/doctor/addDprescription');
-                        }
-                    })
-                },2000);
-            }else{
-                //set the error message to be shown if the user validation is not successful
-                app.errorMessage = data.data.message;
-            }
-        })
+        if(app.loginData.username==""||app.loginData.username==undefined){
+            app.errorMessage = "Please enter your Username";
+        }else if(app.loginData.password==""||app.loginData.password==undefined){
+            app.errorMessage = "Please provide your Password";
+        }else{
+            Auth.login(app.loginData).then(function(data){
+                //if successful, login user, show redirect message and take user to next view
+                if(data.data.success){
+                    //error message to be shown if user is not validated
+                    app.errorMessage = null;
+                    //show success message
+                    app.successMessage = data.data.message+" Redirecting...";
+                    $timeout(function(){
+                        Auth.getUser().then(function(data){
+                            //set user data to the root scope to be shared within the application
+                            $rootScope.user = data;
+                            //check user permissions
+                            //if the user is an admin take him/her to the administrator view
+                            //else take the user to the general user view
+                            //Dev:add more conditions to check for more permissions
+                            if(data.data.permission=="admin"){
+                                $location.path('/admin/users');
+                            }else if(data.data.permission=="chief"){
+                                $location.path('/drugs');
+                            }else if(data.data.permission=="user"){
+                                $location.path('/prescription/pharmacist/addPhprescription');
+                            }else if(data.data.permission=="doctor"){
+                                $location.path('/prescription/doctor/addDprescription');
+                            }
+                        })
+                    },2000);
+                }else{
+                    //set the error message to be shown if the user validation is not successful
+                    if(app.login_tries>1){
+                        app.login_tries--;
+                        app.errorMessage = data.data.message+" You have "+app.login_tries+" attempts left.";
+                    }else{
+                        app.errorMessage = "Try again in 30 seconds";
+                        document.getElementById('username').disabled = true;
+                        document.getElementById('password').disabled = true;
+                        document.getElementById('submitBtn').disabled = true;
+                        $timeout(function(){
+                            app.errorMessage = null;
+                            document.getElementById('username').disabled = false;
+                            document.getElementById('password').disabled = false;
+                            document.getElementById('submitBtn').disabled = false;
+                            app.login_tries=3;
+                        },30000);
+                    }
+                }
+            })
+        }
     }
 }])
 
