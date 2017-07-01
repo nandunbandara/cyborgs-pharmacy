@@ -34,7 +34,6 @@ app.listen(port, function(){
 
 //user routes
 app.get('/reports/Batches',reportController.viewAllBatches);
-app.post('/viewBatchesByName',reportController.viewBatchesByName);
 app.get('/reports/Usage',reportController.viewUsage);
 app.post('/reports/toBeExpired',reportController.viewBatchesToBeExpired);
 app.delete('/reports/batch/:bId', reportController.deleteExpiredBatch);

@@ -19,6 +19,8 @@
   "homepage": "https://gitlab.com/ntb_h3c/cyborgs-pharmacy#README",
   "dependencies": {
     "body-parser": "^1.17.2",
+    "chai": "^4.0.2",
+    "chai-http": "^3.0.0",
     "cors": "^2.8.3",
     "express": "^4.15.3",
     "mongoose": "^4.11.0"
