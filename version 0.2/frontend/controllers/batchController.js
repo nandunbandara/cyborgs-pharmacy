@@ -77,25 +77,32 @@ angular.module('batchController',[])
     
     app.addBatch = function () {
 
-        Drug.addNewBatch(app.batchData).then(function (res) {
-            if(res.data.message == "success"){
-                app.successMessage = "Batch Added successfully !";
-                app.cartons = false;
-                app.bottles = false;
-                app.tablets = false;
-                app.liquid = false;
-                app.bbottles = false;
-                app.bcards = false;
-                app.errorMessage = null;
-                app.batchData = null;
-                app.quantity = 0;
-                $scope.addBatchForm.$setPristine();
-                $scope.addBatchForm.$setUntouched();
-            } else{
-                app.successMessage = null;
-                app.errorMessage = "Batch Cannot be Added !";
-            }
-        })
+        if(app.batchData.bQuantity ==0){
+            app.successMessage = null;
+            app.errorMessage = "Batch Cannot be Added !";
+        } else{
+            Drug.addNewBatch(app.batchData).then(function (res) {
+                if(res.data.message == "success"){
+                    app.successMessage = "Batch Added successfully !";
+                    app.cartons = false;
+                    app.bottles = false;
+                    app.tablets = false;
+                    app.liquid = false;
+                    app.bbottles = false;
+                    app.bcards = false;
+                    app.errorMessage = null;
+                    app.batchData = null;
+                    app.quantity = 0;
+                    $scope.addBatchForm.$setPristine();
+                    $scope.addBatchForm.$setUntouched();
+                } else{
+                    app.successMessage = null;
+                    app.errorMessage = "Batch Cannot be Added !";
+                }
+            })
+        }
+
+
     }
 
 
