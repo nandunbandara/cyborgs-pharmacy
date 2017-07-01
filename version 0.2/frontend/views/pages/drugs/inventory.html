@@ -40,28 +40,36 @@
             </div>
 
             <br/>
+            <div id="exportthis">
+                <table class="table table-bordered">
+                    <thead>
+                    <tr>
+                        <th>Drug ID</th>
+                        <th>Drug Name</th>
+                        <th>Unit Type</th>
+                        <th>Drug Category</th>
+                        <th>Drug Price</th>
+                        <th>Drug Quantity</th>
+                    </tr>
+                    </thead>
+                    <tbody ng-repeat="item in drug.drugs | pagination: drug.curPage * drug.selectedPage | limitTo:drug.selectedPage | filter:drug.search_key">
+                    <td>{{item.dId}}</td>
+                    <td>{{item.dName}}</td>
+                    <td>{{item.dUnit}}</td>
+                    <td>{{item.dCategory}}</td>
+                    <td>{{item.dPrice}}</td>
+                    <td ng-class='{red : item.dangerColor, orange: item.reorderColor}'>{{item.dQuantity}}</td>
+                    <td><a ui-sref="dashboard.mailSender"><button type="button" class="btn btn-primary" ng-click="drug.setRowDataToLocal(item)">Place Order</button></a></td>
+                    </tbody>
+                </table>
+            </div>
+            <div class="raw">
+                <div class="col-sm-4">
+                    <button class="btn btn-success" ng-click="drug.saveasPdf('exportthis')">Save as PDF</button>
+                </div>
+            </div>
 
-            <table class="table table-bordered">
-                <thead>
-                <tr>
-                    <th>Drug ID</th>
-                    <th>Drug Name</th>
-                    <th>Unit Type</th>
-                    <th>Drug Category</th>
-                    <th>Drug Price</th>
-                    <th>Drug Quantity</th>
-                </tr>
-                </thead>
-                <tbody ng-repeat="item in drug.drugs | pagination: drug.curPage * drug.selectedPage | limitTo:drug.selectedPage | filter:drug.search_key">
-                <td>{{item.dId}}</td>
-                <td>{{item.dName}}</td>
-                <td>{{item.dUnit}}</td>
-                <td>{{item.dCategory}}</td>
-                <td>{{item.dPrice}}</td>
-                <td ng-class='{red : item.dangerColor, orange: item.reorderColor}'>{{item.dQuantity}}</td>
-                <td><a ui-sref="dashboard.mailSender"><button type="button" class="btn btn-primary" ng-click="drug.setRowDataToLocal(item)">Place Order</button></a></td>
-                </tbody>
-            </table>
+
 
             <div class="row">
                 <div class="col-md-12 text-right">
