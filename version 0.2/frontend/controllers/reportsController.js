@@ -75,14 +75,14 @@ angular.module('reportsController',[])
         var ctx = document.getElementById("myChart").getContext('2d');
         ctx.height = 500;
         Chart.defaults.global.responsive = true;
-        Chart.defaults.global.animationSteps = 150;
+        Chart.defaults.global.animationSteps = 200;
 
         var myChart = new Chart(ctx, {
             type: 'bar',
             data: {
                 labels: ["Jan", "Feb", "March", "Apr", "May", "June","July","Aug","Sep","Oct","Nov","Des"],
                 datasets: [{
-                    label: 'Number Of customers Vs '+ date,
+                    label: 'Monthly Drugs Dispensation '+ date,
                     data: app.dataOfGraph,
                     backgroundColor: [
                         'rgba(255, 99, 132, 0.2)',
@@ -123,7 +123,7 @@ angular.module('reportsController',[])
                         }
                     }]
                 },
-                responsive:false,width:500,
+                responsive:true,width:500,
                 height:300,
 
             }

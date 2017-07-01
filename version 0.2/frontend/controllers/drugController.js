@@ -118,6 +118,21 @@ angular.module('drugController',[])
     app.setRowDataToLocal = function (data) {
         localStorage.setItem('rowData',JSON.stringify(data));
     }
+    app.saveasPdf = function(id){
+        html2canvas(document.getElementById(id), {
+            onrendered: function (canvas) {
+                var data = canvas.toDataURL();
+                var docDefinition = {
+                    content: [{
+                        image: data,
+                        width: 500,
+                    }]
+                };
+                pdfMake.createPdf(docDefinition).download("usageDetails.pdf");
+            }
+        });
+    }
+
 }])
 
 .filter('pagination', function() {
@@ -133,4 +148,5 @@ angular.module('drugController',[])
         return Math.ceil(value);
     };
 })
+
 
