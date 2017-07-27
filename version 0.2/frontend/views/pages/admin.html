@@ -35,10 +35,14 @@
 </nav>
 
     <div class="col-md-2" style="padding: 0px;">
-            <div class="sidebar-nav" style="margin-left: 0px;">
+            <div class="admin-sidebar" style="margin-left: 0px;">
                 <ul class="nav nav-stacked">
-                    <li class="active"><a ui-sref=".logs"><span class="glyphicon glyphicon-eye-open"></span>&nbsp;&nbsp;User Action Logs</a></li>
-                    <li class="active"><a ui-sref=".users"><span class="glyphicon glyphicon-user"></span>&nbsp;&nbsp;User Management</a></li>
+                    <li class="active"><a ui-sref=".logs">
+                        <i class="fa fa-bolt" aria-hidden="true"></i>
+                        &nbsp;&nbsp;User Action Logs</a></li>
+                    <li class="active"><a ui-sref=".users">
+                        <i class="fa fa-users" aria-hidden="true"></i>
+                        &nbsp;&nbsp;User Management</a></li>
                     <!--add items to sidebar here-->
                 </ul>
             </div>
@@ -46,14 +50,11 @@
     <div class="col-md-10">
             <!--<div class="panel panel-default">-->
                 <!--<div class="panel-body">-->
-                    <div ui-view></div>
+                    <div class="admin-view-content">
+                        <div ui-view></div>
+                    </div>
                 <!--</div>-->
             <!--</div>-->
     </div>
 
 
-    <footer class="navbar navbar-inverse navbar-fixed-bottom"><br>
-            <p class="col-md-12" style="color: #8c8c8c">
-            Copyright &COPY; 2017 Team Cyborgs
-            </p>
-    </footer>
