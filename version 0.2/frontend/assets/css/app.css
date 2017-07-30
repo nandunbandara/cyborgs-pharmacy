@@ -1,3 +1,7 @@
+body{
+    font-family: 'Ubuntu', sans-serif;
+}
+
 .admin-view-content{
     margin-top: 20px;
 }
@@ -10,10 +14,22 @@
     height: 100vh;
 }
 
-.admin-sidebar .ul{
+.admin-sidebar ul{
+    color: #ffffff;
+    list-style: none;
+    padding-left: 0;
+}
+
+.admin-sidebar ul li{
+    padding: 20px 5px 20px 5px;
+}
+
+.admin-sidebar ul li a{
+    text-decoration: none;
     color: #ffffff;
 }
 
-.admin-sidebar .ul li:hover{
+
+.admin-sidebar ul li:hover{
     background-color: #b4b4b4;
 }
