@@ -1,0 +1,11 @@
+{
+  "name": "service-proxy",
+  "version": "1.0.0",
+  "description": "Proxy to direct requests and responses between the frontend and the services. This shall be responsible for validating authentic requests",
+  "main": "server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Nandun Bandara",
+  "license": "ISC"
+}
